@@ -1,0 +1,19 @@
+The purpose of this script is to be able to download any YouTube video in 720p format:
+
+In the file, you'll find the following variables:
+
+1) pth - This variable will store the directory path wherein lie the files you wish to rename.
+
+2) entries - This is the variable which will use the os module and list all the files from that folder and store within itself.
+
+3) txt2replace - As the name suggests this variable asks the user for the text which needs to be replaced from the names of the files in that folder.
+
+4) newtext - This variable will contain the new text which replaces txt2replace in the files' names.
+
+5) str = entry.find(txt2replace) #With this method we check the presence of a substring within another string. 
+    # If the substring is present the method will return the number which denotes the beginning of the substring. 
+    # If the substring isn't present, the method will return -1.
+
+The videos download with this script will get saved down in 'C:/Users/AU/Downloads'.
+
+

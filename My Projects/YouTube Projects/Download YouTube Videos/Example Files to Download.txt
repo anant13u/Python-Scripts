@@ -1,0 +1,22 @@
+Use these example URLs:
+
+http://youtube.com/watch?v=9bZkp7q19f0
+Gangnam Styles 8-)
+
+https://www.youtube.com/watch?v=4KTvjFGgGkk
+Thor: The Dark World Official Trailer #2 (2013) - Chris Hemsworth Movie HD
+
+https://www.youtube.com/watch?v=TQPLUUxq3V4
+PySimpleGUI #2 Popup
+
+https://www.youtube.com/watch?v=l3EGmgsfp5M
+Judaai : The Revisit
+
+https://www.youtube.com/watch?v=KkV5kqbLaJE
+Scott Steiner and Triple H’s feats of strength competitions
+
+https://www.youtube.com/watch?v=HXqO52w83vg
+The Prom Video | Friends
+
+https://www.youtube.com/watch?v=7p1Gqwf-56s
+21 Built-in Python Functions That Improves Your Coding

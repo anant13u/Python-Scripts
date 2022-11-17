@@ -1,0 +1,3 @@
+# path variable is where we tell the code where the chromedriver file is located on the system.
+from selenium import webdriver
+PATH = "C:\Users\AU\AppData\Local\SeleniumBasic\chromedriver.exe"

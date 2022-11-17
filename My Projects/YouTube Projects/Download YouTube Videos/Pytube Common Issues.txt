@@ -1,0 +1,17 @@
+Pytube common issues:
+
+# Local path for Pytube:
+# C:\Users\AU\AppData\Local\Programs\Python\Python310\Lib\site-packages\pytube
+
+# Solution for the error (pytube.exceptions.RegexMatchError: __init__: could not find match for ^\w+\W):
+# https://stackoverflow.com/questions/70776558/pytube-exceptions-regexmatcherror-init-could-not-find-match-for-w-w and
+# https://github.com/pytube/pytube/issues/1199
+
+# Solution for the error (pytube.exceptions.RegexMatchError: get_throttling_function_name: could not find match for multiple):
+# https://stackoverflow.com/questions/68945080/pytube-exceptions-regexmatcherror-get-throttling-function-name-could-not-find/71903013#71903013
+
+# Solution for the error (AttributeError: 'NoneType' object has no attribute 'span'):
+# https://trustsu.com/python/attributeerror-nonetype-object-has-no-attribute-span/
+
+# Also, make sure that you are on the latest version of pytube by installing from the source (Only works if you have Git installed on your system)
+# python -m pip install git+https://github.com/pytube/pytube
