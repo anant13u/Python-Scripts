@@ -93,7 +93,7 @@ def download_video():
                     with open(Path.joinpath(download_path,'captions.txt'),'a+') as captions:
                         for c in yt_captions:
                             captions.write(c)
-                    print(f'\n Downloaded filename: "{final_file}"')
+                    print(f'\n Downloaded filename: \n "{final_file}"')
                     curr_datetime = datetime.now().strftime('%d/%m/%y %H:%M:%S')
                     with open(Path.joinpath(download_path,'Downloaded Videos.txt'),'a+') as curr_log:
                         curr_log.write(f'\n{curr_datetime} - Downloaded "{final_file}"')
