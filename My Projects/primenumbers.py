@@ -16,4 +16,7 @@ else:
     if mynum_is_prime == True:
         print(f'{my_num} is a prime number.')
     else:
-        print(f'{my_num} is not a prime number. It is divisible by {i} and {int(my_num/i)}.')
+        if my_num == i*i:
+            print(f'{my_num} is not a prime number. It is square of {i}.')
+        else:
+            print(f'{my_num} is not a prime number. It is divisible by {i} and {int(my_num/i)}.')
