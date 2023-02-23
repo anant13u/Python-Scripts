@@ -26,13 +26,20 @@ while True:
 		for root, dirs, files in os.walk(our_path):
 			filelist.append(f'\n There are {len(dirs)} folders and {len(files)} files in {root}.\n')
 			for file in files:
-				if Path(file).is_file:
+				print(Path(file).name)
+				print(Path(file).suffix)
+				if Path(file).name == Path(file).suffix:
+					pass
+				else:
+				# if FileNotFoundError:
+					# pass
+				# if Path(file).is_file:
+				# else:
 					current_file = os.path.join(root,file)
 					current_file_size = round(os.path.getsize(current_file)/(1024*1024),2)
 					total_files_size += current_file_size # Adding the current file's size to the variable total_files_size to print at the end.
 					filelist.append(f'\n File: {file}\n (Size of file is {current_file_size} MB)')
-				else:
-					filelist.append(f'\n Folder: {root}\n (Size of folder is {current_file_size} MB)')
+					# filelist.append(f'\n Folder: {root}\n (Size of folder is {current_file_size} MB)')
 		filelist = '\n'.join(filelist)
 		sg.popup_scrolled(filelist, title='Filelist')
 
