@@ -24,11 +24,11 @@ while True:
 	elif event == 'Generate List':
 		Window.close()
 		for root, dirs, files in os.walk(our_path):
-			filelist.append(f'\n There are {len(dirs)} folders and {len(files)} files in {root}.\n')
+			filelist.append(f'\n\n There are {len(dirs)} folders and {len(files)} files in {root}.\n')
 			for file in files:
-				print(Path(file).name)
-				print(Path(file).suffix)
-				if Path(file).name == Path(file).suffix:
+				# print(Path(file).name) # /home/anant/Downloads
+				# print(Path(file).name.split(sep='.')[-1]) # This particular line of code will give us the extension of the file.
+				if Path(file).name == f'.{Path(file).name.split(sep=".")[-1]}':
 					pass
 				else:
 				# if FileNotFoundError:
