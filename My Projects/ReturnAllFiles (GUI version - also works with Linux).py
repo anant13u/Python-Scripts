@@ -31,10 +31,6 @@ while True:
 				if Path(file).name == f'.{Path(file).name.split(sep=".")[-1]}':
 					pass
 				else:
-				# if FileNotFoundError:
-					# pass
-				# if Path(file).is_file:
-				# else:
 					current_file = os.path.join(root,file)
 					current_file_size = round(os.path.getsize(current_file)/(1024*1024),2)
 					total_files_size += current_file_size # Adding the current file's size to the variable total_files_size to print at the end.
