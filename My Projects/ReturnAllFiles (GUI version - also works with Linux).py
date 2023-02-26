@@ -29,13 +29,16 @@ while True:
 				# print(Path(file).name) # /home/anant/Downloads
 				# print(Path(file).name.split(sep='.')[-1]) # This particular line of code will give us the extension of the file.
 				if Path(file).name == f'.{Path(file).name.split(sep=".")[-1]}':
+					print(f"\n {Path(file).name} does not have a filename. Size can't be checked.")
 					pass
 				else:
 					current_file = os.path.join(root,file)
+					if FileNotFoundError:
+						pass
 					current_file_size = round(os.path.getsize(current_file)/(1024*1024),2)
 					total_files_size += current_file_size # Adding the current file's size to the variable total_files_size to print at the end.
 					filelist.append(f'\n File: {file}\n (Size of file is {current_file_size} MB)')
-					# filelist.append(f'\n Folder: {root}\n (Size of folder is {current_file_size} MB)')
+						# filelist.append(f'\n Folder: {root}\n (Size of folder is {current_file_size} MB)')
 		filelist = '\n'.join(filelist)
 		sg.popup_scrolled(filelist, title='Filelist')
 
