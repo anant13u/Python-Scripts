@@ -13,5 +13,16 @@ Pytube common issues:
 # Solution for the error (AttributeError: 'NoneType' object has no attribute 'span'):
 # https://trustsu.com/python/attributeerror-nonetype-object-has-no-attribute-span/
 
+# Solution for the error (pytube.exceptions.RegexMatchError: __init__: could not find match for ^\w+\W)
+# https://stackoverflow.com/questions/70776558/pytube-exceptions-regexmatcherror-init-could-not-find-match-for-w-w
+
 # Also, make sure that you are on the latest version of pytube by installing from the source (Only works if you have Git installed on your system)
 # python -m pip install git+https://github.com/pytube/pytube
+
+Use the following command to update the pytube module using pip:
+< pip install --upgrade pytube >
+# This command will upgrade the pytube module to the latest version available on the Python Package Index (PyPI). The --upgrade flag ensures that if 
+# you already have pytube installed, it will be updated to the latest version.
+
+
+
