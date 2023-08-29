@@ -8,7 +8,7 @@ from PIL import Image
 register_heif_opener()
 
 # Get the base path from the user
-base_path = input('Please enter the path where you want to search for Live Photos, PNG Files and AAE Files: \n')
+base_path = input('Please enter the path where you want to search for HEIC Files: \n')
 
 # Extract the current folder name from the base path
 curr_folder = os.path.basename(base_path)
