@@ -16,7 +16,8 @@ for file in entries:
     # print(Path(full_file_path).is_file())
     # print(os.path.getsize(full_file_path)/(1024*1024))
     file_size = os.path.getsize(curr_file_path)/(1024*1024)
-    if Path(curr_file_path).suffix.lower()=='.mov' and Path(curr_file_path).is_file() and (1<file_size<6):
+    file_ext = Path(curr_file_path).suffix.lower()
+    if file_ext=='.mov' and Path(curr_file_path).is_file() and file_size<7:
         # print(f'{file} could be a Live Photo.')
         if not os.path.exists(live_folder_path):
             os.mkdir(live_folder_path)
