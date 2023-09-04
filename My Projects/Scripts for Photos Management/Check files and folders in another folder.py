@@ -9,18 +9,20 @@ base_path = input('Please enter the path where you want to search for Live Photo
 entries = os.listdir(base_path)
 # print(entries)
 
-# for entry in entries:
-    # print(f'Entry: {entry}')
-    # print(f'Entry Absolute: {Path(entry).absolute()}')
+log = []
 
 for entry in entries:
     entry_path = os.path.join(base_path,entry)
     try:
         if Path(entry_path).is_dir():
             print(f'{entry} is a directory.')
+        elif Path(entry_path).is_file:
+            print(f'{entry} is a file.')
         else:
-            print(f'{entry} is not a directory.')
+            print(f'{entry} type is unknown.')
     except Exception as e:
         print(f'Encountered error with {entry}: {e}')
         
 # /media/anant/Games, Torrents, Other Stuff
+# /media/anant/Games, Torrents, Other Stuff/Torrents/Movies and Shows
+
