@@ -4,7 +4,7 @@ import PySimpleGUI as sg
 sg.theme("DarkTeal2")
 
 sz= size=(30,3)
-layout = [  [sg.T()],[sg.Text('Please select the folder where \nyou want to rename the files',sz),sg.T(' '*6), 
+layout = [  [sg.T()],[sg.Text('Please select the folder where \nyou want to delete the files',sz),sg.T(' '*6), 
                       sg.FolderBrowse(key='-IN-',size=(15,2))],
             [[sg.T()],sg.T(' '*20),sg.Button('Delete',size=(10,2)),sg.T(' '*10),sg.Button('Cancel',size=(10,2))],[sg.T()]   ]
 
