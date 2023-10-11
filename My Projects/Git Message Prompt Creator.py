@@ -4,7 +4,7 @@ import pyperclip
 sg.theme('Reddit')
     
 layout = [  [sg.T(' '*30), sg.T('Intital Code'),sg.T(' '*73), sg.T('Current Code')],
-            [sg.Multiline(size=(50,40),key='initial-code',do_not_clear=False),sg.Multiline(size=(50,40),key='current-code')],
+            [sg.Multiline(size=(50,40),key='initial-code',do_not_clear=False),sg.Multiline(size=(50,40),key='current-code',do_not_clear=False)],
             # [sg.T()],
             [sg.T(' '*20), sg.B('Create and copy prompt'),sg.T(' '*59), sg.B('Exit')],
             [sg.T()]  ]
