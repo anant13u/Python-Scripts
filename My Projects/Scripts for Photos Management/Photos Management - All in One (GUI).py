@@ -131,8 +131,6 @@ with open(edit_log_path,'a+') as edit_log:
     edit_log.write("\n".join(moved_pairs_list) + "\n\n\n" + "\n".join(moved_edited_only_list) + "\n\n\n" + "\n".join(error_list))
 
 
-    
-
 
 # F:\Musical World\Music Videos\^ H ^\90's
 # H:\Pics\# Timeline #\2022\August 2022\New folder (4)
