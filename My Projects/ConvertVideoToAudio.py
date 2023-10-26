@@ -1,12 +1,15 @@
 # Python code to convert video to audio
 
 import PySimpleGUI as sg
+# from pathlib import Path
+import os
 import moviepy.editor as mp # Before this the moviepy module needs to be installed using PIP
 
-sg.theme('Reddit')
+# sg.theme('Reddit')
+sg.theme('darkgreen7')
 sg.set_options(font=("Helvetica", 11))
 
-layout = [[sg.FileBrowse('Select Video',pad=(20,20)), sg.B('Convert to Audio',pad=(20,20)), sg.B('Exit',pad=(20,20))]]
+layout = [[sg.FileBrowse('Select Video',key='input-video',pad=20), sg.B('Convert to Audio'), sg.B('Exit',pad=20)]]
 
 Window = sg.Window('Video -> Audio by AU', layout, grab_anywhere=True, keep_on_top=True)
 
@@ -14,6 +17,18 @@ while True:
     event, values = Window.read()
     if event in (sg.WIN_CLOSED, 'Exit'):
         break
+    if event=='Convert to Audio':
+        try:
+            inputVideo = values['input-video']
+            outputFolder = os.path.basename(inputVideo)
+            outputAudio = inputVideo.replace('.mp4', '.mp3')
+            # print(our_clip)
+            our_clip=mp.VideoFileClip(inputVideo)
+            our_clip.audio.write_audiofile(outputAudio)
+            os.open(outputFolder)
+        except Exception as e:
+            sg.popup_error(f'Error: {e}',keep_on_top=True)
+
 
 # Insert Local Video File Path 
 # pth =  input('\nPlease enter the path of the video along with the extension which you wish to convert: ')
