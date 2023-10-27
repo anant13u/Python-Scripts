@@ -24,8 +24,6 @@ while True:
         prompt = f'I need you to write a Git commit message (preferably in 3-4 lines max) for the code changes made below:\nPrevious code:\n{initialCode}\n\nCurrent Code:\n{currentCode}' 
         pyperclip.copy(prompt)
         webbrowser.open('https://chat.openai.com/')
-        time.sleep(2)
-        pyperclip.paste
 
 
 # On Linux, install xclip, xsel, or wl-clipboard (for "wayland" sessions) via package manager. For example, in Debian:
