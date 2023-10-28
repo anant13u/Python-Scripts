@@ -1,7 +1,7 @@
 import PySimpleGUI as sg
 import pyperclip
 import webbrowser
-import time
+# import time
 
 sg.theme('Reddit')
     
