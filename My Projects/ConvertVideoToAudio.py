@@ -3,6 +3,7 @@
 import PySimpleGUI as sg
 # from pathlib import Path
 import os
+import subprocess
 import moviepy.editor as mp # Before this the moviepy module needs to be installed using PIP
 
 # sg.theme('Reddit')
@@ -20,14 +21,19 @@ while True:
     if event=='Convert to Audio':
         try:
             inputVideo = values['input-video']
-            outputFolder = os.path.basename(inputVideo)
+            outputFolder = os.path.dirname(inputVideo)
+            print(f'outputFolder is {outputFolder}')
             outputAudio = inputVideo.replace('.mp4', '.mp3')
             # print(our_clip)
             our_clip=mp.VideoFileClip(inputVideo)
             our_clip.audio.write_audiofile(outputAudio)
-            os.open(outputFolder)
+            if subprocess.os.name == 'nt':  # Check if the platform is Windows
+                subprocess.Popen(['explorer', outputFolder])
+            else:  # For non-Windows platforms (e.g., Linux, macOS)
+                subprocess.Popen(['xdg-open', outputFolder])
         except Exception as e:
             sg.popup_error(f'Error: {e}',keep_on_top=True)
+            print(e)
 
 
 # Insert Local Video File Path 
