@@ -1,0 +1,36 @@
+Variable Assignment:
+>>> x = 100
+
+Variables:
+1) Variables must start with a letter or a underscore
+2) The rest of the name must consist of letters, numbers or underscores
+3) Names are case-sensitive
+
+Naming Conventions:
+
+Most Python programmers prefer to use standard style conventions when naming things: 
+1) Most variables should be snake_case (underscores between words)
+2) Most variables should also be lowercase, with some exceptions
+CAPITAL_SNAKE_CASE usually refers to constants (e.g. PI = 3.14)
+UpperCamelCase usually refers to a class
+3) Variables that start and end with two underscores (called "dunder" for double underscore) are supposed to be private or left alone
+
+Data Types:
+
+bool (Booleans): True or False values (True and False are case-sensitive in this case)
+int (Integers): an integer (1,2,3)
+str (String): a sequence of unicode characters
+list: an ordered sequence of values of other data types, e.g. [1,2,3] or ["a","b","c"]
+dict: a collection of key values, e.g. {"first_name": "Anant", "last_name": "Upadhyay"}
+
+Dynamic Typing:
+Python is highly flexible about reassigning variables to different types:
+We call this dynamic typing, since variables can change types readily.
+Other languages, such as C++, are statically-typed, and variables are stuck with their originally-assigned type.
+
+None:
+>>> child = None
+>>> child
+None
+>>> type(child)
+<class 'NoneType'>

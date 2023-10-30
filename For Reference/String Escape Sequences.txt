@@ -1,0 +1,30 @@
+String Escape Sequences:
+\n - New Line
+>>> new_line = "hello\nthere"
+>>> print(new_line)
+hi
+there
+
+\\ - Prints a backslash
+>>> str = "this is a backslash: \\"
+>>> print(str)
+this is a backslash: \
+
+\" - Prints a double quote
+\' - Prints a single quote
+
+
+
+
+ # Set the message variable equal to any string containing a new-line escape sequence
+message = "Hello\nWorld"
+
+
+# Add a string to the mountains variable that when printed results in: /\/\/\
+# You will need to use an escape sequence more than once!
+mountains = "/\\/\\/\\"
+
+
+# Set the quotation variable to any string that contains an escaped double quotation mark
+
+quotation = "Hello \"World\""

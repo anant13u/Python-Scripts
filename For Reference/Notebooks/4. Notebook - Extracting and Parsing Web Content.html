@@ -1,0 +1,14 @@
+<p>#Importing Requests</p><p><code>import requests</code></p><p><br></p><p>#Importing beautifulsoup4</p><p><code>from bs4 import BeautifulSoup</code></p><p><br></p><p>#Making a request / getting a webpage with Requests</p><p><code>webpage = requests.get("https://www.webscraper.io/test-sites/e-commerce/static")</code></p><p><br></p><p>#The result is the Response object - I called it 'webpage'</p><pre class="prettyprint linenums">&gt;&gt;&gt; type(webpage)
+&lt;class 'requests.models.Response'&gt;</pre><p><br></p><p>#Viewing the content as string</p><pre class="prettyprint linenums">&gt;&gt;&gt; text = webpage.text
+&gt;&gt;&gt; type(text)
+&lt;class 'str'&gt;</pre><p><br></p><p>#Viewing the content as bytes</p><pre class="prettyprint linenums">&gt;&gt;&gt; content = webpage.content
+&gt;&gt;&gt; type(content)
+&lt;class 'bytes'&gt;</pre><p><br></p><p>#Parsing the extracted webpage content using the default HTML parser</p><pre class="prettyprint linenums">result = BeautifulSoup(text)
+#or:
+result = BeautifulSoup(content)
+#or, also specifying the parser to use:
+result = BeautifulSoup(content, "html.parser")
+
+#The result is the BeautifulSoup object
+&gt;&gt;&gt; type(result)
+&lt;class 'bs4.BeautifulSoup'&gt;</pre>

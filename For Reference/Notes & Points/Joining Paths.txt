@@ -1,0 +1,22 @@
+3. Joining Paths
+
+Concatenating strings in Python is as easy as using the “+” sign between two words; however, when it comes to 
+concatenating paths, things get a bit tricky. This happens because Mac OS uses forward slash “/”, while Windows 
+uses backward slash “\” in the directory names, so you need a different approach if you want the Python code to 
+be able to run cross-platform. Fortunately, the os and Pathlib modules can take care of that.
+
+
+# os
+os.path.join(os.getcwd(), 'Dataset')
+
+# pathlib
+from pathlib import Path, PurePath
+PurePath.joinpath(Path.cwd(), 'Dataset')
+
+
+If we print the code written above, we’ll get a path that contains the working directory plus “Dataset.” 
+The Path will look like this /Users/frank/PycharmProjects/DataScience/Dataset. The OS library creates a string, 
+while the Pathlib creates a PosixPath class. However, we haven’t created the “Dataset” folder. To create a directory 
+check the next file system operation.
+
+https://towardsdatascience.com/7-common-file-system-operations-you-can-do-with-python-e4670c0d92f2

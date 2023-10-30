@@ -1,0 +1,11 @@
+Powershell commands:
+
+ls - List all items of current directory
+pwd - Present Working Directory
+clear - Clears the entire screen
+cd ~ - Takes to the home directory
+
+mkdir (Make Directory) - This will create a new child directory inside the current directory
+
+Deleting files - rm <filename>
+Deleting directories - rm -r -fo <directory name>

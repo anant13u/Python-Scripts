@@ -1,0 +1,20 @@
+Break Continue Pass in Python:
+
+The pass statement is used as a placeholder for future code. When the pass statement is executed, 
+nothing happens, but you avoid getting an error when empty code is not allowed. Empty code is not 
+allowed in loops, function definitions, class definitions, or in if statements.
+
+Break & Continue Statements In Python | Python Tutorials For Absolute Beginners In Hindi #18
+https://www.youtube.com/watch?v=aXGC1fx6QQo
+Duration - 9:19
+
+#22 Python Tutorial for Beginners | Break Continue Pass in Python
+https://www.youtube.com/watch?v=yCZBnjF4_tU
+Duration - 10:20
+
+break , continue and pass statement in Python | Python Tutorial #34
+https://www.youtube.com/watch?v=7m8i4VF8_wg
+Duration - 9:32
+
+|
+|

@@ -1,0 +1,71 @@
+<pre class="prettyprint linenums">#Installing pytest in Windows
+#https://docs.pytest.org/en/latest/getting-started.html
+pip install pytest
+
+#Installing pytest in macOS
+#https://docs.pytest.org/en/latest/getting-started.html
+pip3 install pytest
+
+#Check the version of pytest currently installed
+pytest --version
+
+#Getting help
+pytest --help
+
+#Invoking the command line script
+pytest [...]
+
+#Invoking pytest from the command line
+python -m pytest [...]
+
+#Invoking pytest from Python code
+pytest.main([arg1, arg2])
+
+#Running pytest can result in six different exit codes:
+#(source: https://docs.pytest.org/en/latest/usage.html#possible-exit-codes)
+#Exit code 0:	All tests were collected and passed successfully
+#Exit code 1:	Tests were collected and run but some of the tests failed
+#Exit code 2:	Test execution was interrupted by the user
+#Exit code 3:	Internal error happened while executing tests
+#Exit code 4:	pytest command line usage error
+#Exit code 5:	No tests were collected
+
+#Running the tests in a module
+pytest test_module.py
+
+#Running the tests in a folder
+pytest D:\testing
+
+#Displaying a short summary at the end of the test session
+#(more info: https://docs.pytest.org/en/latest/usage.html#detailed-summary-report)
+pytest -r basic.py #short summary
+pytest -v basic.py #increase verbosity (level of details in the output)
+pytest -q basic.py #decrease verbosity (level of details in the output)
+pytest --disable-warning basic.py #disable warnings summary
+pytest -rf basic.py #see a short test summary for failed tests
+pytest -rp basic.py #see a short test summary for passed tests
+pytest -rE basic.py #see a short test summary for errors
+
+#Running your first basic test
+def my_func(x, y, z):
+    return x + y + z
+    
+def test_result1():
+    assert my_func(1, 2, 3) == 5
+
+#cmd: first, move to the folder containing the test
+#cmd: D:\basic&gt;pytest basic.py
+
+#Asserting that an exception is raised
+import pytest
+
+def my_exception():
+    div = 10 / 0
+    return div
+    
+def test_result3():
+    with pytest.raises(ZeroDivisionError):
+        my_exception()
+
+#cmd: first, move to the folder containing the test
+#cmd: D:\basic&gt;pytest basic.py</pre>

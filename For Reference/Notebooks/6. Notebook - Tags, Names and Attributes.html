@@ -1,0 +1,94 @@
+<pre class="prettyprint linenums">#Extracting webpage elements by tag
+
+#Extracting the head - creates a Tag object
+#Will return only the first tag by that name
+head = result.head
+&gt;&gt;&gt; type(head)
+&lt;class 'bs4.element.Tag'&gt;
+
+#Extracting h2 heading - creates a Tag object
+#Will return only the first tag by that name
+h2 = result.h2
+&gt;&gt;&gt; type(h2)
+&lt;class 'bs4.element.Tag'&gt;
+
+#Extracting the title - creates a Tag object
+#Will return only the first tag by that name
+title = result.title
+&gt;&gt;&gt; type(title)
+&lt;class 'bs4.element.Tag'&gt;
+
+#Accessing the name of a tag
+&gt;&gt;&gt; head.name
+'head'
+&gt;&gt;&gt; h2.name
+'h2'
+&gt;&gt;&gt; title.name
+'title'
+
+#Setting a new name for a tag
+&gt;&gt;&gt; title.name = "mytitle"
+&gt;&gt;&gt; title
+&lt;mytitle&gt;Top items&lt;/mytitle&gt;
+#This change is reflected in the BeautifulSoup object itself
+
+#A tag may have any number of attributes. Example:
+#&lt;header role="banner" class="navbar navbar-fixed-top navbar-static"&gt;
+#The header tag has two attributes:
+#attribute: role, value: "banner"
+#attribute: class, value: "navbar navbar-fixed-top navbar-static"
+
+#Using the attrs object attribute you can view the tag's own attributes
+#as a dictionary with the attribute name as the key and attribute value(s) as the value
+#Here, the 'role' attribute is a single-valued attribute
+#and the 'class' attribute is a multi-valued attribute
+#Note: for multi-valued attributes you get a list of the attribute's values as the dictionary value
+&gt;&gt;&gt; header = result.header
+&gt;&gt;&gt; print(header.prettify()) #pretty printing HTML code
+&gt;&gt;&gt; header.attrs
+{'role': 'banner', 'class': ['navbar', 'navbar-fixed-top', 'navbar-static']}
+
+#Accessing the value of a tag's attribute (as with any other dictionary)
+&gt;&gt;&gt; header['role']
+'banner'
+&gt;&gt;&gt; header['class']
+['navbar', 'navbar-fixed-top', 'navbar-static']
+
+#or, using the get() method:
+&gt;&gt;&gt; header.get('role')
+'banner'
+&gt;&gt;&gt; header.get('class')
+['navbar', 'navbar-fixed-top', 'navbar-static']
+
+#Modifying a tag's attribute value
+&gt;&gt;&gt; header['role'] = "something"
+&gt;&gt;&gt; header.attrs
+{'role': 'something', 'class': ['navbar', 'navbar-fixed-top', 'navbar-static']}
+
+#Adding a new tag attribute
+&gt;&gt;&gt; header['new'] = "python"
+&gt;&gt;&gt; header.attrs
+{'role': 'something', 'class': ['navbar', 'navbar-fixed-top', 'navbar-static'], 'new': 'python'}
+
+#Removing a tag attribute
+&gt;&gt;&gt; del header['new']
+&gt;&gt;&gt; header.attrs
+{'role': 'something', 'class': ['navbar', 'navbar-fixed-top', 'navbar-static']}
+
+#Extracting the string from a tag
+&gt;&gt;&gt; h2 = result.h2
+&gt;&gt;&gt; h2
+&lt;h2&gt;Top items being scraped right now&lt;/h2&gt;
+&gt;&gt;&gt; h2.string
+'Top items being scraped right now'
+&gt;&gt;&gt; type(h2.string)
+&lt;class 'bs4.element.NavigableString'&gt;
+#this is called a NavigableString
+#https://www.crummy.com/software/BeautifulSoup/bs4/doc/#navigablestring
+
+#Zooming in to a certain area of the HTML tree
+#Using a tag name as an attribute will give you only the first tag by that name
+#More info: https://www.crummy.com/software/BeautifulSoup/bs4/doc/#navigating-the-tree
+result.header.div
+result.header.div.div.a
+result.header.div.div.a.button</pre>

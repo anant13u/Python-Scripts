@@ -1,0 +1,31 @@
+Booleans and Conditional Logics:
+
+>>>print ("What's your favourite colour?")
+>>>data = input()
+>>>print ("You said " + data)
+
+
+# NO TOUCHING PLEASE---------------
+from random import randint
+choice = randint(1,10)
+# NO TOUCHING PLEASE---------------
+
+# YOUR CODE GOES HERE:
+if choice == 7:
+    print("Lucky")
+else:
+    print("unlucky")
+
+
+
+color = input("What's your favorite color?")
+if color == 'purple':
+	print("excellent choice!")
+elif color == 'teal':
+    print("not bad!")
+elif color == 'seafoam':
+    print("mediocre")
+elif color == 'pure darkness':
+    print("I like how you think")
+else: 
+	print("YOU MONSTER!") 

@@ -1,0 +1,6 @@
+<pre class="prettyprint linenums">#Deleting all the records in the database for which the value in the salary column is greater than 50000
+
+cursor = connection.cursor()
+cursor.execute("delete from mystaff.employees where salary &gt; 50000;")
+connection.commit()
+connection.close()</pre>

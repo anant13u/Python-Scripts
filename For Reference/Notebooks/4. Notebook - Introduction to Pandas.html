@@ -1,0 +1,15 @@
+<p>Introduction to Pandas - Basic Operations</p><p><br></p><p>#Installing Pandas in the Windows command line</p><p><code>pip install pandas</code></p><p><br></p><p>#Importing the Pandas module</p><p><code>import pandas</code></p><p><br></p><p>#Creating a data frame (the object holding the data) and passing a list of lists as an argument</p><p><code>d = pandas.DataFrame([['Andy', 46, 'Engineer'], ['Jane', 33, 'Nurse'], ['Robert', 21, 'Student'], ['Maria', 30, 'Student']])</code></p><p><br></p><p>#The result, where 0, 1, 2 are the columns and 0, 1, 2, 3 are the indexes</p><pre class="prettyprint linenums">d
+
+        0   1         2
+0    Andy  46  Engineer
+1    Jane  33     Nurse
+2  Robert  21   Student
+3   Maria  30   Student</pre><p><br></p><p>#Checking that a DataFrame was indeed created</p><pre class="prettyprint linenums">type(d)
+pandas.core.frame.DataFrame</pre><p><br></p><p>#Checking all the available methods and attributes for the DataFrame object</p><p><code>dir(d)</code></p><p><br></p><p>#Setting names for the columns - the number of elements of the <em>columns</em> list must match the number of elements in each of the lists containing the data</p><p><code>d = pandas.DataFrame([['Andy', 46, 'Engineer'], ['Jane', 33, 'Nurse'], ['Robert', 21, 'Student'], ['Maria', 30, 'Student']], columns = ['Name', 'Age', 'Occupation'])</code></p><p><br></p><p>#Setting names for the indexes - the number of elements of the <em>index</em> list must match the number of records in the table</p><p><code>d = pandas.DataFrame([['Andy', 46, 'Engineer'], ['Jane', 33, 'Nurse'], ['Robert', 21, 'Student'], ['Maria', 30, 'Student']], columns = ['Name', 'Age', 'Occupation'], index = ['ID1', 'ID2', 'ID3', 'ID4'])</code></p><p><br></p><p>#Series objects</p><pre class="prettyprint linenums">d.Name
+d.Age
+d.Occupation
+
+type(d.Age)
+pandas.core.series.Series</pre><p><br></p><p>#Examples of specific methods</p><pre class="prettyprint linenums">d.min()
+d.Age.min()
+d.Name.max()</pre><p><br></p><p>More information:</p><p><a href="https://pandas.pydata.org/pandas-docs/stable/" rel="noopener noreferrer" target="_blank">https://pandas.pydata.org/pandas-docs/stable/</a></p>

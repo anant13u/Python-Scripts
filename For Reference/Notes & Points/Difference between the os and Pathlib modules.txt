@@ -1,0 +1,15 @@
+import os
+In [1]: os.getcwd()
+Out [1]: /Users/frank/PycharmProjects/DataScience
+
+As you can see from the code above, I got the directory that contains all my scripts for my data science project. 
+This is my working directory in Pycharm. We can obtain the same directory with the Pathlib library
+
+
+
+from pathlib import Path
+In [1]: Path.cwd()
+Out [1]: /Users/frank/PycharmProjects/DataScience
+
+If we print either type(os.getcwd()) or the type(Path.cwd() we can see the main difference between the os and Pathlib 
+modules. The first returns only a string, while the second returns a PosixPath object that can help us do extra operations.

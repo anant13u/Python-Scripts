@@ -1,0 +1,8 @@
+Change name of a file using OS module:
+
+Syntax:
+os.rename(src, dst)
+
+Example:
+os.rename(pth + '/' + currentfilename , pth + '/' + newfilename)
+

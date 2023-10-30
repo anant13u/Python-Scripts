@@ -1,0 +1,21 @@
+OS vs Pathlib:
+
+https://towardsdatascience.com/dont-use-python-os-library-any-more-when-pathlib-can-do-141fefb6bdb5
+
+https://stackoverflow.com/questions/67112343/pathlib-vs-os-path-join-in-python
+
+Python Primers #3 - os vs pathlib modules for path/filesystem operations
+https://www.youtube.com/watch?v=BGCdFaOq-IM
+Duration - 9:41
+
+What does this package do? - Episode 4: Pathlib
+https://www.youtube.com/watch?v=YwhOUyTxXVE
+Duration - 8:17
+
+Path Lib Tutorial - Python Simplified
+https://www.youtube.com/watch?v=xXv7OAF4FkY
+Duration - 3:35
+
+How to use the Pathlib Module in Python | QuickStart Guide for Beginners
+https://www.youtube.com/watch?v=iqZ2V8qTYq8
+Duration - 4:20 
