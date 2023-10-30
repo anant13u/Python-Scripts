@@ -23,6 +23,7 @@ while True:
             inputVideo = values['input-video']
             outputFolder = os.path.dirname(inputVideo)
             print(f'outputFolder is {outputFolder}')
+            print(f'Current folder name is {os.path.basename(inputVideo)}')
             outputAudio = inputVideo.replace('.mp4', '.mp3')
             # print(our_clip)
             our_clip=mp.VideoFileClip(inputVideo)
