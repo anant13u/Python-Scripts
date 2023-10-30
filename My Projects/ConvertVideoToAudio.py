@@ -26,7 +26,8 @@ while True:
             outputAudio = inputVideo.replace('.mp4', '.mp3')
             # print(our_clip)
             our_clip=mp.VideoFileClip(inputVideo)
-            our_clip.audio.write_audiofile(outputAudio)
+            # our_clip.audio.write_audiofile(outputAudio)
+            our_clip.audio.write_audiofile(outputAudio, codec='mp3')
             if subprocess.os.name == 'nt':  # Check if the platform is Windows
                 subprocess.Popen(['explorer', outputFolder])
             else:  # For non-Windows platforms (e.g., Linux, macOS)
