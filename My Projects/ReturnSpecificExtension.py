@@ -4,7 +4,7 @@ import time
 def search_specific_extension():
 	our_extension = input('\n Enter the extension you want the files of: ')[-3:] # [:3:] denotes last 3 characters of the string entered.
 	# Can also use string.endswith() method instead of slicing in the above line.
-	path = input(' Enter the directory path where you want to perform the search: ')
+	path = input(' Enter the directory path where you want to perform the search:\n')
 	filelist = []
 
 	for root, dir, files in os.walk(path):
@@ -30,3 +30,5 @@ search_specific_extension()
 
 # C:\Users\AU\Videos
 # C:\Users\AU\Videos\Music Videos
+# /media/anant/Development
+# /media/anant/Development/AU - Documents
