@@ -30,8 +30,8 @@ while True:
             # our_clip.audio.write_audiofile(outputAudio)
             our_clip.audio.write_audiofile(outputAudio, codec='mp3')
             if subprocess.os.name == 'nt':  # Check if the platform is Windows
-                subprocess.Popen(r'explorer /select, outputFolder')
-                print(subprocess.Popen(r'explorer /select, outputFolder'))
+                subprocess.Popen(f'explorer {outputFolder}')
+                # print(subprocess.Popen(r'explorer outputFolder'))
             else:  # For non-Windows platforms (e.g., Linux, macOS)
                 subprocess.Popen(['xdg-open', outputFolder])
         except Exception as e:
