@@ -11,7 +11,7 @@ sg.theme('darkgreen7')
 sg.set_options(font=("Helvetica", 11))
 
 layout = [  [sg.FileBrowse('Select Video',key='input-video',pad=20), sg.B('Convert to Audio'), sg.B('Exit',pad=20)],
-            [sg.T()]  ]
+            [sg.T(key='file_display', pad=10)]  ]
 
 Window = sg.Window('Video -> Audio by AU', layout, grab_anywhere=True, keep_on_top=True)
 
@@ -22,6 +22,7 @@ while True:
     if event=='Convert to Audio':
         try:
             inputVideo = values['input-video']
+            Window['file_display'].update(inputVideo)
             outputFolder = os.path.dirname(inputVideo)
             print(f'outputFolder is {outputFolder}')
             print(f'Current folder name is {os.path.basename(inputVideo)}')
