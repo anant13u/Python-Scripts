@@ -11,7 +11,7 @@ import moviepy.editor as mp # Before this the moviepy module needs to be install
 sg.theme('darkgreen7')
 sg.set_options(font=("Helvetica", 11))
 
-layout = [  [sg.FileBrowse('Select Video',key='input-video',pad=20), sg.B('Convert to Audio'), sg.B('Exit',pad=20)],
+layout = [  [sg.FileBrowse('Select Video',key='input-video',pad=(30,20)), sg.B('Convert to Audio'), sg.B('Exit',pad=(30,20))],
             [sg.T(key='file_display', pad=10)]  ]
 
 Window = sg.Window('Video -> Audio by AU', layout, grab_anywhere=True, keep_on_top=True)
@@ -42,5 +42,5 @@ while True:
             print(e)
 
 
-
+# /home/anant/new
 # "C:/Users/AU/Videos/InfraSound - Starlight   Epic Powerful Hybrid Orchestral Music.mp4"
