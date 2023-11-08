@@ -16,6 +16,7 @@ layout = [  [sg.FileBrowse('Select Video',key='input-video',pad=(30,20)), sg.B('
 
 Window = sg.Window('Video -> Audio by AU', layout, grab_anywhere=True, keep_on_top=True)
 
+
 while True:
     event, values = Window.read()
     if event in (sg.WIN_CLOSED, 'Exit'):
@@ -26,11 +27,12 @@ while True:
             Window['file_display'].update(inputVideo)
             outputFolder = os.path.dirname(inputVideo)
             print(f'outputFolder is {outputFolder}')
-            print(f'Current folder name is {os.path.basename(inputVideo)}')
+            print(f'Selected file name is {os.path.basename(inputVideo)}')
             outputAudio = inputVideo.replace('.mp4', '.mp3')
             # print(our_clip)
             our_clip=mp.VideoFileClip(inputVideo)
-            # our_clip.audio.write_audiofile(outputAudio)
+            audio_codecs = our_clip.audio.get_audio_codec()
+            print(audio_codecs)            # our_clip.audio.write_audiofile(outputAudio)
             our_clip.audio.write_audiofile(outputAudio, codec='mp3')
             if subprocess.os.name == 'nt':  # Check if the platform is Windows
                 subprocess.Popen(f'explorer {outputFolder}')
