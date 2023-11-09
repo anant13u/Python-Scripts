@@ -7,7 +7,6 @@ import time
 import subprocess
 import moviepy.editor as mp # Before this the moviepy module needs to be installed using PIP
 
-# sg.theme('Reddit')
 sg.theme('darkgreen7')
 sg.set_options(font=("Helvetica", 11))
 
