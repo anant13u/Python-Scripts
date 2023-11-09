@@ -26,13 +26,11 @@ while True:
             inputVideo = values['input-video']
             Window['file_display'].update(inputVideo)
             outputFolder = os.path.dirname(inputVideo)
-            print(f'outputFolder is {outputFolder}')
+            print(f'Output Folder is {outputFolder}')
             print(f'Selected file name is {os.path.basename(inputVideo)}')
             outputAudio = inputVideo.replace('.mp4', '.mp3')
             # print(our_clip)
             our_clip=mp.VideoFileClip(inputVideo)
-            audio_codecs = our_clip.audio.get_audio_codec()
-            print(audio_codecs)            # our_clip.audio.write_audiofile(outputAudio)
             our_clip.audio.write_audiofile(outputAudio, codec='mp3')
             if subprocess.os.name == 'nt':  # Check if the platform is Windows
                 subprocess.Popen(f'explorer {outputFolder}')
