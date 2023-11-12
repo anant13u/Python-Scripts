@@ -4,13 +4,11 @@ import PySimpleGUI as sg
 sg.theme('Reddit')
 # sg.theme('Sandy Beach')
 
-layout = [[sg.T()],
-          [sg.T('Enter the search keyword: '), sg.I(key='search_word')],
-          [sg.T()],
-          [sg.Checkbox('Search in Reddit', key='reddit_check', size=13,),
-           sg.Checkbox('Search in YouTube', key='yt_check', size=14),
-           sg.B('Search', size=10), sg.B('Exit', size=(10))],
-          [sg.T()]]
+layout = [  [sg.T()],
+            [sg.T('Enter the search keyword: '), sg.I(key='search_word')],
+            [sg.Checkbox('Search in Reddit', key='reddit_check',pad=(0,20)),
+            sg.Checkbox('Search in YouTube', key='yt_check'),
+            sg.B('Search', size=10, pad=(10,20)), sg.B('Exit', size=(10))] ]
 
 search_window = sg.Window('Search in YouTube and Reddit!', layout, keep_on_top=True, grab_anywhere=True, margins=(20,5),return_keyboard_events=True)
 
