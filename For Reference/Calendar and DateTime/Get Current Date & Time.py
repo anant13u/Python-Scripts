@@ -10,7 +10,7 @@ print('Date & Time in date/month/year hour:minute:second format =', date_time1)
 # Date & Time in date/month/year hour:minute:second format = 10/11/2023 19:59:04
 
 date_time1 = curr_datetime.strftime('%d-%m-%Y %H-%M-%S')
-print('Date in date-month-year hour-minute-second format =', date_time1) # We can use this format in filenames in Windows also.
+print(f'Date in date-month-year hour-minute-second format = {date_time1}') # We can use this format in filenames in Windows also.
 
 date5 = curr_datetime.strftime('Month is %m, Date is %d, Year is %Y. Hour is %H, Minute is %M, Second is %S')
 print(date5)
