@@ -6,7 +6,7 @@ print(curr_date)
 # 2022-05-07
 
 date1 = curr_date.strftime('%d/%m/%Y')
-print('Date in date/month/year format =', date1)
+print(f'Date in date/month/year format = {date1}')
 # Date in date/month/year format = 07/05/2022
 
 date2 = curr_date.strftime('%B %d, %Y')
