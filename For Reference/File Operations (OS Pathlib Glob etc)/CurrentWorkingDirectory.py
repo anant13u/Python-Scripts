@@ -1,7 +1,6 @@
 import os
 import time
 
-
 cwd = os.getcwd()
 print(cwd)
 contents = os.listdir()
