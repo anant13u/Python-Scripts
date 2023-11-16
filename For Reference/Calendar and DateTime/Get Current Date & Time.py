@@ -6,7 +6,7 @@ print(curr_datetime)
 # 2022-05-07 16:49:15.823345
 
 date_time1 = curr_datetime.strftime('%d/%m/%Y %H:%M:%S')
-print('Date & Time in date/month/year hour:minute:second format =', date_time1)
+print(f'Date & Time in date/month/year hour:minute:second format = {date_time1}')
 # Date & Time in date/month/year hour:minute:second format = 10/11/2023 19:59:04
 
 date_time1 = curr_datetime.strftime('%d-%m-%Y %H-%M-%S')
