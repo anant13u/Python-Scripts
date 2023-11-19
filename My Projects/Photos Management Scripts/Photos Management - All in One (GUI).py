@@ -5,10 +5,9 @@ import PySimpleGUI as sg
 sg.theme('DarkAmber')
 sz= size=(50,3)
 
-layout = [  [sg.T(' ')],[sg.Text('Please select the folder where you want to manage the Photos and other media files',sz)], 
-            [sg.FolderBrowse(key='-IN-',size=(10,1)),sg.T(' ')],
-            [sg.T(' ')],
-            [sg.T(' '*15),sg.Button('Manage',size=(10,1)),sg.T(' '*10),sg.Button('Cancel',size=(10,1))],[sg.T()]   ]
+layout = [  [sg.Text('Please select the folder where you want to manage the Photos and other media files',sz, pad=(20,20))], 
+            [sg.FolderBrowse('Select Folder',key='-IN-',size=(12,1), pad=(20,0)),sg.T(' ')],
+            [sg.T(' '*15),sg.Button('Manage',size=(10,1), pad=(40,20)),sg.Button('Cancel',size=(10,1))]   ]
 
 Window = sg.Window('Photos Manager by AU', layout, keep_on_top=True)
 
