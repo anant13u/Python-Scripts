@@ -11,14 +11,14 @@ sg.set_options(font=('Calibri',11)) # https://stackoverflow.com/a/67155752/18791
 # download_path = Path('C:/Users/Anant/Downloads') # Setting default download path to user's Downloads folder.
 
 getDWPath = sg.Window('Select the Download Folder',
-                    [  [sg.FolderBrowse('Select Download Folder',key='download_folder')]  ])
+                    [  [sg.FolderBrowse('Select Download Folder',key='download_folder'), sg.B('Proceed')]  ])
 while True:
     event, values = getDWPath.read()
-    if event == sg.WINDOW_CLOSED:
+    if event == 'Proceed':
         # print('okkkk')
-        download_path = values['download_folder']
+        download_path = Path(values['download_folder'])
         print(download_path)
-    # break
+        break
 # getDWPath.close()
 
 mew = time.sleep(1.5)
@@ -70,7 +70,7 @@ def download_video():
                 break
             yt.streams.filter(file_extension='mp4')
             stream = yt.streams.get_by_itag(22)
-            yt_captions = yt.captions.get_by_language_code('en')
+            # yt_captions = yt.captions.get_by_language_code('en')
             video_name_raw = stream.title
             channel_name = yt.author
             download_video_window.close()
@@ -102,9 +102,9 @@ def download_video():
                     sg.popup_auto_close('Downloading...',auto_close_duration=5)
                     # auto_close_duration=stream.filesize_approx/(1024*1024*3)
                     stream.download(output_path=download_path, filename=Path(final_file).name) # Download path is already provided at the beginning of the script.
-                    with open(Path.joinpath(download_path,'captions.txt'),'a+') as captions:
-                        for c in yt_captions:
-                            captions.write(c)
+                    # with open(Path.joinpath(download_path,'captions.txt'),'a+') as captions:
+                    #     for c in yt_captions:
+                    #         captions.write(c)
                     print(f'\n Downloaded filename: \n "{final_file}"')
                     curr_datetime = datetime.now().strftime('%d/%m/%y %H:%M:%S')
                     with open(Path.joinpath(download_path,'Downloaded Videos.txt'),'a+') as curr_log:
