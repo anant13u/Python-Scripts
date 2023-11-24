@@ -8,7 +8,19 @@ from datetime import datetime
 
 sg.theme('darkamber')
 sg.set_options(font=('Calibri',11)) # https://stackoverflow.com/a/67155752/18791688
-download_path = Path('C:/Users/AU/Downloads') # Setting default download path to user's Downloads folder.
+# download_path = Path('C:/Users/Anant/Downloads') # Setting default download path to user's Downloads folder.
+
+getDWPath = sg.Window('Select the Download Folder',
+                    [  [sg.FolderBrowse('Select Download Folder',key='download_folder')]  ])
+while True:
+    event, values = getDWPath.read()
+    if event == sg.WINDOW_CLOSED:
+        # print('okkkk')
+        download_path = values['download_folder']
+        print(download_path)
+    # break
+# getDWPath.close()
+
 mew = time.sleep(1.5)
 replacers_dict = {'|':'', ':':'', '/':'', '\\':'', '"':'', '*':'', '?':'', '<':'', '>':''}
 # replacers = ['|','|', ':', '/', '\\', '"', '*', '?', '<', '>']
