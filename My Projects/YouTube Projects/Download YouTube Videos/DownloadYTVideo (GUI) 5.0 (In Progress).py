@@ -11,19 +11,21 @@ sg.set_options(font=('Calibri',11)) # https://stackoverflow.com/a/67155752/18791
 # download_path = Path('C:/Users/Anant/Downloads') # Setting default download path to user's Downloads folder.
 
 getDWPath = sg.Window('Select the Download Folder',
-                    [  [sg.FolderBrowse('Select Download Folder',key='download_folder'), sg.B('Proceed')]  ])
+                    [  [sg.FolderBrowse('Select Download Folder',key='download_folder', size=(25,1)), sg.B('Proceed', size=(15,1))]  ])
 while True:
     event, values = getDWPath.read()
     if event == sg.WINDOW_CLOSED:
-        break
+        exit()  # Exit the script if the window is closed
     if event == 'Proceed':
-        # print('okkkk')
-        download_path = Path(values['download_folder'])
-        print(download_path)
-        break
-getDWPath.close()
+        if values['download_folder'] == '':
+            sg.popup('Please select a download location.')
+        else:
+            download_path = Path(values['download_folder'])
+            print(download_path)
+            getDWPath.close()
+            break
 
-mew = time.sleep(1.5)
+# mew = time.sleep(1.5)
 replacers_dict = {'|':'', ':':'', '/':'', '\\':'', '"':'', '*':'', '?':'', '<':'', '>':''}
 # replacers = ['|','|', ':', '/', '\\', '"', '*', '?', '<', '>']
 
@@ -34,22 +36,18 @@ def download_another_video():
     """
     while True:
         event, values = sg.Window('What to do Next',
-                        [  [sg.T('Do you wish to download another video?')],
-                        [sg.B('Yes', pad=(30,10)),sg.B('No', pad=(30,10))]    ]).read(close=True) # close=True closes the Window after getting the input in form of Yes or No
+                        [   [sg.T('Do you wish to download another video?', pad=(50,5))],
+                            [sg.B('Yes', size=(15,1), pad=(30,5)),sg.B('No', size=(15,1), pad=(30,5))]    ]).read(close=True) # close=True closes the Window after getting the input in form of Yes or No
         if event=='Yes':
             download_video()
         else:
-            mew
+            time.sleep(1)
         break
 
 def download_video():
-    download_video_layout = [  [sg.T(' ')],
-                [sg.T(' '),sg.T('Please enter the URL for the YouTube video below:      '),sg.T()],
-                [sg.T(' ')],
-                [sg.T(' '),sg.InputText(key='-URL-')],
-                [sg.T(' ')],
-                [sg.T(' '),sg.Ok('Fetch Video Details',size=(17,2)),sg.T('  '),sg.B('Exit',size=(17,2))],
-                [sg.T()]]
+    download_video_layout = [   [sg.T('Please enter the URL for the YouTube video below:', pad = (20,20))],
+                                [sg.InputText(key='-URL-', pad = (20,0))],
+                                [sg.Ok('Fetch Video Details',size=(17,2), pad=(20,(30,20))),sg.B('Exit',size=(17,2), pad=(20,(30,20)))]    ]
 
     download_video_window = sg.Window('YouTube Video Downloader by AU', download_video_layout)
 
@@ -123,3 +121,4 @@ def download_video():
             break
 
 download_video()
+# getDW()
