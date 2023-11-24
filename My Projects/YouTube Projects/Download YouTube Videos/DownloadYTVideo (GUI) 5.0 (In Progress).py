@@ -14,12 +14,14 @@ getDWPath = sg.Window('Select the Download Folder',
                     [  [sg.FolderBrowse('Select Download Folder',key='download_folder'), sg.B('Proceed')]  ])
 while True:
     event, values = getDWPath.read()
+    if event == sg.WINDOW_CLOSED:
+        break
     if event == 'Proceed':
         # print('okkkk')
         download_path = Path(values['download_folder'])
         print(download_path)
         break
-# getDWPath.close()
+getDWPath.close()
 
 mew = time.sleep(1.5)
 replacers_dict = {'|':'', ':':'', '/':'', '\\':'', '"':'', '*':'', '?':'', '<':'', '>':''}
@@ -33,7 +35,7 @@ def download_another_video():
     while True:
         event, values = sg.Window('What to do Next',
                         [  [sg.T('Do you wish to download another video?')],
-                        [sg.B('Yes'),sg.B('No')]    ]).read(close=True) # close=True closes the Window after getting the input in form of Yes or No
+                        [sg.B('Yes', pad=(30,10)),sg.B('No', pad=(30,10))]    ]).read(close=True) # close=True closes the Window after getting the input in form of Yes or No
         if event=='Yes':
             download_video()
         else:
@@ -83,10 +85,10 @@ def download_video():
                 [sg.T(),sg.B('Only Download',size=(22,2)),sg.T(' '*5),sg.B('Download and play Video',size=(22,2)),sg.T(' '*5),sg.B("I'd rather quit bro",size=(22,2))],
                 [sg.T()]  ]).read(close=True) # close=True closes the Window after getting the input in form of Yes or No
             def only_download():
-                video_name_cleaned = video_name_raw
+                # video_name_cleaned = video_name_raw
                 # Below we are replacing the characters in the replacers_dict dictionary with an empty string.
                 for key, value in replacers_dict.items():
-                    video_name_cleaned = video_name_cleaned.replace(key,value) # Important to assign a new 
+                    video_name_cleaned = video_name_raw.replace(key,value) # Important to assign a new 
                         # variable video_name_cleaned as we cannot use an assignment statement on nm in middle of a function.
                         # https://stackoverflow.com/questions/10851906/python-3-unboundlocalerror-local-variable-referenced-before-assignment
                 print(f'\n Video name: "{video_name_cleaned}"')
