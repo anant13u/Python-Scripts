@@ -10,8 +10,8 @@ sg.theme('darkamber')
 sg.set_options(font=('Calibri',11)) # https://stackoverflow.com/a/67155752/18791688
 # download_path = Path('C:/Users/Anant/Downloads') # Setting default download path to user's Downloads folder.
 
-getDWPath = sg.Window('Select the Download Folder',
-                    [  [sg.FolderBrowse('Select Download Folder',key='download_folder', size=(25,1)), sg.B('Proceed', size=(15,1))]  ])
+getDWPath = sg.Window('Select the Download Destination',
+                    [  [sg.FolderBrowse('Select Download Folder',key='download_folder', size=(25,1), pad=((20,10),20)), sg.B('Proceed', size=(15,1), pad=(20,10))]  ])
 while True:
     event, values = getDWPath.read()
     if event == sg.WINDOW_CLOSED:
@@ -26,7 +26,7 @@ while True:
             break
 
 # mew = time.sleep(1.5)
-replacers_dict = {'|':'', ':':'', '/':'', '\\':'', '"':'', '*':'', '?':'', '<':'', '>':''}
+replacers_dict = {'|':'', '।':'', ':':'', '/':'', '\\':'', '"':'', '*':'', '?':'', '<':'', '>':''}
 # replacers = ['|','|', ':', '/', '\\', '"', '*', '?', '<', '>']
 
 
@@ -36,8 +36,8 @@ def download_another_video():
     """
     while True:
         event, values = sg.Window('What to do Next',
-                        [   [sg.T('Do you wish to download another video?', pad=(50,5))],
-                            [sg.B('Yes', size=(15,1), pad=(30,5)),sg.B('No', size=(15,1), pad=(30,5))]    ]).read(close=True) # close=True closes the Window after getting the input in form of Yes or No
+                        [   [sg.T('Do you wish to download another video?', pad=(50,15))],
+                            [sg.B('Yes', size=(15,1), pad=(30,15)),sg.B('No', size=(15,1), pad=(30,15))]    ]).read(close=True) # close=True closes the Window after getting the input in form of Yes or No
         if event=='Yes':
             download_video()
         else:
@@ -108,7 +108,13 @@ def download_video():
                     print(f'\n Downloaded filename: \n "{final_file}"')
                     curr_datetime = datetime.now().strftime('%d/%m/%y %H:%M:%S')
                     with open(Path.joinpath(download_path,'Downloaded Videos.txt'),'a+') as curr_log:
-                        curr_log.write(f'\n{curr_datetime} - Downloaded "{final_file}"')
+                        curr_log.write(f'{curr_datetime}\n'
+                                       f'Download Location: {download_path}\n'
+                                       f'Video: "{video_name_cleaned}".\n'
+                                       f'Channel: {channel_name}.\n'
+                                       f'Length: {yt.length//60} minutes, {yt.length%60} seconds.\n'
+                                       f'Size: {round(final_file.stat().st_size/(1024*1024), 2)} MB.\n'
+                                       f'Description: {yt.description}\n\n')
                     sg.popup(f'Your video "{video_name_raw}" has been downloaded and saved at - "{download_path}"')
                 webbrowser.open(download_path) # This will open the directory where we've downloaded the video. Webbrowser module will be imported automatically.
                 return final_file # Using return to capture downloaded file's name so we can refer to only_download function later on and retrieve it.
