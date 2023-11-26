@@ -35,7 +35,7 @@ def download_another_video():
     If the user clicks on Yes, the function download_video() is called again, else the program ends.
     """
     while True:
-        event, values = sg.Window('What to do Next',
+        event, values = sg.Window('Download another video?',
                         [   [sg.T('Do you wish to download another video?', pad=(50,15))],
                             [sg.B('Yes', size=(15,1), pad=(30,15)),sg.B('No', size=(15,1), pad=(30,15))]    ]).read(close=True) # close=True closes the Window after getting the input in form of Yes or No
         if event=='Yes':
