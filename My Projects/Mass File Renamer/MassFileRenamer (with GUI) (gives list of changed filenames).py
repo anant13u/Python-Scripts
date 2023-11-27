@@ -3,12 +3,11 @@ import PySimpleGUI as sg
 
 sg.theme("DarkTeal2")
 
-sz= size=(30,3)
-layout = [  [sg.T()],[sg.Text('Please select the folder where \nyou want to rename the files',sz),sg.T(' '*6), 
-                      sg.FolderBrowse(key='-IN-',size=(15,2))],
-            [sg.Text('Please enter the string you \nwant to rename',sz),sg.Input('',sz)],
-            [sg.Text('Please enter the new text',sz),sg.Input('',sz)],
-            [[sg.T()],sg.T(' '*20),sg.Button('Rename',size=(10,2)),sg.T(' '*10),sg.Button('Exit',size=(10,2))],[sg.T()]   ]
+sz= size=(20,2)
+layout = [  [sg.Text('Please select the folder where you want to rename the files',size=(23,2), pad=(20,15)), sg.FolderBrowse(key='-IN-',size=(15,2),pad=((10,20),15))],
+            [sg.Text('Please enter the string you \nwant to rename',sz,pad=(20,15)),sg.Input('',sz,pad=(10,10))],
+            [sg.Text('Please enter the new text',sz,pad=(20,15)),sg.Input('',sz,pad=(10,10))],
+            [sg.Button('Rename',size=(10,2),pad=((70,20),15)),sg.T(' '*10),sg.Button('Exit',size=(10,2),pad=((20,70),15))]    ]
 
 Window = sg.Window('Mass File Renamer by AU',layout,keep_on_top=True)
 
@@ -36,7 +35,7 @@ while True:
                     os.rename(f'{pth}/{entry}', f'{pth}/{newfilename}')
                     lst.append(f'The file: "{entry}" contains "{txt2replace}" in its name, and has been renamed to "{newfilename}"')
                 final_list='\n\n'.join(lst) # Separating all list items with a new line.
-            sg.popup(f'All files containing the text "{txt2replace}" are now renamed. Please find the list below:\n\n{final_list}',title='List of changed filenames')
+            sg.popup(f'All files containing the text "{txt2replace}" are now renamed. Please find the list below:\n\n{final_list}',title='List of changed filenames',grab_anywhere=True,keep_on_top=True)
             # break
 
 #     if str>=0:
