@@ -19,24 +19,29 @@ while True:
     elif event=='Rename':
         if values['-IN-']=='':
             sg.popup('Please select a folder to perform operations in.',keep_on_top=True)
+        if values['old-string']=='':
+            sg.popup('Please enter a string to replace.',keep_on_top=True)
         else:
-            pth = values['-IN-']
+            basepath = values['-IN-']
             old_string = values['old-string']
             new_string = values['new-string']
-            entries = os.listdir(pth)
-            print(pth)
+            entries = os.listdir(basepath)
+            print(basepath)
 
-            for entry in entries:
-                str_check = entry.find(old_string) #With this method we check the presence of a substring within another string. 
+            for currfilename in entries:
+                str_check = currfilename.find(old_string) #With this method we check the presence of a substring within another string. 
                 # If the substring is present the method will return the number which denotes the beginning of the substring. 
                 # If the substring isn't present, the method will return -1.
-                newfilename = entry.replace(old_string,new_string)
+                newfilename = currfilename.replace(old_string,new_string)
                 if str_check>=0:
-                    os.rename(f'{pth}/{entry}', f'{pth}/{newfilename}')
-                    changes_list.append(f'Old filename: {entry}.\n'
+                    os.rename(os.path.join(basepath, currfilename), os.path.join(basepath, newfilename))
+                    changes_list.append(f'Old filename: {currfilename}.\n'
                                         f'New filename: {newfilename}')
                 final_list='\n\n'.join(changes_list) # Separating all list items with a new line.
-            sg.popup(f'All files containing the text "{old_string}" are now renamed. Please find the list below:\n\n{final_list}',title='List of changed filenames',line_width=100,grab_anywhere=True,keep_on_top=True)
+            if final_list.find(old_string)>1:
+                sg.popup(f'All files containing the text "{old_string}" are now renamed. Please find the list below:\n\n{final_list}',title='List of changed filenames',line_width=100,grab_anywhere=True,keep_on_top=True)
+            else:
+                sg.popup(f'No files found with {old_string} in their names.',keep_on_top=True,grab_anywhere=True)
             changes_list=[]
             final_list=''
             # break
