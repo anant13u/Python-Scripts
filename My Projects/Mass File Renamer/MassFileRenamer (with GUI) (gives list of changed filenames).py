@@ -4,7 +4,7 @@ import PySimpleGUI as sg
 sg.theme("DarkTeal2")
 
 sz= size=(20,2)
-layout = [  [sg.Text('Please select the folder where you want to rename the files',size=(23,2), pad=(20,15)), sg.FolderBrowse(key='-IN-',size=(15,2),pad=((10,20),15))],
+layout = [  [sg.Text('Please select the folder where you want to rename the files',size=(23,2), pad=(20,15)), sg.FolderBrowse(key='-IN-',size=(15,2),pad=((0,20),15))],
             [sg.Text('Please enter the string you want to rename',sz,pad=(20,15)),sg.Input('',key='old-string',pad=(10,10),size=(20,2))],
             [sg.Text('Please enter the new text',sz,pad=(20,15)),sg.Input('',key='new-string',size=(20,2),pad=(10,10))],
             [sg.Button('Rename',size=(10,2),pad=((70,20),15)),sg.T(' '*10),sg.Button('Exit',size=(10,2),pad=((20,70),15))]    ]
@@ -33,9 +33,10 @@ while True:
                 newfilename = entry.replace(old_string,new_string)
                 if str_check>=0:
                     os.rename(f'{pth}/{entry}', f'{pth}/{newfilename}')
-                    changes_list.append(f'The file: "{entry}" contains "{old_string}" in its name, and has been renamed to "{newfilename}"')
+                    changes_list.append(f'Old filename: {entry}.\n'
+                                        f'New filename: {newfilename}')
                 final_list='\n\n'.join(changes_list) # Separating all list items with a new line.
-            sg.popup(f'All files containing the text "{old_string}" are now renamed. Please find the list below:\n\n{final_list}',title='List of changed filenames',grab_anywhere=True,keep_on_top=True)
+            sg.popup(f'All files containing the text "{old_string}" are now renamed. Please find the list below:\n\n{final_list}',title='List of changed filenames',line_width=100,grab_anywhere=True,keep_on_top=True)
             changes_list=[]
             final_list=''
             # break
