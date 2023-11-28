@@ -11,7 +11,7 @@ sg.set_options(font=('Calibri',11)) # https://stackoverflow.com/a/67155752/18791
 # download_path = Path('C:/Users/Anant/Downloads') # Setting default download path to user's Downloads folder.
 
 getDWPath = sg.Window('Select the Download Destination',
-                    [  [sg.FolderBrowse('Select Download Folder',key='download_folder', size=(25,1), pad=((20,10),20)), sg.B('Proceed', size=(15,1), pad=(20,10))]  ])
+                    [  [sg.FolderBrowse('Select Download Folder',key='download_folder', size=(25,1), pad=((20,10),20)), sg.B('Proceed', size=(15,1), pad=(20,10))]  ], keep_on_top=True)
 while True:
     event, values = getDWPath.read()
     if event == sg.WINDOW_CLOSED:
@@ -76,17 +76,17 @@ def download_video():
             download_video_window.close()
             print(video_name_raw)
             event, values = sg.Window('Wanna Download This?',
-                [  [sg.T()],
-                [sg.T(),sg.T(f'Your video is "{video_name_raw}"\n\nChannel Name: {channel_name}\n\nLength of the video is {yt.length//60} minutes and {yt.length%60} seconds\n\nApprox Size of the video is {round(stream.filesize_approx/(1024*1024),2)} MB\n')],
-                [sg.T(),sg.T(f'{yt.description}',size=(55,8))],
-                [sg.T()],
-                [sg.T(),sg.B('Only Download',size=(22,2)),sg.T(' '*5),sg.B('Download and play Video',size=(22,2)),sg.T(' '*5),sg.B("I'd rather quit bro",size=(22,2))],
-                [sg.T()]  ]).read(close=True) # close=True closes the Window after getting the input in form of Yes or No
+                [   [sg.T()],
+                    [sg.T(),sg.T(f'Your video is "{video_name_raw}"\n\nChannel Name: {channel_name}\n\nLength of the video is {yt.length//60} minutes and {yt.length%60} seconds\n\nApprox Size of the video is {round(stream.filesize_approx/(1024*1024),2)} MB\n')],
+                    [sg.T(),sg.T(f'{yt.description}',size=(55,8))],
+                    [sg.T()],
+                    [sg.T(),sg.B('Only Download',size=(22,2)),sg.T(' '*5),sg.B('Download and play Video',size=(22,2)),sg.T(' '*5),sg.B("I'd rather quit bro",size=(22,2))],
+                    [sg.T()]  ]).read(close=True) # close=True closes the Window after getting the input in form of Yes or No
             def only_download():
-                # video_name_cleaned = video_name_raw
+                video_name_cleaned = video_name_raw
                 # Below we are replacing the characters in the replacers_dict dictionary with an empty string.
                 for key, value in replacers_dict.items():
-                    video_name_cleaned = video_name_raw.replace(key,value) # Important to assign a new 
+                    video_name_cleaned = video_name_cleaned.replace(key,value) # Important to assign a new 
                         # variable video_name_cleaned as we cannot use an assignment statement on nm in middle of a function.
                         # https://stackoverflow.com/questions/10851906/python-3-unboundlocalerror-local-variable-referenced-before-assignment
                 print(f'\n Video name: "{video_name_cleaned}"')
@@ -101,6 +101,7 @@ def download_video():
                     # the size of the video divided by 3.
                     sg.popup_auto_close('Downloading...',auto_close_duration=5)
                     # auto_close_duration=stream.filesize_approx/(1024*1024*3)
+                    print(Path(final_file).name)
                     stream.download(output_path=download_path, filename=Path(final_file).name) # Download path is already provided at the beginning of the script.
                     # with open(Path.joinpath(download_path,'captions.txt'),'a+') as captions:
                     #     for c in yt_captions:
