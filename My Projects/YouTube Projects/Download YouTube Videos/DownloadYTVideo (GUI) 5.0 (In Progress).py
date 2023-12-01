@@ -101,7 +101,6 @@ def download_video():
                     # the size of the video divided by 3.
                     sg.popup_auto_close('Downloading...',auto_close_duration=5)
                     # auto_close_duration=stream.filesize_approx/(1024*1024*3)
-                    print(Path(final_file).name)
                     stream.download(output_path=download_path, filename=Path(final_file).name) # Download path is already provided at the beginning of the script.
                     # with open(Path.joinpath(download_path,'captions.txt'),'a+') as captions:
                     #     for c in yt_captions:
