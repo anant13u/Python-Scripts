@@ -5,45 +5,61 @@ from pathlib import Path
 sg.theme("DarkTeal2")
 
 sz= size=(20,2)
-layout = [  [sg.Text('Please select the folder where you want to rename the files', pad=(20,15)), sg.FolderBrowse(key='-IN-',size=(15,2),pad=(20,15))],
-            [sg.Text("Current File's Name",pad=(20,15)),sg.T('',key='old-filename',pad=((65,0),15))],
-            [sg.Text('Please enter the new name',pad=(20,15)),sg.Input('',key='new-filename',size=(40,1),pad=(20,15))],
-            [sg.Button('Rename',size=(10,2),pad=((130,20),15)),sg.T(' '*10),sg.Button('Exit',size=(10,2),pad=((20,70),15))]    ]
 
-Window = sg.Window('Mass File Renamer by AU',layout,keep_on_top=True)
+def mains():
+    layout = [  [sg.Text('Please select the folder where you want to rename the files', pad=(20,15)), sg.FolderBrowse(key='-IN-',size=(15,2),pad=(20,15))],
+                [sg.Text("Current File's Name",pad=(20,15)),sg.T('',key='old-filename',pad=((65,0),15))],
+                [sg.Text('Please enter the new name',pad=(20,15)),sg.Input('',key='new-filename',size=(40,1),pad=(20,15))],
+                [sg.Button('Begin',key='rename-button',size=(10,2),pad=((130,20),15)),sg.T(' '*10),sg.Button('Exit',size=(10,2),pad=((20,70),15))]    ]
 
-def file_rename():
+    Window = sg.Window('Mass File Renamer by AU',layout,keep_on_top=True)
+    
+    while True:
+        event, values = Window.read()
+        if event in (sg.WINDOW_CLOSED, 'Exit'):
+            break
+        elif event=='rename-button':
+            if values['-IN-']=='':
+                sg.popup('Please select a folder to perform operations in.',keep_on_top=True)
+            else:
+                basepath = values['-IN-']
+                for filename in os.listdir(basepath):
+                    file_rename(Window, basepath, filename)
+                Window.close()
+                whats_next()
+
+def file_rename(Window, basepath, filename):
     Window['old-filename'].update(filename)
     Window['new-filename'].update(filename)
+    Window['rename-button'].update('Rename')
     event, values = Window.read()
     if event in (sg.WINDOW_CLOSED, 'Exit'):
         exit()
-    # else:
     new_name = values['new-filename']
     if new_name!=filename:
         if not Path(new_name).suffix == Path(filename).suffix:
             sg.popup('Extension of file can not be changed.',keep_on_top=True)
-            file_rename()
+            file_rename(Window, basepath, filename)
         else:
             # print(Path(new_name).suffix)
             old_path = os.path.join(basepath, filename)
             new_path = os.path.join(basepath, new_name)
             os.rename(old_path, new_path)
+    
 
-changes_list=[]
-while True:
-    event, values = Window.read()
-    if event in (sg.WINDOW_CLOSED, 'Exit'):
-        break
-    elif event=='Rename':
-        if values['-IN-']=='':
-            sg.popup('Please select a folder to perform operations in.',keep_on_top=True)
-        else:
-            basepath = values['-IN-']
-            for filename in os.listdir(basepath):
-                file_rename()
-            next_step = sg.popup_yes_no('Rename Completion',modal=True)
-            if next_step == 'Yes':
+# changes_list=[]
+
+
+
+def whats_next():
+    next_step = sg.popup_yes_no('Renaming is complete with this folder, do you want to rename files from another folder?',title='Renaming Completed!',keep_on_top=True,modal=True)
+    if next_step == 'Yes':
+        mains()
+        print('Renaming done!')
+    # else:
+    #     print('Bye')
+
+mains()
                 
 
                 # os.rename(os.path.join(basepath, filename), os.path.join(basepath, newfilename))
