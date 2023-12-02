@@ -7,10 +7,10 @@ sg.theme("DarkTeal2")
 sz= size=(20,2)
 
 def mains():
-    layout = [  [sg.Text('Please select the folder where you want to rename the files', pad=(20,15)), sg.FolderBrowse(key='-IN-',size=(15,2),pad=(20,15))],
-                [sg.Text("Current File's Name",pad=(20,15)),sg.T('',key='old-filename',pad=((65,0),15))],
-                [sg.Text('Please enter the new name',pad=(20,15)),sg.Input('',key='new-filename',size=(40,1),pad=(20,15))],
-                [sg.Button('Begin',key='rename-button',size=(10,2),pad=((130,20),15)),sg.T(' '*10),sg.Button('Exit',size=(10,2),pad=((20,70),15))]    ]
+    layout = [  [sg.Text('Please select the folder where you want to rename the files',size=(45,2), pad=(20,(30,10))), sg.FolderBrowse(key='-IN-',size=(15,2),pad=((30,20),10))],
+                [sg.Text("Current File's Name:",pad=(20,20)),sg.T('',key='old-filename',pad=((65,0),15))],
+                [sg.Text('Please enter the new name:',pad=(20,20)),sg.Input('',key='new-filename',size=(40,1),pad=(20,15))],
+                [sg.Button('Begin',key='rename-button',size=(10,2),pad=((130,20),20)),sg.T(' '*10),sg.Button('Exit',size=(10,2),pad=((20,70),15))]    ]
 
     Window = sg.Window('Mass File Renamer by AU',layout,keep_on_top=True)
     
