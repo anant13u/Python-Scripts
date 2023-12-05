@@ -29,6 +29,7 @@ def mains():
                 sg.popup('Please select a folder to perform operations in.',keep_on_top=True)
             else:
                 # basepath = values['-IN-']
+                open(basepath,'r')
                 for filename in os.listdir(basepath):
                     file_rename(Window, basepath, filename)
                 Window.close()
@@ -38,6 +39,7 @@ def file_rename(Window, basepath, filename):
     Window['old-filename'].update(filename)
     Window['new-filename'].update(filename)
     Window['rename-button'].update('Rename')
+    # Window['-IN-'].update('Change Folder')
     event, values = Window.read()
     if event in (sg.WINDOW_CLOSED, 'Exit'):
         exit()
@@ -46,6 +48,7 @@ def file_rename(Window, basepath, filename):
         #     sg.popup('Please select a folder to perform operations in.',keep_on_top=True)
         # else:
         sg.popup_scrolled('\n'.join(os.listdir(basepath)),title='List of Files')
+        file_rename(Window, basepath, filename)
     new_name = values['new-filename']
     if new_name!=filename:
         if not Path(new_name).suffix == Path(filename).suffix:
@@ -71,34 +74,6 @@ def whats_next():
 
 mains()
                 
-
-                # os.rename(os.path.join(basepath, filename), os.path.join(basepath, newfilename))
-
-            # for currfilename in entries:
-            #     str_check = currfilename.find(old_string) #With this method we check the presence of a substring within another string. 
-            #     # If the substring is present the method will return the number which denotes the beginning of the substring. 
-            #     # If the substring isn't present, the method will return -1.
-            #     newfilename = currfilename.replace(old_string,new_string)
-            #     if str_check>=0:
-            #         os.rename(os.path.join(basepath, currfilename), os.path.join(basepath, newfilename))
-            #         changes_list.append(f'Old filename: {currfilename}.\n'
-            #                             f'New filename: {newfilename}')
-            #     final_list='\n\n'.join(changes_list) # Separating all list items with a new line.
-            # if final_list.find(old_string)>1:
-            #     sg.popup(f'All files containing the text "{old_string}" are now renamed. Please find the list below:\n\n{final_list}',title='List of changed filenames',line_width=100,grab_anywhere=True,keep_on_top=True)
-            # else:
-            #     sg.popup(f'No files found with {old_string} in their names.',keep_on_top=True,grab_anywhere=True)
-            # changes_list=[]
-            # final_list=''
-            # break
-
-#     if str>=0:
-#         print('The file: ' + entry + ' contains ' + txt2replace + ' in its name, and will be renamed.')
-#         os.rename(pth + '/' + entry , pth + '/' + newfilename)
-#         print('Old file name was: ' + entry)
-#         print('New file name is: ' + newfilename + '\n')
-#     else:
-#         print('The file: ' + entry + ' does not contain ' + txt2replace + ' in its name. File will not be renamed.\n')
 
 
 # C:/Users/AU/Desktop/Python/Test
