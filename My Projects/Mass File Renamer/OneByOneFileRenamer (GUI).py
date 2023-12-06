@@ -29,7 +29,7 @@ def mains():
                 sg.popup('Please select a folder to perform operations in.',keep_on_top=True)
             else:
                 # basepath = values['-IN-']
-                open(basepath,'r')
+                # open(basepath,'r')
                 for filename in os.listdir(basepath):
                     file_rename(Window, basepath, filename)
                 Window.close()
@@ -69,8 +69,10 @@ def whats_next():
     if next_step == 'Yes':
         mains()
         print('Renaming done!')
-    # else:
-    #     print('Bye')
+    else:
+        # print('Bye')
+        exit()
+        # break
 
 mains()
                 
