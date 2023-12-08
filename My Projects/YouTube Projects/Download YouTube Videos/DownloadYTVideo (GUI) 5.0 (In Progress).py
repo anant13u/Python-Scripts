@@ -1,5 +1,5 @@
 import webbrowser
-from os import startfile
+# from os import startfile
 from pathlib import Path
 import time
 import PySimpleGUI as sg
@@ -111,6 +111,7 @@ def download_video():
                         curr_log.write(f'{curr_datetime}\n'
                                        f'Download Location: {download_path}\n'
                                        f'Video: "{video_name_cleaned}".\n'
+                                       f'URL: {url}\n'
                                        f'Channel: {channel_name}.\n'
                                        f'Length: {yt.length//60} minutes, {yt.length%60} seconds.\n'
                                        f'Size: {round(final_file.stat().st_size/(1024*1024), 2)} MB.\n'
@@ -121,8 +122,8 @@ def download_video():
             if event=='Only Download':
                 only_download()
                 # download_another_video()
-            elif event=='Download and play Video':
-                startfile(only_download())
+            # elif event=='Download and play Video':
+            #     startfile(only_download())
             download_another_video()
             break
 
