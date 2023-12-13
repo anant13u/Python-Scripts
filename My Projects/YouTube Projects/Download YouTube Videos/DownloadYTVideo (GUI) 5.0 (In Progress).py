@@ -49,7 +49,7 @@ def download_video():
                                 [sg.InputText(key='-URL-', pad = (20,0))],
                                 [sg.Ok('Fetch Video Details',size=(17,2), pad=(20,(30,20))),sg.B('Exit',size=(17,2), pad=(20,(30,20)))]    ]
 
-    download_video_window = sg.Window('YouTube Video Downloader by AU', download_video_layout)
+    download_video_window = sg.Window('YouTube Video Downloader by AU', download_video_layout,keep_on_top=True)
 
     while True:
         event, values = download_video_window.read()
@@ -81,7 +81,7 @@ def download_video():
                     [sg.T(),sg.T(f'{yt.description}',size=(55,8))],
                     [sg.T()],
                     [sg.T(),sg.B('Only Download',size=(22,2)),sg.T(' '*5),sg.B('Download and play Video',size=(22,2)),sg.T(' '*5),sg.B("I'd rather quit bro",size=(22,2))],
-                    [sg.T()]  ]).read(close=True) # close=True closes the Window after getting the input in form of Yes or No
+                    [sg.T()]  ],keep_on_top=True).read(close=True) # close=True closes the Window after getting the input in form of Yes or No
             def only_download():
                 video_name_cleaned = video_name_raw
                 # Below we are replacing the characters in the replacers_dict dictionary with an empty string.
@@ -107,7 +107,7 @@ def download_video():
                     #         captions.write(c)
                     print(f'\n Downloaded filename: \n "{final_file}"')
                     curr_datetime = datetime.now().strftime('%d/%m/%y %H:%M:%S')
-                    with open(Path.joinpath(download_path,'Downloaded Videos.txt'),'a+') as curr_log:
+                    with open(Path.joinpath(download_path,'Downloaded Videos.txt'),'a+',encoding='utf-8') as curr_log:
                         curr_log.write(f'{curr_datetime}\n'
                                        f'Download Location: {download_path}\n'
                                        f'Video: "{video_name_cleaned}".\n'
