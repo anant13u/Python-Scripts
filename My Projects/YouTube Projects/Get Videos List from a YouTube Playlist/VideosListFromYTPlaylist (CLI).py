@@ -5,9 +5,17 @@ def pl():
     try:
         play_list = Playlist(input('\n Please enter the YouTube playlist URL: \n\n '))
         print(f'\n There are {len(play_list)} videos in this playlist. Here\'s the list: \n')
-        for item, video in zip(play_list, play_list.videos): # https://stackoverflow.com/questions/16552508/python-loops-for-simultaneous-operation-two-or-possibly-more
-            name = video.title
-            print(f' {name} - {item}')
+        for video_length, video_link, video in zip(play_list, play_list, play_list.videos): # https://stackoverflow.com/questions/16552508/python-loops-for-simultaneous-operation-two-or-possibly-more
+            video_name = video.title
+            video_length= video.length
+            if video_length>59:
+                print(f'{video_name}\n'
+                      f'{video_link}\n'
+                      f'Length: {video_length//60} minutes and {video_length%60} seconds.\n')
+            else:
+                print(f' {video_name} - {video_link} - {video_length}')
+            # print(f'{YouTube(link).title} - {str(lngth)} seconds - {link}')
+
         # [print(f' {video.title} - {video.watch_url}') for video in play_list.videos]
     except NameError:
         print(' Please enter a valid YouTube URL!')
@@ -17,6 +25,8 @@ pl()
 
 # def yo(x):
 #     time.sleep(x)
+
+# https://www.youtube.com/playlist?list=PL8W2j54bFLV0FXeRNOMBsJC0vPzPWe6qo
 
 # yo(1)
 # input(' Press Enter to Exit!')

@@ -7,8 +7,7 @@ sg.theme('Reddit')
     
 layout = [  [sg.T(' '*30), sg.T('Initial Code'),sg.T(' '*73), sg.T('Current Code')],
             [sg.Multiline(size=(50,40),key='initial-code',do_not_clear=False),sg.Multiline(size=(50,40),key='current-code',do_not_clear=False)],
-            # [sg.T()],
-            [sg.T(' '*20), sg.B('Create and copy prompt'),sg.T(' '*59), sg.B('Exit')],
+            [sg.T(' '*20), sg.B('Create and copy prompt',s=(25,2)),sg.T(' '*59), sg.B('Exit',s=(9,2))],
             [sg.T()]  ]
 
 Window = sg.Window('Git Commit Message Creator - AU',layout, keep_on_top=True)
