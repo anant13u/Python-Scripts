@@ -11,7 +11,7 @@ layout = [  [sg.Text('Please select the folder where you want to manage the Phot
 
 Window = sg.Window('Photos Manager by AU', layout, keep_on_top=True)
 
-def managePhotos(base_path):
+def managePhotos():
     # Extract the current folder name from the base path
     curr_folder = os.path.basename(base_path)
 
@@ -140,7 +140,7 @@ while True:
             sg.popup("Please select a folder.",keep_on_top=True)
         else:
             print(base_path)
-            managePhotos(base_path)
+            managePhotos()
             # Window['-IN-'].update('')
 
 
