@@ -4,6 +4,8 @@ from PIL import Image
 from pathlib import Path
 import os
 
+entries_list = []
+
 # sg.theme_previewer()
 sg.theme('DarkGreen7')
 layout = [  [sg.T('\nSelect folder:',pad=((30,15),20),s=(40,2)),sg.FolderBrowse(k='input-folder',pad=((0,20),20),s=(15,2))],
