@@ -5,9 +5,9 @@ import PySimpleGUI as sg
 sg.theme('DarkAmber')
 sz= size=(50,3)
 
-layout = [  [sg.Text('Please select the folder where you want to manage the Photos and other media files',sz, pad=(20,20))], 
-            [sg.FolderBrowse('Select Folder',key='-IN-',size=(12,1), pad=(20,0)),sg.T('',s=(40,3))],
-            [sg.T(' '*15),sg.Button('Manage',size=(10,1), pad=(40,20)),sg.Button('Exit',size=(10,1))]   ]
+layout = [  [sg.Text('Please select the folder where you want to manage the Photos and other media files',s=(65,2), pad=(20,20))], 
+            [sg.FolderBrowse('Select Folder',key='-IN-',s=(15,2), pad=((20,40),0)),sg.T('',s=(50,3))],
+            [sg.Button('Manage',size=(15,2), pad=(130,20)),sg.Button('Exit',size=(15,2))]   ]
 
 Window = sg.Window('Photos Manager by AU', layout, keep_on_top=True)
 
@@ -88,7 +88,7 @@ def managePhotos():
                     #     curr_log.write(f'Moved PNG file - {filename} (2){file_ext}.\n')
                     print(f"An error occurred: {e}")
 
-            elif 0<file_size<1 or file_ext.lower()=='.mp4' or file_ext.lower()=='.gif':
+            elif 0<file_size<0.7 or file_ext.lower()=='.mp4' or file_ext.lower()=='.gif':
             # elif 0<file_size<1 or (file_ext=='.mp4' and 1<file_size<7):
                 # print(f'{file} - file or not status: {Path(curr_file_path).is_file()}')
                 if not os.path.exists(misc_folder_path):
