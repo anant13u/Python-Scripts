@@ -102,10 +102,10 @@ def managePhotos():
                     print(f"An error occurred: {e}")
 
             elif file.startswith('IMG_E'): # Checking if the entry starts with 'IMG_E'.
-                # Create the edited folder if it doesn't exist.
                 curr_file_path = os.path.join(base_path,file) # curr_file_path is C:\Users\Anant\Documents\Test Folder\New folder\IMG_1109.MOV
                 original_file_name=file.replace('_E','_') # Create the name of the original file and its path.
                 original_file_path = os.path.join(base_path,original_file_name)
+                # Create the edited folder if it doesn't exist.
                 if os.path.exists(original_file_path):
                     if not os.path.exists(edited_folder_path):
                         os.mkdir(edited_folder_path)
@@ -135,7 +135,7 @@ while True:
     if event in (sg.WINDOW_CLOSED, 'Exit'):
         break
     elif event=='Manage':
-        base_path = values['-IN-']
+        base_path = Path(values['-IN-'])
         if base_path=='':
             sg.popup("Please select a folder.",keep_on_top=True)
         else:
