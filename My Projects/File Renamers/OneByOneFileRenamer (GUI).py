@@ -44,9 +44,6 @@ def file_rename(Window, basepath, filename):
     if event in (sg.WINDOW_CLOSED, 'Exit'):
         exit()
     elif event == 'Get Files List':
-        # if values['-IN-']=='':
-        #     sg.popup('Please select a folder to perform operations in.',keep_on_top=True)
-        # else:
         sg.popup_scrolled('\n'.join(os.listdir(basepath)),title='List of Files')
         file_rename(Window, basepath, filename)
     new_name = values['new-filename']
