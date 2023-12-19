@@ -35,7 +35,7 @@ while True:
                 newfilename = currfilename.replace(old_string,new_string)
                 if str_check>=0:
                     os.rename(os.path.join(basepath, currfilename), os.path.join(basepath, newfilename))
-                    changes_list.append(f'Old filename: {currfilename}.\n'
+                    changes_list.append(f'Old filename: {currfilename}\n'
                                         f'New filename: {newfilename}')
                 final_list='\n\n'.join(changes_list) # Separating all list items with a new line.
             if final_list.find(old_string)>1:
