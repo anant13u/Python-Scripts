@@ -48,7 +48,7 @@ def file_rename(Window, basepath, filename):
         file_rename(Window, basepath, filename)
     new_name = values['new-filename']
     if new_name!=filename:
-        if not Path(new_name).suffix == Path(filename).suffix:
+        if not Path(new_name).suffix == Path(filename).suffix and Path(basepath,filename).is_file():
             sg.popup('Extension of file can not be changed.',keep_on_top=True)
             file_rename(Window, basepath, filename)
         else:
