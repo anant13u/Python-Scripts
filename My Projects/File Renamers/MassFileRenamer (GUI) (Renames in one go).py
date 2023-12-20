@@ -9,7 +9,7 @@ layout = [  [sg.Text('Please select the folder where you want to rename the file
             [sg.Text('Please enter the new text',sz,pad=(20,15)),sg.Input('',key='new-string',size=(20,2),pad=(10,10))],
             [sg.Button('Rename',size=(10,2),pad=((70,20),15)),sg.T(' '*10),sg.Button('Exit',size=(10,2),pad=((20,70),15))]    ]
 
-Window = sg.Window('Mass File Renamer by AU',layout,keep_on_top=True)
+Window = sg.Window('Mass File Renamer by AU',layout,keep_on_top=True, grab_anywhere=True)
 
 changes_list=[]
 while True:
@@ -57,3 +57,4 @@ while True:
 
 # C:/Users/AU/Desktop/Python/Test
 # test1 - Copy (4)
+            
