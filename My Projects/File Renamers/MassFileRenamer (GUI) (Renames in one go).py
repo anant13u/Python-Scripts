@@ -4,9 +4,9 @@ import PySimpleGUI as sg
 sg.theme("DarkTeal2")
 
 sz= size=(20,2)
-layout = [  [sg.Text('Please select the folder where you want to rename the files',size=(23,2), pad=(20,15)), sg.FolderBrowse(key='-IN-',size=(15,2),pad=((0,20),15))],
-            [sg.Text('Please enter the string you want to rename',sz,pad=(20,15)),sg.Input('',key='old-string',pad=(10,10),size=(20,2))],
-            [sg.Text('Please enter the new text',sz,pad=(20,15)),sg.Input('',key='new-string',size=(20,2),pad=(10,10))],
+layout = [  [sg.Text('Please select the folder where you want to rename the files',size=(30,2), pad=(20,15)), sg.FolderBrowse(key='-IN-',size=(15,2),pad=((70,20),15))],
+            [sg.Text('Please enter the string you want to rename',sz,pad=(20,15)),sg.Input('',key='old-string',pad=(10,10),size=(40,2))],
+            [sg.Text('Please enter the new text',sz,pad=(20,15)),sg.Input('',key='new-string',size=(40,2),pad=(10,10))],
             [sg.Button('Rename',size=(10,2),pad=((70,20),15)),sg.T(' '*10),sg.Button('Exit',size=(10,2),pad=((20,70),15))]    ]
 
 Window = sg.Window('Mass File Renamer by AU',layout,keep_on_top=True, grab_anywhere=True)
