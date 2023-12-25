@@ -26,8 +26,7 @@ while True:
             basepath = values['-IN-']
             old_string = values['old-string']
             # re.sub()
-            escaped_old_string = re.compile(old_string)
-            # pattern = re.compile(old_string)
+            # pattern_old_string = re.compile(old_string)
             new_string = values['new-string']
             entries = os.listdir(basepath)
             print(basepath)
