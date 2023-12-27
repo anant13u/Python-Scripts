@@ -25,7 +25,6 @@ while True:
         else:
             basepath = values['-IN-']
             old_string = values['old-string']
-            # re.sub()
             # pattern_old_string = re.compile(old_string)
             new_string = values['new-string']
             entries = os.listdir(basepath)
