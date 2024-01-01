@@ -50,3 +50,4 @@ while True:
                 new_file_path=os.path.join(heic_folder_path,file)
                 os.rename(curr_file_path,new_file_path)
 
+        sg.popup('Conversion from HEIC to JPED done.')
