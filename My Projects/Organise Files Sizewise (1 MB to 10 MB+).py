@@ -8,7 +8,7 @@ sg.theme('DarkGreen7')
 layout = [  [sg.T('\nSelect folder:',pad=((30,15),20),s=(40,2)),sg.FolderBrowse(k='input-folder',pad=((0,20),20),s=(15,2))],
             [sg.B('Organise Sizewise',pad=(70,0),s=(20,2)), sg.B('Exit',pad=((0,60),20),s=(20,2))]    ]
 
-window=sg.Window('Organise Files Sizewise', layout, keep_on_top=True,grab_anywhere=True)
+window=sg.Window('Organise Files Sizewise (1 MB to 10 MB+)', layout, keep_on_top=True,grab_anywhere=True)
 
 while True:
     event, values = window.read()
