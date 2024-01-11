@@ -19,7 +19,7 @@ while True:
     elif event=='Rename':
         if values['-IN-']=='':
             sg.popup('Please select a folder to perform operations in.',keep_on_top=True)
-        if values['old-string']=='':
+        elif values['old-string']=='':
             sg.popup('Please enter a string to replace.',keep_on_top=True)
         else:
             basepath = values['-IN-']
