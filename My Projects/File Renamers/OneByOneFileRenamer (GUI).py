@@ -12,7 +12,7 @@ def mains():
                 [sg.Text('Please enter the new name:',pad=(20,20)),sg.Input('',key='new-filename',size=(45,1),pad=(20,15))],
                 [sg.B('Get Files List',size=(13,2),pad=(55,20)),sg.B('Begin',key='rename-button',size=(10,2),pad=(30,20)),sg.B('Exit',size=(10,2),pad=((50,70),15))]    ]
 
-    Window = sg.Window('Mass File Renamer by AU',layout,keep_on_top=True)
+    Window = sg.Window('Mass File Renamer by AU', layout, keep_on_top=True, grab_anywhere=True)
     
     while True:
         event, values = Window.read()
