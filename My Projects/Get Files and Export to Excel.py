@@ -1,6 +1,7 @@
 import os
 from pathlib import Path
 import PySimpleGUI as sg
+import openpyxl
 
 sg.theme('Reddit')
 
@@ -8,13 +9,14 @@ filelist=[]
 
 layout = [  [sg.T('Please enter the path from where you want to retrieve the list of files and folders')],
 	        [sg.FolderBrowse(key='-basepath-')],
+            # [sg.Radio('Full name?','1')],
 			[sg.B('Generate List'), sg.B('Exit')]  ]
 
 Window = sg.Window('Generate list of files', layout)
 
 while True:
     event, values = Window.read()
-    basepath = values['-basepath-']
+    basepath = Path(values['-basepath-'])
     if event in (sg.WIN_CLOSED, 'Exit'):
         break
     elif basepath == None or basepath=='':
@@ -23,11 +25,13 @@ while True:
         # Window.close()
         for root, dirs, files in os.walk(basepath):
             filelist.append(f'There are {len(dirs)} folders and {len(files)} files in {root}.\n')
+            for entry in os.listdir(root):
+                filelist.append(entry)
             for dir in dirs:
-                filelist.append(f'\nDirectory: {dir}.\n')
-                for file in os.listdir(Path(root,dir)):
-                    filelist.append(file)
-                # filelist.append('\n')
+                filelist.append(f'\nParent Directory: {Path(root,dir)}')
+                for entry in os.listdir(Path(root,dir)):
+                    filelist.append(entry)
+            filelist.append('\n')
         filelist = '\n'.join(filelist)
         sg.popup_scrolled(filelist, title='Filelist')
 
