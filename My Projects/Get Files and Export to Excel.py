@@ -1,7 +1,7 @@
 import os
 from pathlib import Path
 import PySimpleGUI as sg
-import openpyxl
+from openpyxl import Workbook
 
 sg.theme('Reddit')
 
