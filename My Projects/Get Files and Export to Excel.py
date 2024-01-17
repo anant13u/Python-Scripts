@@ -1,7 +1,7 @@
 import os
 from pathlib import Path
 import PySimpleGUI as sg
-from openpyxl import Workbook
+import openpyxl
 
 sg.theme('Reddit')
 
@@ -34,6 +34,20 @@ while True:
             filelist.append('\n')
         filelist = '\n'.join(filelist)
         sg.popup_scrolled(filelist, title='Filelist')
+
+# Create a new Excel workbook and select the active sheet
+workbook = openpyxl.Workbook()
+sheet = workbook.active
+
+# Write the list items to the Excel sheet column
+row_number = 1  # Specify the column number where you want to display the data
+for list_item in filelist.split('\n'):
+    sheet.cell(row=row_number, column=1, value=list_item)
+    row_number += 1
+
+# Save the workbook to a file
+workbook.save(Path(basepath,'output.xlsx'))
+# workbook.
 
 
 
