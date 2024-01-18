@@ -7,10 +7,9 @@ sg.theme('Reddit')
 
 filelist=[]
 
-layout = [  [sg.T('Please enter the path from where you want to retrieve the list of files and folders')],
-	        [sg.FolderBrowse(key='-basepath-')],
+layout = [  [sg.T('Select Folder',s=(30,3),pad=((40,20),10)), sg.FolderBrowse(key='-basepath-',s=(15,2),pad=(40,10))],
             # [sg.Radio('Full name?','1')],
-			[sg.B('Generate List'), sg.B('Exit')]  ]
+			[sg.B('Generate List',s=(15,2),pad=((100,30),10)), sg.B('Exit',s=(15,2),pad=(70,10))]  ]
 
 Window = sg.Window('Generate list of files', layout)
 
@@ -46,7 +45,7 @@ for list_item in filelist.split('\n'):
     row_number += 1
 
 # Save the workbook to a file
-workbook.save(Path(basepath,'output.xlsx'))
+workbook.save(Path(basepath,f'Files from {Path(basepath).parent.name}.xlsx'))
 # workbook.
 
 
