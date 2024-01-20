@@ -7,8 +7,13 @@ sg.theme('Reddit')
 
 filelist=[]
 
-layout = [  [sg.Text('Select Folder',s=(30,3),pad=((40,20),10),justification="center"), sg.FolderBrowse(key='-basepath-',s=(15,2),pad=(40,10))],
-            # [sg.Radio('Full name?','1')],
+selectFolderText = sg.Text('Select Folder',s=(30,2),pad=((40,20),10))
+folderBrowse = sg.FolderBrowse(key='-basepath-',s=(15,2),pad=(40,10))
+includeRadio = sg.Radio('Include Size','size_group',k='include', pad=((100,30),10))
+excludeRadio = sg.Radio('Exclude Size','size_group',default=True,k='exclude')
+
+layout = [  [selectFolderText, folderBrowse],
+            [includeRadio, excludeRadio],
 			[sg.B('Generate List',s=(15,2),pad=((100,30),10)), sg.B('Exit',s=(15,2),pad=(70,10))]  ]
 
 Window = sg.Window('Generate list of files', layout)
@@ -21,7 +26,7 @@ while True:
     elif basepath == None or basepath=='':
         sg.popup('Path cannot be blank.')
     elif event == 'Generate List':
-        # Window.close()
+        print(basepath)
         for root, dirs, files in os.walk(basepath):
             filelist.append(f'There are {len(dirs)} folders and {len(files)} files in {root}\n'
                             f'{root}')
