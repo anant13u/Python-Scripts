@@ -9,8 +9,8 @@ filelist=[]
 
 selectFolderText = sg.Text('Select Folder',s=(30,2),pad=((40,20),10))
 folderBrowse = sg.FolderBrowse(key='-basepath-',s=(15,2),pad=(40,10))
-includeRadio = sg.Radio('Include Size','size_group',k='include', pad=((100,30),10))
-excludeRadio = sg.Radio('Exclude Size','size_group',default=True,k='exclude')
+includeRadio = sg.Radio('Include Size','size_group',k='-include-', pad=((100,30),10))
+excludeRadio = sg.Radio('Exclude Size','size_group',default=True,k='-exclude-')
 
 layout = [  [selectFolderText, folderBrowse],
             [includeRadio, excludeRadio],
@@ -23,15 +23,20 @@ while True:
     basepath = Path(values['-basepath-'])
     if event in (sg.WIN_CLOSED, 'Exit'):
         break
-    elif basepath == None or basepath=='':
-        sg.popup('Path cannot be blank.')
+    elif values['-basepath-']=='':
+        sg.popup('Please select a folder to perform operations in.')
     elif event == 'Generate List':
         print(basepath)
         for root, dirs, files in os.walk(basepath):
             filelist.append(f'There are {len(dirs)} folders and {len(files)} files in {root}\n'
                             f'{root}')
             for entry in os.listdir(root):
-                filelist.append(entry)
+                if values['-include-']==True:
+                    file_size = os.path.getsize(Path(root, entry))/(1024*1024) # file_size is 5.0469865798950195
+                    filelist.append(f'{entry},{round(file_size,2)}')
+                else:
+                    filelist.append(entry)
+
 
             # for dir in dirs:
             #     filelist.append(f'\nParent Directory: {Path(root,dir)}')
