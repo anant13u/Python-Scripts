@@ -2,6 +2,7 @@ import os
 from pathlib import Path
 import PySimpleGUI as sg
 import openpyxl
+from datetime import datetime
 
 sg.theme('Reddit')
 
@@ -28,8 +29,9 @@ def create_excel(basepath, filelist, Window):
     sheet.column_dimensions['A'].width = adjusted_width
 
     try:
+        curr_date_time = datetime.now().strftime('%d-%m-%Y %H-%M-%S')
         # Save the workbook to a file
-        workbook.save(Path(basepath,f'Files from {Path(basepath).name}.xlsx'))
+        workbook.save(Path(basepath,f'Files from {Path(basepath).name} ({curr_date_time}).xlsx'))
     except PermissionError:
         sg.popup('The output Excel file is already open. Please close and try again.')
     Window.reappear()
