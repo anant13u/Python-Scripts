@@ -6,7 +6,7 @@ from datetime import datetime
 sg.theme('Reddit')
 
 
-selectFolderText = sg.Text('Select Folder',s=(30,2),auto_size_text=True,pad=((40,20),10))
+selectFolderText = sg.Text('Select Folder',s=(30,2),pad=((40,20),10))
 folderBrowse = sg.FolderBrowse(key='-basepath-',s=(15,2),pad=(40,10))
 
 layout = [  [selectFolderText, folderBrowse],
