@@ -7,12 +7,12 @@ rename_log = []
 
 sg.theme('Reddit')
 
-selectFolderText = sg.Text('Select Folder',s=(30,2),pad=((60,20),10))
-folderBrowse = sg.FolderBrowse(key='-basepath-',s=(15,2),pad=(40,10))
+selectFolderText = sg.Text('Select Folder',s=(50,2),pad=((90,20),10))
+folderBrowse = sg.FolderBrowse(key='-basepath-',s=(15,2),pad=((30,80),10))
 
 layout = [  [selectFolderText, folderBrowse],
-            [sg.B('Generate List',s=(15,2),pad=((50,30),10)), sg.B('Rename Files',s=(15,2),pad=(30,10)), sg.B('Exit',s=(15,2),pad=(30,10))],
-            [sg.Multiline('',key='file_list',s=(70,30),pad=(50,20))],
+            [sg.B('Generate List',s=(15,2),pad=(70,10)), sg.B('Rename Files',s=(15,2),pad=(60,10)), sg.B('Exit',s=(15,2),pad=(50,10))],
+            [sg.Multiline('',key='file_list',s=(50,18),pad=(50,20), font=("Bahnschrift", 18))],
             [sg.T('Script Creator: Anant Upadhyay')]  ]
 
 Window = sg.Window('Generate list of files and rename', layout, keep_on_top=True, grab_anywhere=True)
@@ -29,10 +29,10 @@ def rename_files():
             elif curr_path != new_path:
                 os.rename(curr_path, new_path)
         except Exception as e:
+            print(f"Error renaming {curr_name} to {new_name}: {e}")
             sg.popup_error(f"Error renaming {curr_name} to {new_name}: {e}", keep_on_top=True)
 
     # Reset rename_log and update GUI
-    rename_log = []
     Window['file_list'].update('')
 
 
@@ -61,18 +61,19 @@ while True:
             for curr_name, new_name in rename_dict.items():
                 if curr_name != new_name:
                     rename_log.append(f'{curr_name}\n{new_name}\n')
-            # Check if there are files to be renamed
-            if len(rename_log) == 0:
+            if len(rename_log) == 0: # Check if there are files to be renamed
                 sg.popup('No files to be renamed.', keep_on_top=True)
-            else:
-                # If there are multiple files to be renamed, join them with newline for better readability
-                if len(rename_log) > 1:
-                    rename_log = '\n'.join(rename_log)
+            elif len(rename_log) == 1: # Check if there is exactly one file to be renamed
+                # Display a popup with the first renaming operation and ask for final confirmation
+                if sg.popup_yes_no(f'Please check new names before renaming:\n{rename_log[0]}', title='Final Check', keep_on_top=True, line_width=200) == 'Yes':
+                    rename_files()
+            # If there are multiple files to be renamed, join them with newline for better readability
+            elif len(rename_log) > 1:
+                rename_log = '\n'.join(rename_log)
                 # Ask for final confirmation before proceeding with renaming
                 if sg.popup_yes_no(f'Please check new names before renaming:\n{rename_log}', title='Final Check', keep_on_top=True, line_width=200) == 'Yes':
                     rename_files()
-                else:
-                    rename_log = []
+            rename_log = []
 
             
            
