@@ -1,32 +1,31 @@
 import webbrowser
 import pyperclip
-# from os import startfile
 from pathlib import Path
 import time
 import PySimpleGUI as sg
 from pytube import YouTube
 from datetime import datetime
 
-sg.theme('darkamber')
+sg.theme('darkamber') # sg.theme_previewer()
 sg.set_options(font=('Calibri',11)) # https://stackoverflow.com/a/67155752/18791688
-# download_path = Path('C:/Users/Anant/Downloads') # Setting default download path to user's Downloads folder.
 
 folderBrowse = sg.FolderBrowse('Select Download Folder',key='download_folder', size=(25,1), pad=((20,10),20))
 proceedButton = sg.B('Proceed', size=(15,1), pad=(20,10))
 
-getDWPath = sg.Window('Select the Download Destination',
-                    [  [folderBrowse, proceedButton]  ], keep_on_top=True)
+getDWPathWindow = sg.Window('Select the Download Destination',
+                    [   [folderBrowse],
+                        [proceedButton, sg.B('Exit') ]  ], keep_on_top=True)
 while True:
-    event, values = getDWPath.read()
-    if event == sg.WINDOW_CLOSED:
+    event, values = getDWPathWindow.read()
+    if event in (sg.WINDOW_CLOSED, 'Exit'):
         exit()  # Exit the script if the window is closed
     if event == 'Proceed':
         if values['download_folder'] == '':
-            sg.popup('Please select a download location.')
+            sg.popup('Please select a download location.', keep_on_top=True)
         else:
             download_path = Path(values['download_folder'])
             print(download_path)
-            getDWPath.close()
+            getDWPathWindow.close()
             break
 
 # mew = time.sleep(1.5)
