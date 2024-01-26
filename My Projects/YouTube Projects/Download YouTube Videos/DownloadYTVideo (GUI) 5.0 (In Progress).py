@@ -9,12 +9,12 @@ from datetime import datetime
 sg.theme('darkamber') # sg.theme_previewer()
 sg.set_options(font=('Calibri',11)) # https://stackoverflow.com/a/67155752/18791688
 
-folderBrowse = sg.FolderBrowse('Select Download Folder',key='download_folder', size=(32,1), pad=(30,20))
-proceedButton = sg.B('Proceed', size=(13,1), pad=(30,20))
+folderBrowse = sg.FolderBrowse('Select Download Folder',key='download_folder', size=(45,2), pad=(40,(30,10)))
+proceedButton = sg.B('Proceed', size=(18,2), pad=(45,30))
 
 getDWPathWindow = sg.Window('Select the Download Destination',
                     [   [folderBrowse],
-                        [proceedButton, sg.B('Exit', size=(13,1)) ]  ], keep_on_top=True)
+                        [proceedButton, sg.B('Exit', size=(18,2)) ]  ], keep_on_top=True)
 while True:
     event, values = getDWPathWindow.read()
     if event in (sg.WINDOW_CLOSED, 'Exit'):
@@ -64,6 +64,8 @@ def download_video(video_name, channel_name, url, yt, stream):
         sg.popup_auto_close('Downloading...',auto_close_duration=5)
         # auto_close_duration=stream.filesize_approx/(1024*1024*3)
         try:
+            print(download_path)
+            print(Path(final_file).name)
             stream.download(output_path=download_path, filename=Path(final_file).name) # Download path is already provided at the beginning of the script.
         except Exception as e:
             sg.popup(f'Error encountered: {e}')
@@ -83,10 +85,11 @@ def download_video(video_name, channel_name, url, yt, stream):
     webbrowser.open(download_path) # This will open the directory where we've downloaded the video. Webbrowser module will be imported automatically.
     # return final_file # Using return to capture downloaded file's name so we can refer to only_download function later on and retrieve it.
 
+
 def mains():
     download_video_layout = [   [sg.T('Please enter the URL for the YouTube video below:', pad = (20,20))],
-                                [sg.InputText(pyperclip.paste(),key='-URL-', pad = (20,0))],
-                                [sg.Ok('Fetch Video Details',size=(17,2), pad=(20,(30,20))),sg.B('Exit',size=(17,2), pad=(20,(30,20)))]    ]
+                                [sg.InputText(pyperclip.paste(),key='-URL-', pad = (20,10))],
+                                [sg.Ok('Fetch Video Details',size=(17,2), pad=(20,20)),sg.B('Exit',size=(17,2), pad=(20,20))]    ]
         
     download_video_window = sg.Window('YouTube Video Downloader by AU', download_video_layout,keep_on_top=True)
 
@@ -95,8 +98,8 @@ def mains():
         if event in (sg.WIN_CLOSED or 'Exit'):
             break
         elif values['-URL-']=='':
-            sg.popup('Field cannot be blank, please enter a YouTube Video URL!')
-        elif event=='Fetch Video Details' and values['-URL-'].find('https://www.youtube.com/')<0: # IF an URL is provided not having "https://www.youtube.com/" in it.
+            sg.popup('Field cannot be blank, please enter a YouTube Video URL!', keep_on_top=True)
+        elif event=='Fetch Video Details' and values['-URL-'].find('https://www.youtube.com/')<0: # IF a URL is provided but does not have "https://www.youtube.com/" in it.
             sg.popup('Please enter a valid YouTube Video URL!')
         elif event=='Fetch Video Details':
             url = values['-URL-']
@@ -104,26 +107,24 @@ def mains():
                 yt = YouTube(url)
             except Exception as e:
                 download_video_window.close()
-                sg.popup(f'"yt = YouTube(url)" line could not be resolved.\nError Encountered: {e}')
+                sg.popup(f'"yt = YouTube(url)" line could not be resolved.\nError Encountered: {e}', keep_on_top=True)
                 print(f'"yt = YouTube(url)" line could not be resolved.\nError Encountered: {e}')
                 download_another_video()
                 break
             yt.streams.filter(file_extension='mp4')
-            # stream = yt.streams.get_by_itag(22)
-            streams = yt.streams.filter(res='1080p')
-            # Get the first stream with 1080p resolution
-            stream = streams.first()
+            stream = yt.streams.get_by_itag(22)
             video_name = stream.title
             channel_name = yt.author
             download_video_window.close()
             print(video_name)
+            box_height = (len(video_name)//50) + 1
             event, values = sg.Window('Want to Download This Video?',
-                [   [sg.T(f'Your video is "{video_name}"', pad=(20,10))],
+                [   [sg.T(f'Your video is "{video_name}"', s=(50,box_height), pad=(20,10))],
                     [sg.T(f'Channel Name: {channel_name}', pad=(20,10))],
                     [sg.T(f'Length of the video is {yt.length//60} minutes and {yt.length%60} seconds.', pad=(20,10))],
                     [sg.T(f'Approx Size of the video is {round(stream.filesize_approx/(1024*1024),2)} MB.', pad=(20,10))],
                     [sg.T(f'{yt.description}', size=(55,8), pad=(20,(10,25)))],
-                    [sg.B('Download', size=(22,2), pad=(20,10)), sg.B("Exit",size=(22,2), pad=(20,10))]    ], keep_on_top=True).read(close=True) # close=True closes the Window after getting the input in form of Yes or No
+                    [sg.B('Download', size=(22,2), pad=(30,20)), sg.B("Exit",size=(22,2), pad=(20,20))]    ], keep_on_top=True).read(close=True) # close=True closes the Window after getting the input in form of Yes or No
 
             if event=='Download':
                 download_video(video_name, channel_name, url, yt, stream)
@@ -138,3 +139,13 @@ mains()
 
 # https://stackoverflow.com/questions/10851906/python-3-unboundlocalerror-local-variable-referenced-before-assignment
 
+
+# quality_radio_layout = [sg.Radio('720p', 'video_res_radio', default=True), sg.Radio('1080p', 'video_res_radio', k='1080_selected')]
+                  
+# [sg.Frame('Video Quality', [quality_radio_layout], pad = (110,10))],
+    
+# if values['1080_selected']:
+#     try:
+#         stream = yt.streams.filter(res='1080p').first() # Get the first stream with 1080p resolution
+#         # stream = yt.streams.get_by_itag(137)
+#         video_name = stream.title
