@@ -1,4 +1,5 @@
 import webbrowser
+import pyperclip
 # from os import startfile
 from pathlib import Path
 import time
@@ -10,8 +11,11 @@ sg.theme('darkamber')
 sg.set_options(font=('Calibri',11)) # https://stackoverflow.com/a/67155752/18791688
 # download_path = Path('C:/Users/Anant/Downloads') # Setting default download path to user's Downloads folder.
 
+folderBrowse = sg.FolderBrowse('Select Download Folder',key='download_folder', size=(25,1), pad=((20,10),20))
+proceedButton = sg.B('Proceed', size=(15,1), pad=(20,10))
+
 getDWPath = sg.Window('Select the Download Destination',
-                    [  [sg.FolderBrowse('Select Download Folder',key='download_folder', size=(25,1), pad=((20,10),20)), sg.B('Proceed', size=(15,1), pad=(20,10))]  ], keep_on_top=True)
+                    [  [folderBrowse, proceedButton]  ], keep_on_top=True)
 while True:
     event, values = getDWPath.read()
     if event == sg.WINDOW_CLOSED:
@@ -46,8 +50,9 @@ def download_another_video():
 
 def download_video():
     download_video_layout = [   [sg.T('Please enter the URL for the YouTube video below:', pad = (20,20))],
-                                [sg.InputText(key='-URL-', pad = (20,0))],
+                                [sg.InputText(pyperclip.paste(),key='-URL-', pad = (20,0))],
                                 [sg.Ok('Fetch Video Details',size=(17,2), pad=(20,(30,20))),sg.B('Exit',size=(17,2), pad=(20,(30,20)))]    ]
+        
 
     download_video_window = sg.Window('YouTube Video Downloader by AU', download_video_layout,keep_on_top=True)
 
@@ -63,9 +68,10 @@ def download_video():
             url = values['-URL-']
             try:
                 yt = YouTube(url)
-            except:
+            except Exception as e:
                 download_video_window.close()
-                sg.popup(f'"yt = YouTube(url)" line could not be resolved. Go cry a fu***ng river.')
+                sg.popup(f'"yt = YouTube(url)" line could not be resolved.\nError Encountered: {e}')
+                print(f'"yt = YouTube(url)" line could not be resolved.\nError Encountered: {e}')
                 download_another_video()
                 break
             yt.streams.filter(file_extension='mp4')
@@ -101,10 +107,11 @@ def download_video():
                     # the size of the video divided by 3.
                     sg.popup_auto_close('Downloading...',auto_close_duration=5)
                     # auto_close_duration=stream.filesize_approx/(1024*1024*3)
-                    stream.download(output_path=download_path, filename=Path(final_file).name) # Download path is already provided at the beginning of the script.
-                    # with open(Path.joinpath(download_path,'captions.txt'),'a+') as captions:
-                    #     for c in yt_captions:
-                    #         captions.write(c)
+                    try:
+                        stream.download(output_path=download_path, filename=Path(final_file).name) # Download path is already provided at the beginning of the script.
+                    except Exception as e:
+                        sg.popup(f'Error encountered: {e}')
+                        print(f'Error encountered: {e}')
                     print(f'\n Downloaded filename: \n "{final_file}"')
                     curr_datetime = datetime.now().strftime('%d/%m/%y %H:%M:%S')
                     with open(Path.joinpath(download_path,'Downloaded Videos.txt'),'a+',encoding='utf-8') as curr_log:
