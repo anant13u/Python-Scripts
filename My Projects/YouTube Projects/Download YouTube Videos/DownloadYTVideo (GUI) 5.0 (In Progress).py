@@ -9,17 +9,17 @@ from datetime import datetime
 sg.theme('darkamber') # sg.theme_previewer()
 sg.set_options(font=('Calibri',11)) # https://stackoverflow.com/a/67155752/18791688
 
-folderBrowse = sg.FolderBrowse('Select Download Folder',key='download_folder', size=(25,1), pad=((20,10),20))
-proceedButton = sg.B('Proceed', size=(15,1), pad=(20,10))
+folderBrowse = sg.FolderBrowse('Select Download Folder',key='download_folder', size=(32,1), pad=(30,20))
+proceedButton = sg.B('Proceed', size=(13,1), pad=(30,20))
 
 getDWPathWindow = sg.Window('Select the Download Destination',
                     [   [folderBrowse],
-                        [proceedButton, sg.B('Exit') ]  ], keep_on_top=True)
+                        [proceedButton, sg.B('Exit', size=(13,1)) ]  ], keep_on_top=True)
 while True:
     event, values = getDWPathWindow.read()
     if event in (sg.WINDOW_CLOSED, 'Exit'):
-        exit()  # Exit the script if the window is closed
-    if event == 'Proceed':
+        exit()  # Exit the script if the window is closed or Exit button is clicked.
+    elif event == 'Proceed':
         if values['download_folder'] == '':
             sg.popup('Please select a download location.', keep_on_top=True)
         else:
@@ -61,7 +61,7 @@ def download_video():
             break
         elif values['-URL-']=='':
             sg.popup('Field cannot be blank, please enter a YouTube Video URL!')
-        elif event=='Fetch Video Details' and values['-URL-'].find('https://www.youtube.com/')<0: # IF an URL is provided not having "https://www.youtube.com/watch?v=" in it.
+        elif event=='Fetch Video Details' and values['-URL-'].find('https://www.youtube.com/')<0: # IF an URL is provided not having "https://www.youtube.com/" in it.
             sg.popup('Please enter a valid YouTube Video URL!')
         elif event=='Fetch Video Details':
             url = values['-URL-']
@@ -75,18 +75,17 @@ def download_video():
                 break
             yt.streams.filter(file_extension='mp4')
             stream = yt.streams.get_by_itag(22)
-            # yt_captions = yt.captions.get_by_language_code('en')
             video_name_raw = stream.title
             channel_name = yt.author
             download_video_window.close()
             print(video_name_raw)
-            event, values = sg.Window('Wanna Download This?',
-                [   [sg.T()],
-                    [sg.T(),sg.T(f'Your video is "{video_name_raw}"\n\nChannel Name: {channel_name}\n\nLength of the video is {yt.length//60} minutes and {yt.length%60} seconds\n\nApprox Size of the video is {round(stream.filesize_approx/(1024*1024),2)} MB\n')],
-                    [sg.T(),sg.T(f'{yt.description}',size=(55,8))],
-                    [sg.T()],
-                    [sg.T(),sg.B('Only Download',size=(22,2)),sg.T(' '*5),sg.B('Download and play Video',size=(22,2)),sg.T(' '*5),sg.B("I'd rather quit bro",size=(22,2))],
-                    [sg.T()]  ],keep_on_top=True).read(close=True) # close=True closes the Window after getting the input in form of Yes or No
+            event, values = sg.Window('Want to Download This Video?',
+                [   [sg.T(f'Your video is "{video_name_raw}"', pad=(20,10))],
+                    [sg.T(f'Channel Name: {channel_name}', pad=(20,10))],
+                    [sg.T(f'Length of the video is {yt.length//60} minutes and {yt.length%60} seconds.', pad=(20,10))],
+                    [sg.T(f'Approx Size of the video is {round(stream.filesize_approx/(1024*1024),2)} MB.', pad=(20,10))],
+                    [sg.T(f'{yt.description}', size=(55,8), pad=(20,(10,25)))],
+                    [sg.B('Download', size=(22,2), pad=(20,10)), sg.B("Exit",size=(22,2), pad=(20,10))]    ], keep_on_top=True).read(close=True) # close=True closes the Window after getting the input in form of Yes or No
             def only_download():
                 video_name_cleaned = video_name_raw
                 # Below we are replacing the characters in the replacers_dict dictionary with an empty string.
@@ -125,13 +124,11 @@ def download_video():
                     sg.popup(f'Your video "{video_name_raw}" has been downloaded and saved at - "{download_path}"')
                 webbrowser.open(download_path) # This will open the directory where we've downloaded the video. Webbrowser module will be imported automatically.
                 return final_file # Using return to capture downloaded file's name so we can refer to only_download function later on and retrieve it.
-            if event=='Only Download':
+            if event=='Download':
                 only_download()
-                # download_another_video()
-            # elif event=='Download and play Video':
-            #     startfile(only_download())
+
             download_another_video()
+
             break
 
 download_video()
-# getDW()
