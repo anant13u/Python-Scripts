@@ -23,45 +23,26 @@ while True:
             file_size = os.path.getsize(Path(basepath, file))/(1024*1024) # file_size is 5.0469865798950195
             try:
                 if file_size > 10:
-                    new_file_path = Path(basepath, '10 MB+ files')
-                    if not os.path.exists(new_file_path):
-                        os.mkdir(new_file_path)
-                    os.rename(Path(basepath, file), Path(new_file_path, file))
+                    folder_name = '10 MB+ files'
                 elif file_size > 9:
-                    new_file_path = Path(basepath, '9-10 MB files')
-                    if not os.path.exists(new_file_path):
-                        os.mkdir(new_file_path)
-                    os.rename(Path(basepath, file), Path(new_file_path, file))
+                    folder_name = '9-10 MB files'
                 elif file_size > 8:
-                    new_file_path = Path(basepath, '8-9 MB files')
-                    if not os.path.exists(new_file_path):
-                        os.mkdir(new_file_path)
-                    os.rename(Path(basepath, file), Path(new_file_path, file))
+                    folder_name = '8-9 MB files'
                 elif file_size > 7:
-                    new_file_path = Path(basepath, '7-8 MB files')
-                    if not os.path.exists(new_file_path):
-                        os.mkdir(new_file_path)
-                    os.rename(Path(basepath, file), Path(new_file_path, file))
+                    folder_name = '7-8 MB files'
                 elif file_size > 6:
-                    new_file_path = Path(basepath, '6-7 MB files')
-                    if not os.path.exists(new_file_path):
-                        os.mkdir(new_file_path)
-                    os.rename(Path(basepath, file), Path(new_file_path, file))
+                    folder_name = '6-7 MB files'
                 elif file_size > 5:
-                    new_file_path = Path(basepath, '5-6 MB files')
-                    if not os.path.exists(new_file_path):
-                        os.mkdir(new_file_path)
-                    os.rename(Path(basepath, file), Path(new_file_path, file))
+                    folder_name = '5-6 MB files'
                 elif file_size > 4:
-                    new_file_path = Path(basepath, '4-5 MB files')
-                    if not os.path.exists(new_file_path):
-                        os.mkdir(new_file_path)
-                    os.rename(Path(basepath, file), Path(new_file_path, file))
+                    folder_name = '4-5 MB files'
                 else:
-                    new_file_path = Path(basepath, '0-4 MB files')
-                    if not os.path.exists(new_file_path):
-                        os.mkdir(new_file_path)
-                    os.rename(Path(basepath, file), Path(new_file_path, file))
+                    folder_name = '0-4 MB files'
+
+                new_file_path = Path(basepath, folder_name)
+                if not os.path.exists(new_file_path):
+                    os.mkdir(new_file_path)
+                os.rename(Path(basepath, file), Path(new_file_path, file))
 
             except Exception as e:
                 error_info = traceback.format_exc()
