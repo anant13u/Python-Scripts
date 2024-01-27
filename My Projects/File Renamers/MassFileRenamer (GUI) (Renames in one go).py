@@ -34,7 +34,11 @@ while True:
                 # If the substring isn't present, the method will return -1.
                 newfilename = currfilename.replace(old_string,new_string)
                 if str_check>=0:
-                    os.rename(os.path.join(basepath, currfilename), os.path.join(basepath, newfilename))
+                    try:
+                        os.rename(os.path.join(basepath, currfilename), os.path.join(basepath, newfilename))
+                    except PermissionError as e:
+                        print(f'Permission Error: {e}')
+                        sg.popup(f'Permission Error: {e}', keep_on_top=True)
                     changes_list.append(f'Old filename: {currfilename}\n'
                                         f'New filename: {newfilename}')
                 final_list='\n\n'.join(changes_list) # Separating all list items with a new line.
