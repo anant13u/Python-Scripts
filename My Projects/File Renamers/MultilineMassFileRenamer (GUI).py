@@ -5,7 +5,7 @@ from datetime import datetime
 
 rename_log = []
 
-sg.theme('Reddit')
+sg.theme('DarkGrey13')
 
 selectFolderText = sg.Text('Select Folder',s=(50,2),pad=((90,20),10))
 folderBrowse = sg.FolderBrowse(key='-basepath-',s=(15,2),pad=((30,80),10))
@@ -32,8 +32,6 @@ def rename_files():
             print(f"Error renaming {curr_name} to {new_name}: {e}")
             sg.popup_error(f"Error renaming {curr_name} to {new_name}: {e}", keep_on_top=True)
 
-    # Reset rename_log and update GUI
-    Window['file_list'].update('')
 
 
 # Main event loop
@@ -73,11 +71,10 @@ while True:
                 # Ask for final confirmation before proceeding with renaming
                 if sg.popup_yes_no(f'Please check new names before renaming:\n{rename_log}', title='Final Check', keep_on_top=True, line_width=200) == 'Yes':
                     rename_files()
+            # Reset rename_log and update GUI
             rename_log = []
+            Window['file_list'].update('')
 
-            
-           
-        
 
 
 
