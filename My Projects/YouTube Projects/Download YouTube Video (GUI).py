@@ -74,8 +74,8 @@ def download_video(video_name, channel_name, url, yt, stream, download_video_win
         sg.popup(f'The file already exists at {download_path}', keep_on_top=True)
     else:
         try:
-            print(download_path)
-            print(Path(final_file).name)
+            # print(download_path)
+            # print(Path(final_file).name)
             stream.download(output_path=download_path, filename=Path(final_file).name) # Download path is already provided at the beginning of the script.
             print(f'\n Downloaded filename: \n "{final_file}"')
             curr_datetime = datetime.now().strftime('%d/%m/%y %H:%M:%S')
@@ -121,8 +121,14 @@ def mains():
                 print(f'Error encountered: {e}')
                 download_another_video()
                 break
+            # Attempt to get a stream with the specified itag (itag 22 typically corresponds to 720p resolution).
             stream = yt.streams.get_by_itag(22)
-            video_name = stream.title
+            try:
+                video_name = stream.title
+            except:
+                # Fall back to getting the title from the first available stream if 720p isn't available.
+                stream = yt.streams.first()
+                video_name = stream.title
             channel_name = yt.author
             fetch_details_window.close()
             print(video_name)
