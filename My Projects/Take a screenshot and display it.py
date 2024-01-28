@@ -12,29 +12,23 @@ screenshotButton = sg.B('Take Screenshot and display', key='screenshot_button', 
 padding_changed = (150, 20)
 
 layout = [  [screenshotButton, sg.B('Exit', pad=(30,20), s=(15,2))],
-            [sg.Im('', k='image_box', expand_x=False)]   ]
+            [sg.Im('', k='image_box')]   ]
 
 Window = sg.Window('Screenshot Window', layout, enable_close_attempted_event=True)
 
 
 while True:
     event, values = Window.read()
-    print(event)
     if event in (sg.WIN_CLOSED, sg.WINDOW_CLOSE_ATTEMPTED_EVENT, 'Exit'):
-        # Window.disappear()
         if sg.popup_yes_no('Do you really want to go?') == 'Yes':
             break
-        # Window.reappear()
-        # if user_response not in ('No', None):
     elif event == 'screenshot_button':
         try:
             curr_datetime = datetime.now().strftime('%d-%m-%y %H_%M_%S')
-            # Compatible on all Operating systems.
-            Window.disappear()
+            Window.disappear() # Hide the window temporarily to take the screenshot
             screenshot_path = Path(save_path, f'{curr_datetime}.png')
             pyautogui.screenshot(screenshot_path)
             Window['image_box'].update(str(screenshot_path))
-            Window['screenshot_button'].update(pad=padding_changed)
             Window.reappear()
 
         except KeyboardInterrupt:
