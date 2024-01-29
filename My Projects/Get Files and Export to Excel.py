@@ -46,7 +46,9 @@ def mains():
     excludeRadio = sg.Radio('Exclude File Size','size_group',default=True,k='-excludesize-')
 
     layout = [  [selectFolderText, folderBrowse],
+                [sg.HorizontalSeparator()],
                 [includeRadio, excludeRadio],
+                [sg.HorizontalSeparator()],
                 [sg.B('Generate List',s=(15,2),pad=((70,30),10)), sg.B('Exit',s=(15,2),pad=(70,10))]  ]
 
     Window = sg.Window('Generate list of files', layout)
@@ -66,7 +68,7 @@ def mains():
                 for entry in os.listdir(root):
                     if values['-includesize-']==True:
                         file_size = os.path.getsize(Path(root, entry))/(1024*1024) # file_size is 5.0469865798950195
-                        filelist.append(f'{entry},{round(file_size,2)}')
+                        filelist.append(f'{entry}|{round(file_size,2)}')
                     else:
                         filelist.append(entry)
                 filelist.append('\n')
