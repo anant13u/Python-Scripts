@@ -12,7 +12,7 @@ folderBrowse = sg.FolderBrowse(key='-basepath-',s=(15,2),pad=((30,80),10))
 
 layout = [  [selectFolderText, folderBrowse],
             [sg.B('Generate List',s=(15,2),pad=(70,10)), sg.B('Rename Files',s=(15,2),pad=(60,10)), sg.B('Exit',s=(15,2),pad=(50,10))],
-            [sg.Multiline('',key='file_list',s=(50,18),pad=(50,20), font=("Bahnschrift", 18))],
+            [sg.Multiline('',key='file_list',s=(55,13),pad=(50,20), font=("Bahnschrift", 23))],
             [sg.T('Script Creator: Anant Upadhyay')]  ]
 
 Window = sg.Window('Generate list of files and rename', layout, keep_on_top=True, grab_anywhere=True)
@@ -38,10 +38,10 @@ def rename_files():
 while True:
     event, values = Window.read()
     basepath = Path(values['-basepath-'])
-    if event in (sg.WIN_CLOSED, 'Exit'):
+    if event in (sg.WINDOW_CLOSED, 'Exit'):
         break
     elif values['-basepath-']=='':
-        sg.popup('Please select a folder to perform operations in.')
+        sg.popup('Please select a folder to perform operations in.', keep_on_top=True)
     elif event == 'Generate List':
         # Generate and display list of files in the selected folder
         print(basepath)
@@ -68,9 +68,18 @@ while True:
             # If there are multiple files to be renamed, join them with newline for better readability
             elif len(rename_log) > 1:
                 rename_log = '\n'.join(rename_log)
+                popup_layout = [   [sg.Multiline(f'Please check new names before renaming:\n{rename_log}', s=(60,20))],
+                                    [sg.B('Yes'), sg.B('No')]  ]
+                popup_window = sg.Window('Final Check', popup_layout, keep_on_top=True)
                 # Ask for final confirmation before proceeding with renaming
-                if sg.popup_yes_no(f'Please check new names before renaming:\n{rename_log}', title='Final Check', keep_on_top=True, line_width=200) == 'Yes':
-                    rename_files()
+                while True:
+                    popup_event, popup_values = popup_window.read()
+                    if popup_event in (sg.WINDOW_CLOSED, 'No'):
+                        break
+                    elif popup_event == 'Yes':
+                        rename_files()
+                        break
+                popup_window.close()
             # Reset rename_log and update GUI
             rename_log = []
             Window['file_list'].update('')
