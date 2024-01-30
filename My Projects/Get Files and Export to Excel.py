@@ -13,7 +13,7 @@ def create_excel(basepath, filelist, Window):
     sheet = workbook.active
 
     # Write the list items to the Excel sheet column
-    row_number = 1  # Specify the column number where you want to display the data
+    row_number = 1  # Specify the row number where you want to display the data
     for list_item in filelist:
         sheet.cell(row=row_number, column=1, value=list_item)
         row_number += 1
@@ -61,14 +61,15 @@ def mains():
         elif values['-basepath-']=='':
             sg.popup('Please select a folder to perform operations in.')
         elif event == 'Generate List':
-            filelist=[]
+            filelist={}
+            filelist.append('Full Path|File Name|File Size')
             print(basepath)
             for root, dirs, files in os.walk(basepath):
-                filelist.append(f'There are {len(dirs)} folders and {len(files)} files in {root}\n')
+                # filelist.append(f'There are {len(dirs)} folders and {len(files)} files in {root}\n')
                 for entry in os.listdir(root):
                     if values['-includesize-']==True:
                         file_size = os.path.getsize(Path(root, entry))/(1024*1024) # file_size is 5.0469865798950195
-                        filelist.append(f'{entry}|{round(file_size,2)}')
+                        filelist.append(f'{Path(root, entry)}|{entry}|{round(file_size,2)}')
                     else:
                         filelist.append(entry)
                 filelist.append('\n')
