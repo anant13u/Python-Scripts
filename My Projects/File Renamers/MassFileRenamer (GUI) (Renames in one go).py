@@ -42,10 +42,10 @@ while True:
                     changes_list.append(f'Old filename: {currfilename}\n'
                                         f'New filename: {newfilename}')
                 final_list='\n\n'.join(changes_list) # Separating all list items with a new line.
-            if final_list.find(old_string)>1:
-                sg.popup(f'All files containing the text "{old_string}" are now renamed. Please find the list below:\n\n{final_list}',title='List of changed filenames',line_width=100,grab_anywhere=True,keep_on_top=True)
-            else:
-                sg.popup(f'No files found with {old_string} in their names.',keep_on_top=True,grab_anywhere=True)
+            # if final_list.find(old_string)>1:
+            #     sg.popup(f'All files containing the text "{old_string}" are now renamed. Please find the list below:\n\n{final_list}',title='List of changed filenames',line_width=100,grab_anywhere=True,keep_on_top=True)
+            # else:
+            #     sg.popup(f'No files found with {old_string} in their names.',keep_on_top=True,grab_anywhere=True)
             changes_list=[]
             final_list=''
             # break
