@@ -2,9 +2,10 @@ import os
 from pathlib import Path
 import PySimpleGUI as sg
 from datetime import datetime
+import subprocess
 
 sg.theme('Reddit')
-
+# sg.theme_previewer()
 
 selectFolderText = sg.Text('Select Folder',s=(30,2),pad=((40,20),10))
 folderBrowse = sg.FolderBrowse(key='-basepath-',s=(15,2),pad=(40,10))
@@ -22,6 +23,9 @@ while True:
     elif values['-basepath-']=='':
         sg.popup('Please select a folder to perform operations in.')
     elif event == 'Generate List':
+        subprocess.Popen(['explorer.exe', basepath]) # Below 2 lines give the same result.
+        # subprocess.run(['explorer', basepath])
+        # subprocess.Popen(['explorer', basepath])
         print(basepath)
 
 
