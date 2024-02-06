@@ -18,7 +18,7 @@ while True:
         initialCode = values['initial-code']
         currentCode = values['current-code']
         # sg.popup(initialCode,currentCode)
-        prompt = f'I need you to write a Git commit message (preferably in 3-4 lines max) for the code changes made below:\nPrevious code:\n{initialCode}\n\nCurrent Code:\n{currentCode}' 
+        prompt = f'I need you to go through the 2 pieces of codes below and write a concise Git commit message (preferably in 3-4 lines max) for the code changes made below:\nPrevious code:\n{initialCode}\n\nCurrent Code:\n{currentCode}' 
         pyperclip.copy(prompt)
 
 
