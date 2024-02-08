@@ -17,10 +17,10 @@ def managePhotos():
 
     # Create paths for the edited folder and log file.
     edited_folder_path = os.path.join(base_path,f'Edited Photos and Videos ({curr_folder})')
-    edit_log_path = os.path.join(edited_folder_path,'Original and Edited Photos and Videos log.txt')
+    # edit_log_path = os.path.join(edited_folder_path,'Original and Edited Photos and Videos log.txt')
 
-    moved_pairs_list = ['Below is the list of moved pairs of media:\n']
-    error_list = ['Below are the errors encountered:\n']
+    # moved_pairs_list = ['Below is the list of moved pairs of media:\n']
+    # error_list = ['Below are the errors encountered:\n']
 
     # Create paths for various folders using the current folder name
     live_folder_path = os.path.join(base_path, f'Probable Live Photos ({curr_folder})')
@@ -33,8 +33,8 @@ def managePhotos():
 
     for file in entries:
         curr_file_path = os.path.join(base_path,file) # curr_file_path is C:\Users\Anant\Documents\Test Folder\New folder\IMG_1109.MOV
-        try:
-            if Path(curr_file_path).is_file():
+        if Path(curr_file_path).is_file():
+            try:
                 file_size = os.path.getsize(curr_file_path)/(1024*1024) # file_size is 5.0469865798950195
                 file_ext = Path(curr_file_path).suffix # file_ext is .MOV
                 # filename = file.split('.')[0] # filename is IMG_1109
@@ -82,10 +82,10 @@ def managePhotos():
                         # Write a log entry for the moved pair of files.
                         # moved_pairs_list.append(f'Moved pair of files - {original_file_name} and {file}.')
 
-        except FileExistsError as e:
-            print(f"File '{file}' already exists in the destination. Skipping.")
-        except Exception as e:
-            print(f"An error occurred: {e}")
+            except FileExistsError as e:
+                print(f"File '{file}' already exists in the destination. Skipping.")
+            except Exception as e:
+                print(f"An error occurred: {e}")
 
 
     # if os.path.exists(edited_folder_path):
