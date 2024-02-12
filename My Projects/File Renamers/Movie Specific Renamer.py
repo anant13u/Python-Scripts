@@ -41,3 +41,5 @@ while True:
                             print(f'Got an error while renaming {file}:\n{error_info}')
         sg.popup('Movie Renaming completed.',keep_on_top=True)
 
+
+# Adding functionality to create folder for files without folder and move them inside.
