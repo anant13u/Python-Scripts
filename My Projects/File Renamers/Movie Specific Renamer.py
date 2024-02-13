@@ -39,6 +39,8 @@ while True:
                             error_info = traceback.format_exc()
                             sg.popup(f'Got an error while renaming {file}:\n{error_info}', keep_on_top=True)
                             print(f'Got an error while renaming {file}:\n{error_info}')
+        for item in os.listdir(basepath):
+            if Path(basepath, item).is_file() 
         sg.popup('Movie Renaming completed.',keep_on_top=True)
 
 
