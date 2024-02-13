@@ -40,7 +40,11 @@ while True:
                             sg.popup(f'Got an error while renaming {file}:\n{error_info}', keep_on_top=True)
                             print(f'Got an error while renaming {file}:\n{error_info}')
         for item in os.listdir(basepath):
-            if Path(basepath, item).is_file() 
+            file_ext = Path(item).suffix
+            item_folder_path = Path(basepath, item.replace(file_ext, ''))
+            if Path(basepath, item).is_file() and not os.path.exists(item_folder_path):
+                os.mkdir(item_folder_path)
+                os.rename(Path(basepath, item), Path(item_folder_path, item))
         sg.popup('Movie Renaming completed.',keep_on_top=True)
 
 
