@@ -76,6 +76,8 @@ def mains():
                     for entry in os.listdir(root):
                         file_size = os.path.getsize(Path(root, entry))/(1024*1024) # file_size is 5.0469865798950195
                         filelist.append([entry, round(file_size, 2), Path(root, entry).suffix, str(Path(root, entry))]) # .replace(".","")
+                        if len(str(Path(root, entry)))>218:
+                            print(str(Path(root, entry)))
             else:
                 filelist.append(['File Name','File Type','Full Path'])
                 for root, dirs, files in os.walk(basepath):
