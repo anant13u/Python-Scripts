@@ -5,21 +5,21 @@ import traceback
 
 # sg.theme_previewer()
 sg.theme('DarkGreen7')
-layout = [  [sg.T('\nSelect folder:',pad=(20,20),s=(40,2)),sg.FolderBrowse(k='input-folder',pad=((0,20),20),s=(15,2))],
-            [sg.B('Rename Movies',pad=(70,0),s=(15,2)), sg.B('Exit',pad=((0,60),20),s=(15,2))]    ]
+layout = [  [sg.T('\nSelect folder:',pad=(20,20),s=(40,2)),sg.FolderBrowse(k='input-folder',pad=((0,20),30),s=(15,2))],
+            [sg.B('Rename Movies as per Folder Name',pad=(30,0),s=(20,3),), sg.B('Get the Files their own Folders',pad=(30,0),s=(20,3))],
+            [sg.B('Exit',pad=(100,20),s=(15,2))]    ]
 
 window=sg.Window('Rename Movies and Subtitles as per parent folder', layout, keep_on_top=True,grab_anywhere=True)
 
 while True:
     event, values = window.read()
+    basepath = values['input-folder']
+    print(basepath)
     if event in (sg.WINDOW_CLOSED, 'Exit'):
         break
     if values['input-folder']=='':
-        sg.popup('Please select a folder first.')
-    else:
-        basepath = values['input-folder']
-        print(basepath)
-
+        sg.popup('Please select a folder first.', keep_on_top=True)
+    elif event=='Rename Movies as per Folder Name':
         # Traverse through the directory tree using os.walk
         for root, directories, files in os.walk(basepath):
             for curr_dir in directories:
@@ -39,6 +39,8 @@ while True:
                             error_info = traceback.format_exc()
                             sg.popup(f'Got an error while renaming {file}:\n{error_info}', keep_on_top=True)
                             print(f'Got an error while renaming {file}:\n{error_info}')
+
+    elif event=='Get the Files their own Folders':
         for item in os.listdir(basepath):
             file_ext = Path(item).suffix
             item_folder_path = Path(basepath, item.replace(file_ext, ''))
