@@ -74,8 +74,13 @@ def mains():
                 for root, dirs, files in os.walk(basepath):
                     # filelist.append(f'There are {len(dirs)} folders and {len(files)} files in {root}\n')
                     for entry in os.listdir(root):
-                        file_size = os.path.getsize(Path(root, entry))/(1024*1024) # file_size is 5.0469865798950195
-                        filelist.append([entry, round(file_size, 2), Path(root, entry).suffix, str(Path(root, entry))]) # .replace(".","")
+                        if Path(root, entry).is_file():
+                            file_size = os.path.getsize(Path(root, entry))/(1024*1024) # file_size is 5.0469865798950195
+                            file_extension = Path(root, entry).suffix
+                        else:
+                            file_size = 0
+                            file_extension = 'Folder'
+                        filelist.append([entry, round(file_size, 2), file_extension, str(Path(root, entry))]) # .replace(".","")
                         if len(str(Path(root, entry)))>218:
                             print(str(Path(root, entry)))
             else:
