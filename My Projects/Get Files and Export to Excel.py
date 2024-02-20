@@ -89,8 +89,6 @@ def mains():
                     for entry in os.listdir(root):
                         filelist.append([entry, Path(root, entry).suffix, str(Path(root, entry))])
 
-            # Window.disappear()
-
             create_excel(basepath, filelist, Window)
 
 
