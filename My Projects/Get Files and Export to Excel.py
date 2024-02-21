@@ -81,8 +81,8 @@ def mains():
                             file_size = 0
                             file_extension = 'Folder'
                         filelist.append([entry, round(file_size, 2), file_extension, str(Path(root, entry))]) # .replace(".","")
-                        if len(str(Path(root, entry)))>218:
-                            print(str(Path(root, entry)))
+                        # if len(str(Path(root, entry)))>218:
+                        #     print(str(Path(root, entry)))
             else:
                 filelist.append(['File Name','File Type','Full Path'])
                 for root, dirs, files in os.walk(basepath):
