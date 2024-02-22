@@ -52,10 +52,10 @@ def mains():
     excludeRadio = sg.Radio('Exclude File Size', 'size_group', default=True, k='-excludesize-')
 
     layout = [  [selectFolderText, folderBrowse],
-                [sg.HorizontalSeparator()],
+                # [sg.HorizontalSeparator()],
                 [includeRadio, excludeRadio],
-                [sg.HorizontalSeparator()],
-                [sg.B('Generate List',s=(15,2),pad=((70,30),15)), sg.B('Exit',s=(15,2),pad=(70,10))]  ]
+                # [sg.HorizontalSeparator()],
+                [sg.B('Generate List',s=(15,2),pad=((70,30),25)), sg.B('Exit',s=(15,2),pad=(70,10))]  ]
 
     Window = sg.Window('Generate list of files', layout, keep_on_top=True, grab_anywhere=True)
 
