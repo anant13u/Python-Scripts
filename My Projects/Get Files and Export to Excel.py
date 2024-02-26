@@ -87,7 +87,11 @@ def mains():
                 filelist.append(['File Name','File Type','Full Path'])
                 for root, dirs, files in os.walk(basepath):
                     for entry in os.listdir(root):
-                        filelist.append([entry, Path(root, entry).suffix, str(Path(root, entry))])
+                        if Path(root, entry).is_file():
+                            file_extension = Path(root, entry).suffix
+                        else:
+                            file_extension = 'Folder'
+                        filelist.append([entry, file_extension, str(Path(root, entry))])
 
             create_excel(basepath, filelist, Window)
 
