@@ -5,9 +5,11 @@ import traceback
 
 # sg.theme_previewer()
 sg.theme('DarkGreen7')
-layout = [  [sg.T('\nSelect folder:',pad=(20,20),s=(40,2)),sg.FolderBrowse(k='input-folder',pad=((0,20),30),s=(15,2))],
-            [sg.B('Rename Movies as\nper Folder Name',pad=(50,0),s=(20,3),), sg.B('Get the Files\ntheir own Folders',pad=(30,0),s=(20,3))],
-            [sg.B('Exit',pad=(180,20),s=(15,2))]    ]
+
+rename_button = sg.B('Rename Movies as\nper Folder Name',pad=(40,0),s=(20,3))
+create_folders_button = sg.B('Get the Files\ntheir own Folders', s=(20,3))
+layout = [  [sg.T('\nSelect folder:',pad=(70,20),s=(40,2)),sg.FolderBrowse(k='input-folder',pad=((0,20),30),s=(15,2))],
+            [rename_button, create_folders_button, sg.B('Exit',pad=(40,30),s=(15,3))]  ]
 
 window=sg.Window('Rename Movies and Subtitles as per parent folder', layout, keep_on_top=True,grab_anywhere=True)
 
