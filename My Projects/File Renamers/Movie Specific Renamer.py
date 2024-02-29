@@ -6,10 +6,10 @@ import traceback
 # sg.theme_previewer()
 sg.theme('DarkGreen7')
 
-rename_button = sg.B('Rename Movies as\nper Folder Name',pad=(40,0),s=(20,3))
-create_folders_button = sg.B('Get the Files\ntheir own Folders', s=(20,3))
-layout = [  [sg.T('\nSelect folder:',pad=(70,20),s=(40,2)),sg.FolderBrowse(k='input-folder',pad=((0,20),30),s=(15,2))],
-            [rename_button, create_folders_button, sg.B('Exit',pad=(40,30),s=(15,3))]  ]
+rename_button = sg.B('Rename Movies as\nper Folder Name', k='-rename_movies-', pad=(40,0), s=(20,3))
+create_folders_button = sg.B('Get the Files\ntheir own Folders', k='-create_folders-', s=(20,3))
+layout = [  [sg.T('\nSelect folder:', pad=(70,20), s=(40,2)),sg.FolderBrowse(k='input-folder', pad=((0,20),30), s=(15,2))],
+            [rename_button, create_folders_button, sg.B('Exit', pad=(40,30), s=(15,3))]  ]
 
 window=sg.Window('Rename Movies and Subtitles as per parent folder', layout, keep_on_top=True,grab_anywhere=True)
 
@@ -21,7 +21,7 @@ while True:
         break
     if values['input-folder']=='':
         sg.popup('Please select a folder first.', keep_on_top=True)
-    elif event=='Rename Movies as per Folder Name':
+    elif event=='-rename_movies-':
         # Traverse through the directory tree using os.walk
         for root, directories, files in os.walk(basepath):
             for curr_dir in directories:
@@ -42,7 +42,7 @@ while True:
                             sg.popup(f'Got an error while renaming {file}:\n{error_info}', keep_on_top=True)
                             print(f'Got an error while renaming {file}:\n{error_info}')
 
-    elif event=='Get the Files their own Folders':
+    elif event=='-create_folders-':
         for item in os.listdir(basepath):
             file_ext = Path(item).suffix
             item_folder_path = Path(basepath, item.replace(file_ext, ''))
