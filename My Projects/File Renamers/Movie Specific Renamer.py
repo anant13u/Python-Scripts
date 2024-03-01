@@ -33,6 +33,7 @@ while True:
                     # - Ensure the file's base name is not the same as its parent directory (avoid unnecessary renaming).
                     # - File size should be greater than 50 MB if extension is '.mp4', '.mkv' or '.avi'.
                     # - Or the file is a subtitle file ('.srt').
+                    # splitext is used to split the extension from a pathname.
                     if os.path.splitext(file)[0] != curr_dir and ((file_size>50 and file_ext in ('.mp4','.mkv','.avi')) or file_ext=='.srt'):
                         try:
                             new_filename = file.replace(os.path.splitext(file)[0],curr_dir)
@@ -47,8 +48,12 @@ while True:
             file_ext = Path(item).suffix
             item_folder_path = Path(basepath, item.replace(file_ext, ''))
             if Path(basepath, item).is_file() and not os.path.exists(item_folder_path):
-                os.mkdir(item_folder_path)
-                os.rename(Path(basepath, item), Path(item_folder_path, item))
+                try:
+                    os.mkdir(item_folder_path)
+                    os.rename(Path(basepath, item), Path(item_folder_path, item))
+                except Exception as e:
+                    sg.popup(f'Got an error:\n{e}', keep_on_top=True)
+                    print(f'Got an error:\n{e}')
         sg.popup('Movie Renaming completed.',keep_on_top=True)
 
 
