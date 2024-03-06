@@ -2,6 +2,9 @@ import os
 from pathlib import Path
 
 
+# List of file extensions representing temporary files
+temp_extensions = ['.tmp', '.temp', '.bak', '.cache', '.log']
+
 selectFolderText = sg.Text('Select Folder',s=(30,2),pad=((40,20),10))
 folderBrowse = sg.FolderBrowse(key='-basepath-',s=(15,2),pad=(40,10))
 
