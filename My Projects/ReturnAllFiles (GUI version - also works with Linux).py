@@ -8,7 +8,7 @@ sg.theme('Reddit')
 filelist = []
 total_files_size = 0
 
-layout = [  [sg.T('Please enter the path from where you want to retrieve the list of files and folders')],
+layout = [  [sg.FolderBrowse('Select Folder')],
 	        [sg.I(key='-ourpath-')],
 			[sg.B('Generate List'), sg.B('Cancel')]  ]
 
