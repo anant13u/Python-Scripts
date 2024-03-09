@@ -8,8 +8,7 @@ sg.theme('Reddit')
 filelist = []
 total_files_size = 0
 
-layout = [  [sg.FolderBrowse('Select Folder')],
-	        [sg.I(key='-ourpath-')],
+layout = [  [sg.T('Select Folder'), sg.FolderBrowse()],
 			[sg.B('Generate List'), sg.B('Cancel')]  ]
 
 Window = sg.Window('Generate list of files', layout)
