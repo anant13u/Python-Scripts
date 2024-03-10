@@ -8,21 +8,21 @@ sg.theme('Reddit')
 filelist = []
 total_files_size = 0
 
-layout = [  [sg.T('Select Folder'), sg.FolderBrowse()],
+layout = [  [sg.T('Select Folder'), sg.FolderBrowse(k='-basepath-')],
 			[sg.B('Generate List'), sg.B('Cancel')]  ]
 
 Window = sg.Window('Generate list of files', layout)
 
 while True:
 	event, values = Window.read()
-	our_path = values['-ourpath-']
-	if our_path == None or our_path=='':
+	basepath = values['-basepath-']
+	if basepath == None or basepath=='':
 		sg.popup('Path cannot be blank.')
 	elif event in (sg.WIN_CLOSED, 'Cancel'):
 		break
 	elif event == 'Generate List':
 		Window.close()
-		for root, dirs, files in os.walk(our_path):
+		for root, dirs, files in os.walk(basepath):
 			filelist.append(f'\n\n There are {len(dirs)} folders and {len(files)} files in {root}.\n')
 			for file in files:
 				# print(Path(file).name) # /home/anant/Downloads
