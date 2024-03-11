@@ -36,7 +36,7 @@ while True:
 						pass
 					# current_file_size = round(os.path.getsize(current_file)/(1024*1024),2)
 					# total_files_size += current_file_size # Adding the current file's size to the variable total_files_size to print at the end.
-					filelist.append(f'\n File: {file}') # \n (Size of file is {current_file_size} MB)')
+					filelist.append(file) # \n (Size of file is {current_file_size} MB)')
 						# filelist.append(f'\n Folder: {root}\n (Size of folder is {current_file_size} MB)')
 		filelist = '\n'.join(filelist)
 		sg.popup_scrolled(filelist, title='Filelist')
