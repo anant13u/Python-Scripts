@@ -9,17 +9,17 @@ filelist = []
 total_files_size = 0
 
 layout = [  [sg.T('Select Folder'), sg.FolderBrowse(k='-basepath-')],
-			[sg.B('Generate List'), sg.B('Cancel')]  ]
+			[sg.B('Generate List'), sg.B('Exit')]  ]
 
 Window = sg.Window('Generate list of files', layout)
 
 while True:
 	event, values = Window.read()
 	basepath = values['-basepath-']
-	if basepath == None or basepath=='':
-		sg.popup('Path cannot be blank.')
-	elif event in (sg.WIN_CLOSED, 'Cancel'):
+	if event in (sg.WIN_CLOSED, 'Exit'):
 		break
+	elif basepath == None or basepath=='':
+		sg.popup('Path cannot be blank.')
 	elif event == 'Generate List':
 		Window.close()
 		for root, dirs, files in os.walk(basepath):
