@@ -49,7 +49,7 @@ while True:
         Window['file_list'].update('\n'.join(curr_names))
     elif event == 'Rename Files':
         if values['file_list'] == '':
-            sg.popup('Please fetch the file list first.')
+            sg.popup('Please fetch the file list first.', keep_on_top=True)
         else:
             # Get new names from GUI and create rename_dict
             new_names = values['file_list'].split('\n')
