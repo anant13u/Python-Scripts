@@ -1,5 +1,7 @@
 import os
 from pathlib import Path
+import PySimpleGUI as sg
+import subprocess
 
 
 # List of file extensions representing temporary files
@@ -21,8 +23,11 @@ while True:
     elif values['-basepath-']=='':
         sg.popup('Please select a folder to perform operations in.')
     elif event == 'Clean Temp Files':
-        for root, dirs, files in os.walk(directory):
+        for root, dirs, files in os.walk(basepath):
             for file in files:
+                file_ext = Path(root, file).suffix
+                if file_ext in temp_extensions:
+                    print(f'{file} is a temp file.')
         subprocess.Popen(['explorer.exe', basepath])
         print(basepath)
         
