@@ -27,7 +27,7 @@ while True:
             for file in files:
                 file_ext = Path(root, file).suffix
                 if file_ext in temp_extensions:
-                    print(f'{file} is a temp file.')
+                    print(f'{Path(root, file)} is a temp file.')
         subprocess.Popen(['explorer.exe', basepath])
-        print(basepath)
+        # print(basepath)
         
