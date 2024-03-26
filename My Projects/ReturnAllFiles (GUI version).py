@@ -22,7 +22,7 @@ while True:
 		sg.popup('Path cannot be blank.')
 	elif event == 'Generate List':
 		for root, dirs, files in os.walk(basepath):
-			filelist.append(f'\n\n There are {len(dirs)} folders and {len(files)} files in {root}.\n')
+			# filelist.append(f'There are {len(dirs)} folders and {len(files)} files in {root}.\n')
 			for file in files:
 			# print(Path(file).name) # /home/anant/Downloads
 			# print(Path(file).name.split(sep='.')[-1]) # This particular line of code will give us the extension of the file.
