@@ -9,7 +9,7 @@ filelist = []
 total_files_size = 0
 
 layout = [  [sg.T('Select Folder', pad=((40,70),20)), sg.FolderBrowse(k='-basepath-', s=(15,2), pad=(30,20))],
-			[sg.B('Generate List', s=(15,2), pad=(30,20)), sg.B('Exit', s=(15,2), pad=(30,20))]  ]
+			[sg.B('Generate List', s=(15,2), pad=(50,20)), sg.B('Exit', s=(15,2), pad=(50,20))]  ]
 
 Window = sg.Window('Generate list of files', layout)
 
