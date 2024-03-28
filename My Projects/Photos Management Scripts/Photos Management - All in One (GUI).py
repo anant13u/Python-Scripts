@@ -83,7 +83,7 @@ def managePhotos():
                         # moved_pairs_list.append(f'Moved pair of files - {original_file_name} and {file}.')
 
             except FileExistsError as e:
-                print(f"File '{file}' already exists in the destination. Skipping.")
+                print(f"A file with same name as '{file}' already exists in the destination. Skipping.")
             except Exception as e:
                 print(f"An error occurred: {e}")
 
