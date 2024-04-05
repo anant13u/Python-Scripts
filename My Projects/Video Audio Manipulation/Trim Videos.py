@@ -8,4 +8,5 @@ sg.theme('Reddit')
 
 
 layout = [  [sg.T('Select Video'), sg.FileBrowse()],
-            [sg.B('Generate List',s=(15,2),pad=(30,10)), sg.B('Exit',s=(15,2),pad=(70,10))]  ]
+            [sg.T('Start Time'), sg.I('',s=(15,2))],
+            [sg.T('End Time'), sg.I('',s=(15,2))]  ]
