@@ -12,3 +12,12 @@ layout = [  [sg.T('Select Video'), sg.FileBrowse(key='video_file')],
             [sg.T('End Time'), sg.I('',s=(15,2))]  ]
             
 Window = sg.Window('Trim Videos', layout)
+
+while True
+    event, values = Window.read()
+    videoFile = Path(values['video_file'])
+    if event in (sg.WIN_CLOSED, 'Exit')
+        break
+    elif values['video_file']==''
+        sg.popup('Please select a video to perform operations on.')
+
