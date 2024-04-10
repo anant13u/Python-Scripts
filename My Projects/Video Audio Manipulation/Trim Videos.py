@@ -8,8 +8,8 @@ sg.theme('Reddit')
 
 
 layout = [  [sg.T('Select Video'), sg.FileBrowse(key='video_file')],
-            [sg.T('Start Time'), sg.I('',s=(15,2))],
-            [sg.T('End Time'), sg.I('',s=(15,2))]  ]
+            [sg.T('Start Time'), sg.I('', key = 'start_time', s=(15,2))],
+            [sg.T('End Time'), sg.I('', key = 'end_time', s=(15,2))]  ]
             
 Window = sg.Window('Trim Videos', layout)
 
