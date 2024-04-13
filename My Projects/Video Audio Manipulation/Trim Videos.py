@@ -7,7 +7,7 @@ sg.theme('Reddit')
 # sg.theme_previewer()
 
 
-layout = [  [sg.T('Select Video'), sg.FileBrowse(key='video_file')],
+layout = [  [sg.T('Select Video', s=(35,2), pad=(30,20)), sg.FileBrowse(key='video_file', s=(15,2), pad=(30,20))],
             [sg.T('Start Time'), sg.I('', key = 'start_time', s=(15,2))],
             [sg.T('End Time'), sg.I('', key = 'end_time', s=(15,2))],
             [sg.B('Trim Video', s=(15,2)), sg.B('Exit', s=(15,2))]  ]
