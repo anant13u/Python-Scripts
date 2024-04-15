@@ -1,4 +1,4 @@
-import moviepy
+import moviepy.editor as mp
 import PySimpleGUI as sg
 import subprocess
 from pathlib import Path
@@ -21,4 +21,10 @@ while True:
         break
     elif values['video_file']=='':
         sg.popup('Please select a video to perform operations on.')
+    elif values['start_time'] == '' or values['end_time']=='':
+        sg.popup('Please enter start and end time for trimming the video.')
+
+    elif event == 'Trim Video':
+        ourClip = mp.VideoFileClip(videoFile)
+        trimmedClip = ourClip.subclip
 
