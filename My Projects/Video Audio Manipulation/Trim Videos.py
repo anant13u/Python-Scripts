@@ -40,6 +40,8 @@ while True:
         endTime = time_to_seconds(values['end_time']) # Convert end time from HH:MM:SS to total seconds
         ourClip = mp.VideoFileClip(videoFile) # Load the video file
         trimmedClip = ourClip.subclip(startTime, endTime) # Trim the video clip based on the specified start and end times
+        # Compute the modified file name with start and end times appended
+        new_filename = f'{filename}_{startTime}_{endTime}'
         # Write the trimmed video to a new file with the start and end times appended to the filename:
-        trimmedClip.write_videofile(videoFile.replace(filename, f'{filename}_{startTime}_{endTime}'), codec='libx264')
+        trimmedClip.write_videofile(videoFile.replace(filename, new_filename), codec='libx264')
 
