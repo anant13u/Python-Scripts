@@ -35,10 +35,11 @@ while True:
     elif values['start_time'] == '' or values['end_time']=='':
         sg.popup('Please enter start and end time for trimming the video.')
     elif event == 'Trim Video':
-        filename = os.path.basename(videoFile).split('.')[0]
-        startTime = time_to_seconds(values['start_time'])
-        endTime = time_to_seconds(values['end_time'])
-        ourClip = mp.VideoFileClip(videoFile)
-        trimmedClip = ourClip.subclip(startTime, endTime)
+        filename = os.path.basename(videoFile).split('.')[0] # Extract the filename from the path and remove the extension
+        startTime = time_to_seconds(values['start_time']) # Convert start time from HH:MM:SS to total seconds
+        endTime = time_to_seconds(values['end_time']) # Convert end time from HH:MM:SS to total seconds
+        ourClip = mp.VideoFileClip(videoFile) # Load the video file
+        trimmedClip = ourClip.subclip(startTime, endTime) # Trim the video clip based on the specified start and end times
+        # Write the trimmed video to a new file with the start and end times appended to the filename:
         trimmedClip.write_videofile(videoFile.replace(filename, f'{filename}_{startTime}_{endTime}'), codec='libx264')
 
