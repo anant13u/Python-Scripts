@@ -26,6 +26,7 @@ def time_to_seconds(time_str):
 while True:
     event, values = Window.read()
     videoFile = values['video_file']
+    print(os.path.dirname(videoFile))
     # print(videoFile)
     # print(os.path.basename(videoFile).split('.')[0])
     if event in (sg.WIN_CLOSED, 'Exit'):
@@ -49,4 +50,6 @@ while True:
         trimmedClip.write_videofile(videoFile.replace(filename, new_filename), codec='libx264')
         # Close the video clip object to release resources
         ourClip.close()
+        subprocess.Popen(['explorer.exe', Path(videoFile).parent])
+
 
