@@ -47,4 +47,6 @@ while True:
         new_filename = f'{filename}_{startTime}_{endTime}'
         # Write the trimmed video to a new file with the start and end times appended to the filename:
         trimmedClip.write_videofile(videoFile.replace(filename, new_filename), codec='libx264')
+        # Close the video clip object to release resources
+        ourClip.close()
 
