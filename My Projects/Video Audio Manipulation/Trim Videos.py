@@ -36,8 +36,11 @@ while True:
         sg.popup('Please enter start and end time for trimming the video.')
     elif event == 'Trim Video':
         filename = os.path.basename(videoFile).split('.')[0] # Extract the filename from the path and remove the extension
-        startTime = time_to_seconds(values['start_time']) # Convert start time from HH:MM:SS to total seconds
-        endTime = time_to_seconds(values['end_time']) # Convert end time from HH:MM:SS to total seconds
+        try:
+            startTime = time_to_seconds(values['start_time']) # Convert start time from HH:MM:SS to total seconds
+            endTime = time_to_seconds(values['end_time']) # Convert end time from HH:MM:SS to total seconds
+        except ValueError:
+            sg.popup_error('Invalid start or end time format. Please enter time in HH:MM:SS format.')
         ourClip = mp.VideoFileClip(videoFile) # Load the video file
         trimmedClip = ourClip.subclip(startTime, endTime) # Trim the video clip based on the specified start and end times
         # Compute the modified file name with start and end times appended
