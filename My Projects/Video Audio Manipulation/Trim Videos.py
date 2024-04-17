@@ -42,6 +42,8 @@ while True:
             endTime = time_to_seconds(values['end_time']) # Convert end time from HH:MM:SS to total seconds
         except ValueError:
             sg.popup_error('Invalid start or end time format. Please enter time in HH:MM:SS format.')
+        if startTime >= endTime:
+            sg.popup("Start Time can't be greater than End Time.")
         ourClip = mp.VideoFileClip(videoFile) # Load the video file
         trimmedClip = ourClip.subclip(startTime, endTime) # Trim the video clip based on the specified start and end times
         # Compute the modified file name with start and end times appended
