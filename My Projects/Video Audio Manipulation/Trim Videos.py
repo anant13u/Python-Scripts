@@ -4,7 +4,8 @@ import subprocess
 from pathlib import Path
 import os
 
-sg.theme('Reddit')
+sg.theme('darkgrey12')
+# sg.theme('Reddit')
 # sg.theme_previewer()
 
 startTimeInput = sg.I('', key = 'start_time', s=(15,2))
@@ -12,7 +13,7 @@ endTimeInput = sg.I('', key = 'end_time', s=(15,2), pad=((20,30),20))
 
 layout = [  [sg.T('Select Video', s=(35,2), pad=(30,20)), sg.FileBrowse(key='video_file', s=(15,2), pad=(30,20))],
             [sg.T('Start Time', pad=(30,20)), startTimeInput, sg.T('End Time', pad=((70,20),20)), endTimeInput],
-            [sg.B('Trim Video', s=(15,2), pad=(70,20)), sg.B('Exit', s=(15,2), pad=(20,20))]  ]
+            [sg.B('Trim Video', s=(15,2), pad=(90,30)), sg.B('Exit', s=(15,2), pad=(20,20))]  ]
             
 Window = sg.Window('Trim Videos', layout)
 
