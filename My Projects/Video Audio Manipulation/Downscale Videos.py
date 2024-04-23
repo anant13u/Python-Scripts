@@ -9,11 +9,11 @@ sg.theme('Reddit')
 
 
 layout = [  [sg.T('Select Video', s=(35,2), pad=(30,20)), sg.FileBrowse(key='video_file', s=(15,2), pad=(30,20))],
-            [sg.T('Video Width', pad=(30,20)), sg.I('', key = 'video_width', s=(15,2))],
-            [sg.T('Video Height', pad=(30,20)), sg.I('', key = 'video_height', s=(15,2))],
+            [sg.T('Output Width', pad=(30,20)), sg.I('', key = 'video_width', s=(15,2))],
+            [sg.T('Output Height', pad=(30,20)), sg.I('', key = 'video_height', s=(15,2))],
             [sg.B('Downscale Video', s=(15,2)), sg.B('Exit', s=(15,2))]  ]
             
-Window = sg.Window('Downscale Videos', layout)
+Window = sg.Window('Downscale Videos', layout, keep_on_top=True)
 
 # def time_to_seconds(time_str):
 #     # Split the time string into hours, minutes, and seconds
