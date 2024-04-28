@@ -13,7 +13,7 @@ layout = [  [sg.T('Select Video', s=(35,2), pad=(30,20)), sg.FileBrowse(key='vid
             [sg.T('Output Height', pad=(40,20)), sg.I('', key = 'video_height', s=(15,2))],
             [sg.B('Downscale Video', s=(18,2), pad=(70,20)), sg.B('Exit', s=(15,2), pad=(50,20))]  ]
             
-Window = sg.Window('Downscale Videos', layout, keep_on_top=True)
+Window = sg.Window('Downscale Videos', layout, keep_on_top=True, grab_anywhere=True)
 
 # def time_to_seconds(time_str):
 #     # Split the time string into hours, minutes, and seconds
