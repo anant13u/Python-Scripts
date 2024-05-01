@@ -15,7 +15,7 @@ layout = [  [sg.T('Select Video', s=(35,2), pad=(30,20)), sg.FileBrowse(key='vid
             [sg.T('Start Time', pad=(30,20)), startTimeInput, sg.T('End Time', pad=((70,20),20)), endTimeInput],
             [sg.B('Trim Video', s=(15,2), pad=(90,30)), sg.B('Exit', s=(15,2), pad=(20,20))]  ]
             
-Window = sg.Window('Trim Videos', layout, grab_anywhere=True)
+Window = sg.Window('Trim Videos', layout, keep_on_top=True, grab_anywhere=True)
 
 def time_to_seconds(time_str):
     # Split the time string into hours, minutes, and seconds
