@@ -11,7 +11,7 @@ sg.theme('Reddit')
 layout = [  [sg.T('Select Video', s=(35,2), pad=(30,20)), sg.FileBrowse(key='video_file', s=(15,2), pad=(30,20))],
             [sg.T('Output Width', pad=(40,20)), sg.I('', key = 'video_width', s=(15,2))],
             [sg.T('Output Height', pad=(40,20)), sg.I('', key = 'video_height', s=(15,2))],
-            [sg.B('Downscale Video', s=(18,2), pad=(70,20)), sg.B('Exit', s=(15,2), pad=(50,20))]  ]
+            [sg.B('Downscale Video', s=(18,2), pad=(70,30)), sg.B('Exit', s=(15,2), pad=(50,20))]  ]
             
 Window = sg.Window('Downscale Videos', layout, keep_on_top=True, grab_anywhere=True)
 
