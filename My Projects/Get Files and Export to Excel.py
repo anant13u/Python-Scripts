@@ -47,7 +47,7 @@ def create_excel(basepath, filelist, Window):
 
 def mains():
     selectFolderText = sg.Text('Select Folder', s=(30,2), pad=((40,20),10))
-    folderBrowse = sg.FolderBrowse(key='-basepath-', s=(15,2), pad=(40,10))
+    folderBrowse = sg.FolderBrowse(key='-basepath-', s=(15,2), pad=(40,15))
     includeRadio = sg.Radio('Include File Size', 'size_group', k='-includesize-', pad=((100,30),15))
     excludeRadio = sg.Radio('Exclude File Size', 'size_group', default=True, k='-excludesize-')
 
