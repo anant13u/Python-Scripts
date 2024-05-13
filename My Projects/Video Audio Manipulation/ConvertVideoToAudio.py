@@ -38,7 +38,7 @@ while True:
             # print(our_clip)
             our_clip=mp.VideoFileClip(inputVideo)
             our_clip.audio.write_audiofile(outputAudio, codec='mp3')
-            sg.popup('Conversion successful!', f'Audio saved as {outputAudio}')
+            sg.popup('Conversion successful!', f'Audio saved as {outputAudio}', keep_on_top=True)
             if subprocess.os.name == 'nt':  # Check if the platform is Windows
                 subprocess.Popen(f'explorer {outputFolder}')
                 # print(subprocess.Popen(r'explorer outputFolder'))
