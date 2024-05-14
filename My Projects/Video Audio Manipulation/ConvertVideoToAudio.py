@@ -13,8 +13,8 @@ sg.theme('darkgreen7')
 sg.set_options(font=("Helvetica", 11))
 
 # Define the layout of the GUI
-layout = [  [sg.FileBrowse('Select Video',key='input-video',pad=(30,20)), sg.B('Convert to Audio'), sg.B('Exit',pad=(30,20))],
-            [sg.T(key='file_display', pad=10)]  ]
+layout = [  [sg.T(key='file_display', pad=10), sg.FileBrowse('Select Video',key='input-video',pad=(30,20))],
+            [sg.B('Convert to Audio', pad=(30,20)), sg.B('Exit',pad=(30,20))]  ]
 
 # Create the PySimpleGUI window
 Window = sg.Window('Video -> Audio by AU', layout, grab_anywhere=True, keep_on_top=True)
