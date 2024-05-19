@@ -19,7 +19,7 @@ layout = [  [sg.T('Select Video', key='file_display', size=(25,2), pad=(30,10)),
             [sg.B('Convert to Audio', size=(15,2), pad=((60,30),30)), sg.B('Exit', size=(15,2), pad=((30,40),20))]  ]
 
 # Create the PySimpleGUI window
-Window = sg.Window('Video -> Audio by AU', layout, grab_anywhere=True, keep_on_top=True)
+Window = sg.Window('Video -> Audio Convertor by AU', layout, grab_anywhere=True, keep_on_top=True)
 
 
 # Main event loop
