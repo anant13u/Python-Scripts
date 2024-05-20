@@ -6,7 +6,7 @@ sg.theme('DarkAmber')
 sz= size=(50,3)
 
 layout = [  [sg.Text('Please select the folder where you want to manage the Photos and other media files',s=(65,2), pad=(20,20))], 
-            [sg.FolderBrowse('Select Folder',key='-IN-',s=(15,2), pad=((20,40),0)),sg.T('',s=(50,3))],
+            [sg.FolderBrowse('Select Folder',key='-IN-',s=(15,2), pad=((30,40),0)),sg.T('',s=(50,3))],
             [sg.Button('Manage',size=(15,2), pad=(130,20)),sg.Button('Exit',size=(15,2))]   ]
 
 Window = sg.Window('Photos Manager by AU', layout, keep_on_top=True, grab_anywhere=True)
