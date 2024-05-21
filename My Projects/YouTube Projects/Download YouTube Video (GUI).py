@@ -15,7 +15,7 @@ sg.ProgressBar(100, size=(20, 30), key='-progress')
 folderBrowse = sg.FolderBrowse('Select Download Folder',key='download_folder', size=(45,2), pad=(40,(30,10)))
 proceedButton = sg.B('Proceed', size=(18,2), pad=(45,30))
 
-getDWPathWindow = sg.Window('Select the Download Destination',
+getDWPathWindow = sg.Window('Select the Download Destination and proceed',
                     [   [folderBrowse],
                         [proceedButton, sg.B('Exit', size=(18,2)) ]  ], keep_on_top=True)
 while True:
