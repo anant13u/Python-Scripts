@@ -35,5 +35,5 @@ while True:
                         error_info = traceback.format_exc()
                         sg.popup(f'Got an error while renaming {file}:\n{error_info}', keep_on_top=True)
                         print(f'Got an error while renaming {file}:\n{error_info}')
-            sg.popup('All files have been moved to the root folder.')
+        sg.popup('All files have been moved to the root folder.', keep_on_top=True)
                         
