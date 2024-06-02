@@ -24,5 +24,3 @@ while True:
             time.sleep(0.5)
             pg.moveRel(0,100)
             time.sleep(0.5)
-    elif event=='Stop':
-        break
