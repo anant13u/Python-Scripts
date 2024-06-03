@@ -6,7 +6,7 @@ import time
 sg.theme('lightbrown3')
 # pg.FAILSAFE = False
 
-layout = [  [sg.B('Start', s=(15,3), p=(30,30)), sg.B('Exit', s=(15,3), p=(30,30))]  ]
+layout = [  [sg.B('Start', s=(25,4), p=(30,30)), sg.B('Exit', s=(25,4), p=(30,30))]  ]
 Window = sg.Window('Cursor Mover', layout, keep_on_top=True, grab_anywhere=True)
 
 while True:
@@ -16,11 +16,11 @@ while True:
     elif event == 'Start':
         # pg.moveTo(32,32)
         while True:
-            pg.moveRel(-100,0)
+            pg.moveRel(-50,0)
             time.sleep(0.5)
-            pg.moveRel(0,-100)
+            pg.moveRel(0,-50)
             time.sleep(0.5)
-            pg.moveRel(100,0)
+            pg.moveRel(50,0)
             time.sleep(0.5)
-            pg.moveRel(0,100)
+            pg.moveRel(0,50)
             time.sleep(0.5)
