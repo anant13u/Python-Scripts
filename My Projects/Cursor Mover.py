@@ -6,7 +6,7 @@ import time
 sg.theme('lightbrown3')
 # pg.FAILSAFE = False
 
-layout = [  [sg.B('Start', s=(25,4), p=(40,30)), sg.B('Exit', s=(25,4), p=(40,30))]  ]
+layout = [  [sg.B('Start', s=(25,4), p=((60,40),40)), sg.B('Exit', s=(25,4), p=((60,40),40))]  ]
 Window = sg.Window('Cursor Mover', layout, keep_on_top=True, grab_anywhere=True)
 
 while True:
