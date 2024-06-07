@@ -23,4 +23,6 @@ while True:
             pg.moveRel(50,0)
             time.sleep(0.5)
             pg.moveRel(0,50)
-            time.sleep(0.5)
+            time.sleep(300)
+            sg.popup('Pointer is moviiiiinnnnggg.')
+
