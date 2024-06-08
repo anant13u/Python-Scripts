@@ -24,5 +24,5 @@ while True:
             time.sleep(0.5)
             pg.moveRel(0,50)
             time.sleep(300)
-            sg.popup('Pointer is moviiiiinnnnggg.')
+            sg.popup('Pointer is moviiiiinnnnggg.', keep_on_top=True)
 
