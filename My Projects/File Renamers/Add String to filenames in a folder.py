@@ -12,7 +12,7 @@ folderBrowse = sg.FolderBrowse(key='-basepath-',s=(15,2),pad=(40,10))
 
 layout = [  [selectFolderText, folderBrowse],
             [sg.T('String', pad=((40,100),30)), sg.I(s=40)],
-            [sg.B('Generate List',s=(15,2),pad=(50,20)), sg.B('Exit',s=(15,2),pad=(70,10))]  ]
+            [sg.B('Generate List',s=(15,2),pad=(55,30)), sg.B('Exit',s=(15,2),pad=(70,10))]  ]
 
 Window = sg.Window('Generate list of files', layout)
 
