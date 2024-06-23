@@ -7,7 +7,7 @@ import subprocess
 sg.theme('Reddit')
 # sg.theme_previewer()
 
-selectFolderText = sg.Text('Select Folder',s=(30,2),pad=((40,20),10))
+selectFolderText = sg.Text('Select Folder',s=(30,2),pad=((40,20),20))
 folderBrowse = sg.FolderBrowse(key='-basepath-',s=(15,2),pad=(40,10))
 
 layout = [  [selectFolderText, folderBrowse],
