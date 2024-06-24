@@ -92,7 +92,7 @@ def download_video(video_name, channel_name, url, yt, stream, download_video_win
         except Exception as e:
             sg.popup(f'Error encountered: {e}')
             print(f'Error encountered: {e}')
-    webbrowser.open(download_path) # This will open the directory where we've downloaded the video. Webbrowser module will be imported automatically.
+    # webbrowser.open(download_path) # This will open the directory where we've downloaded the video. Webbrowser module will be imported automatically.
 
 
 def mains():
@@ -139,7 +139,7 @@ def mains():
                         [sg.T(f'{yt.description}', size=(55,8), pad=(20,(10,25)))],
                         [sg.ProgressBar(100, key='-progress-', s=(30,20), pad=(50,10))],
                         [sg.B('Download', size=(22,2), pad=(30,20)), sg.B("Exit",size=(22,2), pad=(20,20))]    ] # close=True closes the Window after getting the input in form of Yes or No
-            download_video_window = sg.Window('YouTube Video Downloader by AU', download_video_layout, keep_on_top=True)
+            download_video_window = sg.Window('YouTube Video Downloader by AU', download_video_layout)
             event, values = download_video_window.read()
 
             if event=='Download':
