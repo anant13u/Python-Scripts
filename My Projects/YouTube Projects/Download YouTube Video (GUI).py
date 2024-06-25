@@ -129,6 +129,7 @@ def mains():
                 # Fall back to getting the title from the first available stream if 720p isn't available.
                 stream = yt.streams.first()
                 video_name = stream.title
+                # pass
             channel_name = yt.author
             fetch_details_window.close()
             print(video_name)
