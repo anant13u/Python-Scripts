@@ -24,14 +24,15 @@ while True:
     elif values['-basepath-']=='':
         sg.popup('Please select a folder to perform operations in.')
     elif event == 'Add string at the beginning':
-        basepath = Path(values['-basepath-'])
+        # basepath = Path(values['-basepath-'])
+        joinerString = values['joiner-string']
         subprocess.Popen(['explorer.exe', basepath]) # Below 2 lines give the same result.
         # subprocess.run(['explorer', basepath])
         # subprocess.Popen(['explorer', basepath])
         print(basepath)
         for entry in os.listdir(basepath):
             curr_name = Path(basepath, entry)
-            print(entry)
+            print(f'{joinerString}{entry}')
 
 
 
