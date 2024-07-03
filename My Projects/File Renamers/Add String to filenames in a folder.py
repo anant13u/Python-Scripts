@@ -24,7 +24,7 @@ while True:
     elif values['-basepath-']=='':
         sg.popup('Please select a folder to perform operations in.')
     elif event == 'Generate List':
-        basepath = values['-IN-']
+        basepath = Path(values['-basepath-'])
         subprocess.Popen(['explorer.exe', basepath]) # Below 2 lines give the same result.
         # subprocess.run(['explorer', basepath])
         # subprocess.Popen(['explorer', basepath])
