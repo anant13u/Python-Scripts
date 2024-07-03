@@ -11,7 +11,7 @@ selectFolderText = sg.Text('Select Folder',s=(30,2),pad=((40,20),20))
 folderBrowse = sg.FolderBrowse(key='-basepath-',s=(15,2),pad=(40,10))
 
 layout = [  [selectFolderText, folderBrowse],
-            [sg.T('String', pad=((40,100),30)), sg.I(s=40)],
+            [sg.T('String', pad=((40,100),30)), sg.I(k='joiner-string', s=40)],
             [sg.B('Add string at the beginning',s=(15,2),pad=(55,30)), sg.B('Add string at the end',s=(15,2),pad=(55,30)), sg.B('Exit',s=(15,2),pad=(70,10))]  ]
 
 Window = sg.Window('Generate list of files', layout)
@@ -29,6 +29,9 @@ while True:
         # subprocess.run(['explorer', basepath])
         # subprocess.Popen(['explorer', basepath])
         print(basepath)
+        for entry in os.listdir(basepath):
+            curr_name = Path(basepath, entry)
+            print(entry)
 
 
 
