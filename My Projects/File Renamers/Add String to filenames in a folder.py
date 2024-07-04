@@ -19,20 +19,28 @@ Window = sg.Window('Generate list of files', layout)
 while True:
     event, values = Window.read()
     basepath = Path(values['-basepath-'])
+    joinerString = values['joiner-string']
     if event in (sg.WIN_CLOSED, 'Exit'):
         break
     elif values['-basepath-']=='':
         sg.popup('Please select a folder to perform operations in.')
     elif event == 'Add string at the beginning':
         # basepath = Path(values['-basepath-'])
-        joinerString = values['joiner-string']
-        subprocess.Popen(['explorer.exe', basepath]) # Below 2 lines give the same result.
+        # joinerString = values['joiner-string']
+        # subprocess.Popen(['explorer.exe', basepath]) # Below 2 lines give the same result.
         # subprocess.run(['explorer', basepath])
         # subprocess.Popen(['explorer', basepath])
         print(basepath)
         for entry in os.listdir(basepath):
             curr_name = Path(basepath, entry)
             print(f'{joinerString}{entry}')
+            print(os.path.splitext(entry)[0])
+    elif event == 'Add string at the end':
+        for entry in os.listdir(basepath):
+            justFilename = os.path.splitext(entry)[0]
+            fileExt = os.path.splitext(entry)[1]
+            # currName = Path(basepath, entry)
+            print(f'{justFilename}{joinerString}{fileExt}')
 
 
 
