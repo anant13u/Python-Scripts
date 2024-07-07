@@ -12,7 +12,7 @@ folderBrowse = sg.FolderBrowse(key='-basepath-',s=(15,2),pad=(40,10))
 
 layout = [  [selectFolderText, folderBrowse],
             [sg.T('String', pad=((40,100),20)), sg.I(k='joiner-string', s=40, enable_events=True)],
-            [sg.T('filename.mp4',k='begin-textbox', s=(30,2), p=((80,0),20)), sg.T('filename.mp4', k='end-textbox', s=(20,2))],
+            [sg.T('filename.mp4',k='begin-textbox', s=(30,2), p=((85,0),20)), sg.T('filename.mp4', k='end-textbox', s=(20,2))],
             [sg.B('Add string at the beginning',s=(22,2),pad=((50,30),20)), sg.B('Add string at the end',s=(22,2),pad=(20,20))],
             [sg.B('Exit',s=(15,2),pad=(190,30))]  ]
 
