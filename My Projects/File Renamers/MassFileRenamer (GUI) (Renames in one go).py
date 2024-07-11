@@ -4,7 +4,7 @@ import PySimpleGUI as sg
 sg.theme("DarkTeal2")
 
 sz= size=(20,2)
-layout = [  [sg.Text('Please select the folder where you want to rename the files',size=(30,2), pad=(20,(35,15))), sg.FolderBrowse(key='-IN-',size=(15,2),pad=((70,20),15))],
+layout = [  [sg.Text('Please select the folder where you want to rename the files',size=(30,2), pad=(20,(35,15))), sg.FolderBrowse(key='-IN-',size=(15,2),pad=((70,20),10))],
             [sg.Text('Please enter the string you want to rename',sz,pad=(20,15)),sg.Input('',key='old-string',pad=((30,50),10),size=(40,2))],
             [sg.Text('Please enter the new text',sz,pad=(20,15)),sg.Input('',key='new-string',size=(40,2),pad=((30,50),10))],
             [sg.Button('Rename',size=(13,2),pad=((130,20),30)),sg.T(' '*10),sg.Button('Exit',size=(13,2),pad=((20,70),15))]    ]
@@ -18,9 +18,9 @@ while True:
         break
     elif event=='Rename':
         if values['-IN-']=='':
-            sg.popup('Please select a folder to perform operations in.',keep_on_top=True)
+            sg.popup('Please select a folder to perform operations in.', keep_on_top=True)
         elif values['old-string']=='':
-            sg.popup('Please enter a string to replace.',keep_on_top=True)
+            sg.popup('Please enter a string to replace.', keep_on_top=True)
         else:
             basepath = values['-IN-']
             old_string = values['old-string']
