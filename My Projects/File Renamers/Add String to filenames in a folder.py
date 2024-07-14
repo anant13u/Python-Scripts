@@ -16,7 +16,7 @@ layout = [  [selectFolderText, folderBrowse],
             [sg.B('Add string at the beginning',s=(22,2),pad=((50,30),20)), sg.B('Add string at the end',s=(22,2),pad=(20,20))],
             [sg.B('Exit',s=(15,2),pad=(190,30))]  ]
 
-Window = sg.Window('Generate list of files', layout, keep_on_top=True)
+Window = sg.Window('Generate list of files', layout, keep_on_top=True, grab_anywhere=True)
 
 while True:
     event, values = Window.read()
