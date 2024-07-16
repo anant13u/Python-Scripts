@@ -4,8 +4,9 @@ import PySimpleGUI as sg
 from datetime import datetime
 import subprocess
 
-sg.theme('hotdogstand')
-sg.theme_previewer()
+# sg.theme('hotdogstand')
+sg.theme('darkbrown')
+# sg.theme_previewer()
 
 selectFolderText = sg.Text('Select Folder',s=(30,2),pad=((40,20),40))
 folderBrowse = sg.FolderBrowse(key='-basepath-',s=(15,2),pad=(40,10))
