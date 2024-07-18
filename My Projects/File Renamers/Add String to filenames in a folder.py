@@ -33,7 +33,7 @@ while True:
         print(basepath)
         for entry in os.listdir(basepath):
             os.rename(Path(basepath, entry), Path(basepath, f'{joinerString}{entry}'))
-        # subprocess.Popen(['explorer.exe', basepath]) # Below 2 lines give the same result.
+        subprocess.Popen(['explorer.exe', basepath]) # Below 2 lines give the same result.
         # subprocess.run(['explorer', basepath])
         # subprocess.Popen(['explorer', basepath])
     elif event == 'Add string at the end':
@@ -41,7 +41,7 @@ while True:
             justFilename = os.path.splitext(entry)[0]
             fileExt = os.path.splitext(entry)[1]
             os.rename(Path(basepath, entry), Path(basepath, f'{justFilename}{joinerString}{fileExt}'))
-        # subprocess.Popen(['explorer.exe', basepath]) # Below 2 lines give the same result.
+        subprocess.Popen(['explorer.exe', basepath]) # Below 2 lines give the same result.
 
 
 
