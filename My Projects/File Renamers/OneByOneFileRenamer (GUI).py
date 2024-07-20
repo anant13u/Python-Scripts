@@ -10,7 +10,7 @@ def mains():
     folderBrowseText = sg.Text('Please select the folder where you want to rename the files:',size=(30,2), pad=(20,(30,10)))
     folderBrowseButton = sg.FolderBrowse(key='-IN-',size=(15,2),pad=((30,20),10))
     layout = [  [folderBrowseText, folderBrowseButton],
-                [sg.B('Proceed',key='proceed-button',size=(10,2),pad=(90,20)), sg.B('Exit',size=(10,2),pad=(0,15))] ]
+                [sg.B('Proceed',key='proceed-button',size=(10,2),pad=(90,30)), sg.B('Exit',size=(10,2),pad=(0,15))] ]
 
     Window = sg.Window('Mass File Renamer by AU', layout, keep_on_top=True, grab_anywhere=True)
     
