@@ -43,7 +43,7 @@ while True:
             startTime = time_to_seconds(values['start_time']) # Convert start time from HH:MM:SS to total seconds
             endTime = time_to_seconds(values['end_time']) # Convert end time from HH:MM:SS to total seconds
         except ValueError:
-            sg.popup_error('Invalid start or end time format. Please enter time in HH:MM:SS format.')
+            sg.popup_error('Invalid start or end time format. Please enter time in HH:MM:SS format.', keep_on_top=True)
         if startTime >= endTime:
             sg.popup("Start Time can't be greater than End Time.")
         ourClip = mp.VideoFileClip(videoFile) # Load the video file
