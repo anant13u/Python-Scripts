@@ -18,9 +18,13 @@ layout = [  [sg.T('Select Video', s=(35,2), pad=(30,20)), sg.FileBrowse(key='vid
 Window = sg.Window('Trim Videos', layout, keep_on_top=True, grab_anywhere=True)
 
 def time_to_seconds(time_str):
-    # Split the time string into hours, minutes, and seconds
-    hours, minutes, seconds = map(int, time_str.split(':'))
-    
+    try:
+        # Split the time string into hours, minutes, and seconds
+        hours, minutes, seconds = map(int, time_str.split(':'))
+    except:
+        minutes, seconds = map(int, time_str.split(':'))
+        hours = 0
+
     # Convert the time components to seconds and sum them up
     total_seconds = hours * 3600 + minutes * 60 + seconds
     return total_seconds
@@ -39,11 +43,22 @@ while True:
         sg.popup('Please enter start and end time for trimming the video.')
     elif event == 'Trim Video':
         filename = os.path.basename(videoFile).split('.')[0] # Extract the filename from the path and remove the extension
-        try:
-            startTime = time_to_seconds(values['start_time']) # Convert start time from HH:MM:SS to total seconds
-            endTime = time_to_seconds(values['end_time']) # Convert end time from HH:MM:SS to total seconds
-        except ValueError:
-            sg.popup_error('Invalid start or end time format. Please enter time in HH:MM:SS format.', keep_on_top=True)
+        if ':' in values['start_time']:
+            try:
+                startTime = time_to_seconds(values['start_time']) # Convert start time from HH:MM:SS to total seconds
+                print(startTime)
+            except ValueError:
+                sg.popup_error('Invalid start or end time format. Please enter time in HH:MM:SS format.', keep_on_top=True)
+        else:
+            startTime = int(values['start_time'])
+        if ':' in values['end_time']:
+            try:
+                endTime = time_to_seconds(values['end_time']) # Convert end time from HH:MM:SS to total seconds
+                print(endTime)
+            except ValueError:
+                sg.popup_error('Invalid start or end time format. Please enter time in HH:MM:SS format.', keep_on_top=True)
+        else:
+            endTime = int(values['end_time'])
         if startTime >= endTime:
             sg.popup("Start Time can't be greater than End Time.")
         ourClip = mp.VideoFileClip(videoFile) # Load the video file
