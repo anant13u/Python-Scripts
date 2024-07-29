@@ -16,7 +16,7 @@ fileBrowseButton = sg.FileBrowse(key='input-video', size=(15,2), pad=((20,40),30
 
 # Define the layout of the GUI
 layout = [  [sg.T('Select Video', key='file_display', size=(25,2), pad=(30,10)), fileBrowseButton],
-            [sg.B('Convert to Audio', size=(15,2), pad=((60,30),30)), sg.B('Exit', size=(15,2), pad=((30,40),20))]  ]
+            [sg.B('Convert to Audio', size=(15,2), pad=((70,30),30)), sg.B('Exit', size=(15,2), pad=((30,40),20))]  ]
 
 # Create the PySimpleGUI window
 Window = sg.Window('Video -> Audio Convertor by AU', layout, grab_anywhere=True, keep_on_top=True)
