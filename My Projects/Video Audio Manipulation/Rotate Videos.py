@@ -13,9 +13,15 @@ sg.theme('darkgreen7')
 sg.set_options(font=("Helvetica", 11))
 
 fileBrowseButton = sg.FileBrowse(key='input-video', size=(15,2), pad=((20,40),30))
+rotate90radio = sg.Radio('Rotate 90 degrees counter-clockwise', 'rotate_group', k='-rotate90-', pad=((40,30),15))
+rotate180radio = sg.Radio('Rotate 180 degrees', 'rotate_group', default=True, k='-rotate180-')
+rotate90radio = sg.Radio('Rotate 90 degrees counter-clockwise', 'rotate_group', k='-rotate90-', pad=((40,30),15))
 
 # Define the layout of the GUI
 layout = [  [sg.T('Select Video', key='file_display', size=(25,2), pad=(30,10)), fileBrowseButton],
+            [rotate90radio],
+            [rotate180radio],
+            [],
             [sg.B('Rotate Video', size=(15,2), pad=((70,30),30)), sg.B('Exit', size=(15,2), pad=((30,40),20))]  ]
 
 # Create the PySimpleGUI window
@@ -38,11 +44,14 @@ while True:
                 continue
             Window['file_display'].update(inputVideo)
             outputFolder = os.path.dirname(inputVideo)
-            print(outputFolder)
-            print(f'Selected file name is {os.path.basename(inputVideo)}')
+            # print(outputFolder)
+            # print(f'Selected file name is {os.path.basename(inputVideo)}')
             # print(our_clip)
             our_clip = mp.VideoFileClip(inputVideo)
-            our_clip = our_clip.rotate(180)
+            if values['-rotate90-']:
+                our_clip = our_clip.rotate(90)
+            else:
+                our_clip = our_clip.rotate(180)
             our_clip.write_videofile(f'{videoName}_rotated{videoExtension}')
             subprocess.Popen(f'explorer {outputFolder}')
         except FileNotFoundError as e:
