@@ -49,12 +49,15 @@ while True:
             # print(our_clip)
             our_clip = mp.VideoFileClip(inputVideo)
             if values['-rotate90-']:
+                rotationValue = 90
                 our_clip = our_clip.rotate(90)
             elif values['-rotate180-']:
+                rotationValue = 180
                 our_clip = our_clip.rotate(180)
             else:
+                rotationValue = 270
                 our_clip = our_clip.rotate(270)
-            our_clip.write_videofile(f'{videoName}_rotated{videoExtension}')
+            our_clip.write_videofile(f'{videoName}_rotated_{rotationValue}{videoExtension}')
             subprocess.Popen(f'explorer {outputFolder}')
         except FileNotFoundError as e:
             sg.popup_error(f'File not found: {e}', keep_on_top=True)
