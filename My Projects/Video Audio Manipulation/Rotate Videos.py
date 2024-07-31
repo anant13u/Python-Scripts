@@ -13,9 +13,9 @@ sg.theme('darkgreen7')
 sg.set_options(font=("Helvetica", 11))
 
 fileBrowseButton = sg.FileBrowse(key='input-video', size=(15,2), pad=((20,40),30))
-rotate90radio = sg.Radio('Rotate 90 degrees counter-clockwise', 'rotate_group', k='-rotate90-', p=(100,20))
-rotate180radio = sg.Radio('Rotate 180 degrees', 'rotate_group', default=True, k='-rotate180-', p=(100,0))
-rotate270radio = sg.Radio('Rotate 90 degrees clockwise', 'rotate_group', k='-rotate270-', p=(100,20))
+rotate90radio = sg.Radio('Rotate 90 degrees counter-clockwise (Left)', 'rotate_group', k='-rotate90-', p=(100,20))
+rotate180radio = sg.Radio('Rotate 180 Degrees (Flip)', 'rotate_group', default=True, k='-rotate180-', p=(100,0))
+rotate270radio = sg.Radio('Rotate 90 degrees clockwise (Right)', 'rotate_group', k='-rotate270-', p=(100,20))
 
 # Define the layout of the GUI
 layout = [  [sg.T('Select Video', key='file_display', size=(25,2), pad=(30,10)), fileBrowseButton],
