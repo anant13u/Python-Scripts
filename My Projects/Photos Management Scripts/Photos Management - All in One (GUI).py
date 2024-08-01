@@ -42,7 +42,7 @@ def managePhotos():
                 if file_ext.lower()=='.mov' and file_size<7:
                     if not os.path.exists(live_folder_path):
                         os.mkdir(live_folder_path)
-                    new_file_path=os.path.join(live_folder_path,file) # new_file_path is C:\Users\Anant\Documents\Test Folder\New folder\Probable Live Photos (New folder)\IMG_1109.MOV
+                    new_file_path = os.path.join(live_folder_path,file) # new_file_path is C:\Users\Anant\Documents\Test Folder\New folder\Probable Live Photos (New folder)\IMG_1109.MOV
                     os.rename(curr_file_path,new_file_path)
 
                 elif file_ext.lower()=='.aae':
@@ -50,7 +50,7 @@ def managePhotos():
                         if not os.path.exists(misc_folder_path):
                             os.mkdir(misc_folder_path)
                         os.mkdir(aae_folder_path)
-                    new_file_path=os.path.join(aae_folder_path,file)
+                    new_file_path = os.path.join(aae_folder_path,file)
                     os.rename(curr_file_path,new_file_path)
 
                 elif file_ext.lower()=='.png':
@@ -58,25 +58,25 @@ def managePhotos():
                         if not os.path.exists(misc_folder_path):
                             os.mkdir(misc_folder_path)
                         os.mkdir(png_folder_path)
-                    new_file_path=os.path.join(png_folder_path,file)
+                    new_file_path = os.path.join(png_folder_path,file)
                     os.rename(curr_file_path,new_file_path)
 
                 elif 0<file_size<0.7 or file_ext.lower()=='.mp4' or file_ext.lower()=='.gif':
                     if not os.path.exists(misc_folder_path):
                         os.mkdir(misc_folder_path)
-                    new_file_path=os.path.join(misc_folder_path,file)
+                    new_file_path = os.path.join(misc_folder_path,file)
                     os.rename(curr_file_path,new_file_path)
 
                 elif file.startswith('IMG_E'): # Checking if the entry starts with 'IMG_E'.
                     curr_file_path = os.path.join(base_path,file) # curr_file_path is C:\Users\Anant\Documents\Test Folder\New folder\IMG_1109.MOV
-                    original_file_name=file.replace('_E','_') # Create the name of the original file and its path.
+                    original_file_name = file.replace('_E','_') # Create the name of the original file and its path.
                     original_file_path = os.path.join(base_path,original_file_name)
                     # Create the edited folder if it doesn't exist.
                     if os.path.exists(original_file_path):
                         if not os.path.exists(edited_folder_path):
                             os.mkdir(edited_folder_path)
-                        curr_file_new_path=os.path.join(edited_folder_path,file) # Rename the edited file and move it to the edited folder.
-                        original_file_new_path=os.path.join(edited_folder_path,original_file_name)
+                        curr_file_new_path = os.path.join(edited_folder_path,file) # Rename the edited file and move it to the edited folder.
+                        original_file_new_path = os.path.join(edited_folder_path,original_file_name)
                         os.rename(curr_file_path,curr_file_new_path)
                         os.rename(original_file_path, original_file_new_path)
                         # Write a log entry for the moved pair of files.
