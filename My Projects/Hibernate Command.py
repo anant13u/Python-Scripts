@@ -1,7 +1,7 @@
 import os
 import PySimpleGUI as sg
 
-layout = [[sg.T('Do you really want to go into Hibernation, lol')],
+layout = [[sg.T('Do you really want to go into Hibernation, lol', p=(20,10))],
           [sg.Button('Yepp!'), sg.B('Cancel')]]
 
 Window = sg.Window('Hibernate or Not', layout)
