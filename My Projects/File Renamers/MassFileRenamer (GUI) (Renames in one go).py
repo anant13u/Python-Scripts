@@ -1,13 +1,27 @@
 import os
 import PySimpleGUI as sg
 
-sg.theme("DarkTeal2")
+# sg.theme("DarkTeal2")
+sg.theme('DarkGrey13')
 
 sz= size=(20,2)
-layout = [  [sg.Text('Please select the folder where you want to rename the files',size=(30,2), pad=(20,(35,15))), sg.FolderBrowse(key='-IN-',size=(15,2),pad=((70,20),10))],
+
+col1 = sg.Column([[sg.Multiline('', k='files-list', s=(40,15), p=(20,20), font=("Bahnschrift", 23))]], pad=0)
+
+generateButton = sg.Button('Generate List',size=(13,2),pad=((70,20),30))
+renameButton = sg.Button('Rename',size=(13,2),pad=(30,30))
+col2 = sg.Column([[sg.Text('Please select the folder where you want to rename the files',size=(30,2), pad=(20,(35,15))), sg.FolderBrowse(key='-IN-', size=(15,2), pad=((70,20),10))],
             [sg.Text('Please enter the string you want to rename',sz,pad=(20,15)),sg.Input('',key='old-string',pad=((30,50),10),size=(40,2))],
             [sg.Text('Please enter the new text',sz,pad=(20,15)),sg.Input('',key='new-string',size=(40,2),pad=((30,50),10))],
-            [sg.Button('Rename',size=(13,2),pad=((130,20),30)),sg.T(' '*10),sg.Button('Exit',size=(13,2),pad=((20,70),15))]    ]
+            [generateButton, renameButton, sg.Button('Exit',size=(13,2),pad=(20,15))]])
+
+layout = [[col1, sg.VerticalSeparator(), col2]]
+
+# layout = [  [,sg.VerticalSeparator()],
+#             [sg.Text('Please select the folder where you want to rename the files',size=(30,2), pad=(20,(35,15))), sg.FolderBrowse(key='-IN-',size=(15,2),pad=((70,20),10))],
+#             [sg.Text('Please enter the string you want to rename',sz,pad=(20,15)),sg.Input('',key='old-string',pad=((30,50),10),size=(40,2))],
+#             [sg.Text('Please enter the new text',sz,pad=(20,15)),sg.Input('',key='new-string',size=(40,2),pad=((30,50),10))],
+#             [sg.Button('Rename',size=(13,2),pad=((130,20),30)),sg.T(' '*10),sg.Button('Exit',size=(13,2),pad=((20,70),15))]    ]
 
 Window = sg.Window('Mass File Renamer by AU',layout,keep_on_top=True, grab_anywhere=True)
 
@@ -16,6 +30,14 @@ while True:
     event, values = Window.read()
     if event in (sg.WINDOW_CLOSED, 'Exit'):
         break
+    elif event=='Generate List':
+        if values['-IN-']=='':
+            sg.popup('Please select a folder to perform operations in.', keep_on_top=True)
+        else:
+            basepath = values['-IN-']
+            entries = os.listdir(basepath)
+            Window['files-list'].update('\n'.join(entries))
+            # Window['files-list'].update('sdfsdfdfs')
     elif event=='Rename':
         if values['-IN-']=='':
             sg.popup('Please select a folder to perform operations in.', keep_on_top=True)
@@ -48,6 +70,8 @@ while True:
             #     sg.popup(f'No files found with {old_string} in their names.',keep_on_top=True,grab_anywhere=True)
             changes_list=[]
             final_list=''
+            entries = os.listdir(basepath)
+            Window['files-list'].update('\n'.join(entries))
             # break
 
 #     if str>=0:
