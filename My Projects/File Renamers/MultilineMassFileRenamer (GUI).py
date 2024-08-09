@@ -7,12 +7,12 @@ rename_log = []
 
 sg.theme('DarkGrey13')
 
-selectFolderText = sg.Text('Select Folder',s=(80),pad=((90,20),10))
-folderBrowse = sg.FolderBrowse(key='-basepath-',s=(15,2),pad=((30,80),10))
+selectFolderText = sg.Text('Select Folder',s=(80),pad=((290,20),10))
+folderBrowse = sg.FolderBrowse(key='-basepath-',s=(15,2),pad=(30,10))
 
 layout = [  [selectFolderText, folderBrowse],
-            [sg.B('Generate List',s=(15,2),pad=(150,10)), sg.B('Rename Files',s=(15,2),pad=(30,10)), sg.B('Exit',s=(15,2),pad=(120,10))],
-            [sg.Multiline('',key='file_list',s=(55,13),pad=(50,20), font=("Bahnschrift", 23))],
+            [sg.B('Generate List',s=(15,2),pad=((350,120),10)), sg.B('Rename Files',s=(15,2),pad=(30,10)), sg.B('Exit',s=(15,2),pad=(120,10))],
+            [sg.Multiline('',key='file_list',s=(80,13),pad=(50,20), font=("Bahnschrift", 21))],
             [sg.T('Script Creator: Anant Upadhyay')]  ]
 
 Window = sg.Window('Generate list of files and rename', layout, keep_on_top=True, grab_anywhere=True)
@@ -46,6 +46,7 @@ while True:
         # Generate and display list of files in the selected folder
         print(basepath)
         curr_names = os.listdir(basepath)
+        # Window['file_list'].update('\n'.join(curr_names), visible=True)
         Window['file_list'].update('\n'.join(curr_names))
     elif event == 'Rename Files':
         if values['file_list'] == '':
@@ -82,7 +83,9 @@ while True:
                 popup_window.close()
             # Reset rename_log and update GUI
             rename_log = []
-            Window['file_list'].update('')
+            curr_names = os.listdir(basepath)
+
+            Window['file_list'].update('\n'.join(curr_names))
 
 
 
@@ -96,4 +99,4 @@ while True:
 # Window.reappear()
         
 
-
+# sg.Multiline('', key='file_list', s=(55,13), p=(50,20), font=("Bahnschrift", 23), visible=False, wrap_lines=False, horizontal_scroll = True)
