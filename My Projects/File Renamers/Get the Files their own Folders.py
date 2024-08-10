@@ -24,9 +24,10 @@ while True:
         for item in os.listdir(basepath):
             file_ext = Path(item).suffix
             item_folder_path = Path(basepath, item.replace(file_ext, ''))
-            if Path(basepath, item).is_file() and not os.path.exists(item_folder_path):
-                try:
+            if Path(basepath, item).is_file():
+                if not os.path.exists(item_folder_path):
                     os.mkdir(item_folder_path)
+                try:
                     os.rename(Path(basepath, item), Path(item_folder_path, item))
                 except Exception as e:
                     sg.popup(f'Got an error:\n{e}', keep_on_top=True)
