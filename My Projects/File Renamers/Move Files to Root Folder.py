@@ -7,9 +7,9 @@ import shutil
 # sg.theme_previewer()
 sg.theme('DarkGreen7')
 
-move_button = sg.B('Move Files to Root Folder', k='-move_files-', pad=(70,0), s=(20,3))
+move_button = sg.B('Move Files to Root Folder', k='-move_files-', pad=(70,0), s=(23,3))
 layout = [  [sg.T('Select folder:', pad=(40,20), s=(40,2)),sg.FolderBrowse(k='input-folder', pad=((0,20),30), s=(15,2))],
-            [move_button, sg.B('Exit', pad=(40,30), s=(15,3))]  ]
+            [move_button, sg.B('Exit', pad=(40,30), s=(20,3))]  ]
 
 window = sg.Window('Move Files to Root Folder', layout, keep_on_top=True, grab_anywhere=True)
 
