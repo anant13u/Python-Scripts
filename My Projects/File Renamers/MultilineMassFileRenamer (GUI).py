@@ -7,11 +7,11 @@ rename_log = []
 
 sg.theme('DarkGrey13')
 
-selectFolderText = sg.Text('Select Folder',s=(80),pad=((290,20),10))
-folderBrowse = sg.FolderBrowse(key='-basepath-',s=(15,2),pad=(30,10))
+selectFolderText = sg.Text('Select Folder', s=(80), pad=((290,20),10))
+folderBrowse = sg.FolderBrowse(key='-basepath-', s=(15,2), pad=(30,10))
 
 layout = [  [selectFolderText, folderBrowse],
-            [sg.B('Generate List',s=(15,2),pad=((350,120),10)), sg.B('Rename Files',s=(15,2),pad=(10,10)), sg.B('Exit',s=(15,2),pad=(120,10))],
+            [sg.B('Generate List',s=(15,2),pad=((350,120),10)), sg.B('Rename Files',s=(15,2),pad=(10,10)), sg.B('Exit', s=(15,2), pad=(120,10))],
             [sg.Multiline('',key='file_list',s=(80,13),pad=(50,20), font=("Bahnschrift", 21))],
             [sg.T('Script Creator: Anant Upadhyay')]  ]
 
