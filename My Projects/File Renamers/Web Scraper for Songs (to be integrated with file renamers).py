@@ -5,7 +5,6 @@ import os
 from pathlib import Path
 import PySimpleGUI as sg
 from datetime import datetime
-import subprocess
 
 sg.theme('Reddit')
 # sg.theme_previewer()
@@ -27,26 +26,22 @@ while True:
     elif values['-songname-']=='':
         sg.popup('Please specify a song to search.')
     elif event == 'Search':
-        our_song = values['-songname-']
-        search_string = f"{our_song} artist name"
-        target_url = f'https://www.google.com/search?q={search_string}'
+        our_song = values['-songname-'].replace(' ', '-')
+        # search_string = f"{our_song} artist name"
+        # target_url = f'https://www.google.com/search?q={search_string}'
+        target_url = f'https://gaana.com/song/{our_song}'
+        
         browser = webdriver.Firefox()
         browser.get(target_url)
-        # element = browser.find_element(By.XPATH, '//*[@id="rcnt"]/div[2]/div/div/div[3]/div/div[1]/div/div/div[2]/div[2]/div[1]/div/span')
-        element = browser.find_element(By.CSS_SELECTOR, '.iAIpCb > span:nth-child(1)')
-        print(element)
-        print(element.text)
+        artist_name = browser.find_element(By.CSS_SELECTOR, 'h1.title')
+        print(artist_name.text)
+        artist_name = browser.find_element(By.CSS_SELECTOR, '.iAIpCb > span:nth-child(1)')
+        print(artist_name.text)
+        # movie_name = browser.find_element(By.CSS_SELECTOR, '.xGj8Mb > div:nth-child(1) > div:nth-child(1) > div:nth-child(1) > div:nth-child(1) > span:nth-child(2)')
+        # print(movie_name.text)
         browser.close()
 
 # Tauba Tumhare Ishare
-# //*[@id="rcnt"]/div[2]/div/div/div[3]/div/div[1]/div/div/div[3]/div[2]/div[1]/div/span
-# /html/body/div[3]/div/div[13]/div[2]/div/div/div[3]/div/div[1]/div/div/div[3]/div[2]/div[1]/div/span
-# //*[@id="rcnt"]/div[2]/div/div/div[3]/div/div[1]/div/div/div/div[1]/div/div
-# //*[@id="rcnt"]/div[2]/div/div/div[3]/div/div[1]/div/div/div[2]/div[2]/div[1]/div/span
-# /html/body/div[3]/div/div[13]/div[2]/div/div/div[3]/div/div[1]/div/div/div[3]/div[2]/div[1]/div/span
-# By.XPATH
-
-# .iAIpCb > span:nth-child(1)
 
 
 # Error "name 'by' is not defined" using Python Selenium WebDriver
