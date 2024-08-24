@@ -4,26 +4,20 @@ import PySimpleGUI as sg
 # sg.theme("DarkTeal2")
 sg.theme('DarkGrey13')
 
-sz= size=(20,2)
+sz= size=(20, 2)
 
-col1 = sg.Column([[sg.Multiline('', k='files-list', s=(40,15), p=(20,20), font=("Bahnschrift", 23))]], pad=0)
+col1 = sg.Column([[sg.Multiline('', k='files-list', s=(40,15), p=(20,20), font=("Bahnschrift", 23))]], p=0)
 
-generateButton = sg.Button('Generate List',size=(13,2),pad=((70,20),30))
-renameButton = sg.Button('Rename',size=(13,2),pad=(30,30))
-col2 = sg.Column([[sg.Text('Please select the folder where you want to rename the files',size=(30,2), pad=(20,(35,15))), sg.FolderBrowse(key='-IN-', size=(15,2), pad=((70,20),10))],
-            [sg.Text('Please enter the string you want to rename',sz,pad=(20,15)),sg.Input('',key='old-string',pad=((30,50),10),size=(40,2))],
-            [sg.Text('Please enter the new text',sz,pad=(20,15)),sg.Input('',key='new-string',size=(40,2),pad=((30,50),10))],
-            [generateButton, renameButton, sg.Button('Exit',size=(13,2),pad=(20,15))]])
+generateButton = sg.Button('Generate List', s=(13,2), p=((70,20),30))
+renameButton = sg.Button('Rename', s=(13,2), p=(30,30))
+col2 = sg.Column([[sg.Text('Select Folder', s=(30,2), p=(20,(35,15))), sg.FolderBrowse(key='-IN-', s=(15,2), p=((40,20),10))], 
+            [sg.Text('Please enter the string you want to rename', sz, p=(20,15)), sg.Input('', key='old-string', p=((30,50),10), s=(40,2))], 
+            [sg.Text('Please enter the new text', sz, p=(20,15)), sg.Input('', key='new-string', s=(40,2), p=((30,50),10))], 
+            [generateButton, renameButton, sg.Button('Exit', s=(13,2), p=(20,15))]])
 
 layout = [[col1, sg.VerticalSeparator(), col2]]
 
-# layout = [  [,sg.VerticalSeparator()],
-#             [sg.Text('Please select the folder where you want to rename the files',size=(30,2), pad=(20,(35,15))), sg.FolderBrowse(key='-IN-',size=(15,2),pad=((70,20),10))],
-#             [sg.Text('Please enter the string you want to rename',sz,pad=(20,15)),sg.Input('',key='old-string',pad=((30,50),10),size=(40,2))],
-#             [sg.Text('Please enter the new text',sz,pad=(20,15)),sg.Input('',key='new-string',size=(40,2),pad=((30,50),10))],
-#             [sg.Button('Rename',size=(13,2),pad=((130,20),30)),sg.T(' '*10),sg.Button('Exit',size=(13,2),pad=((20,70),15))]    ]
-
-Window = sg.Window('Mass File Renamer by AU',layout,keep_on_top=True, grab_anywhere=True)
+Window = sg.Window('Mass File Renamer by AU', layout, keep_on_top=True, grab_anywhere=True)
 
 changes_list=[]
 while True:
@@ -54,7 +48,7 @@ while True:
                 str_check = currfilename.find(old_string) #With this method we check the presence of a substring within another string. 
                 # If the substring is present the method will return the number which denotes the beginning of the substring. 
                 # If the substring isn't present, the method will return -1.
-                newfilename = currfilename.replace(old_string,new_string)
+                newfilename = currfilename.replace(old_string, new_string)
                 if str_check>=0:
                     try:
                         os.rename(os.path.join(basepath, currfilename), os.path.join(basepath, newfilename))
@@ -65,9 +59,9 @@ while True:
                                         f'New filename: {newfilename}')
                 final_list='\n\n'.join(changes_list) # Separating all list items with a new line.
             # if final_list.find(old_string)>1:
-            #     sg.popup(f'All files containing the text "{old_string}" are now renamed. Please find the list below:\n\n{final_list}',title='List of changed filenames',line_width=100,grab_anywhere=True,keep_on_top=True)
+            #     sg.popup(f'All files containing the text "{old_string}" are now renamed. Please find the list below:\n\n{final_list}', title='List of changed filenames', line_width=100, grab_anywhere=True, keep_on_top=True)
             # else:
-            #     sg.popup(f'No files found with {old_string} in their names.',keep_on_top=True,grab_anywhere=True)
+            #     sg.popup(f'No files found with {old_string} in their names.', keep_on_top=True, grab_anywhere=True)
             changes_list=[]
             final_list=''
             entries = os.listdir(basepath)
