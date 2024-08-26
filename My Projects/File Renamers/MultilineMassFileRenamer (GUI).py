@@ -7,12 +7,12 @@ rename_log = []
 
 sg.theme('DarkGrey13')
 
-selectFolderText = sg.Text('Select Folder', s=(80), pad=((290,20),10))
-folderBrowse = sg.FolderBrowse(key='-basepath-', s=(15,2), pad=(30,10))
+selectFolderText = sg.Text('Select Folder', s=(80), p=((290,20),10))
+folderBrowse = sg.FolderBrowse(k='-basepath-', s=(15,2), p=(30,10))
 
-layout = [  [selectFolderText, folderBrowse],
-            [sg.B('Generate List',s=(15,2),pad=((350,120),10)), sg.B('Rename Files',s=(15,2),pad=(10,10)), sg.B('Exit', s=(15,2), pad=(120,10))],
-            [sg.Multiline('',key='file_list',s=(80,13),pad=(50,20), font=("Bahnschrift", 21))],
+layout = [  [selectFolderText, folderBrowse], 
+            [sg.B('Generate List', s=(15,2), p=((350,120),10)), sg.B('Rename Files', s=(15,2), p=(10,10)), sg.B('Exit', s=(15,2), p=(120,10))], 
+            [sg.Multiline('', k='file_list', s=(80,13), p=(50,20), font=("Bahnschrift", 21))], 
             [sg.T('Script Creator: Anant Upadhyay')]  ]
 
 Window = sg.Window('Generate list of files and rename', layout, keep_on_top=True, grab_anywhere=True)
@@ -68,7 +68,7 @@ while True:
             # If there are multiple files to be renamed, join them with newline for better readability
             elif len(rename_log) > 1:
                 rename_log = '\n'.join(rename_log)
-                popup_layout = [   [sg.Multiline(f'Please check new names before renaming:\n{rename_log}', s=(60,20))],
+                popup_layout = [    [sg.Multiline(f'Please check new names before renaming:\n{rename_log}', s=(60,20))], 
                                     [sg.B('Yes'), sg.B('No')]  ]
                 popup_window = sg.Window('Final Check', popup_layout, keep_on_top=True)
                 # Ask for final confirmation before proceeding with renaming
@@ -96,4 +96,4 @@ while True:
 # Window.reappear()
         
 
-# sg.Multiline('', key='file_list', s=(55,13), p=(50,20), font=("Bahnschrift", 23), visible=False, wrap_lines=False, horizontal_scroll = True)
+# sg.Multiline('', key='file_list', s=(55, 13), p=(50, 20), font=("Bahnschrift", 23), visible=False, wrap_lines=False, horizontal_scroll = True)
