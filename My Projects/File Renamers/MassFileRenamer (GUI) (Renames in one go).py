@@ -1,7 +1,6 @@
 import os
 import PySimpleGUI as sg
 
-# sg.theme("DarkTeal2")
 sg.theme('DarkGrey13')
 
 sz= size=(20, 2)
