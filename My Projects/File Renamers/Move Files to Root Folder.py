@@ -8,7 +8,7 @@ import shutil
 sg.theme('DarkGreen7')
 
 move_button = sg.B('Move Files to Root Folder', k='-move_files-', pad=(70,0), s=(23,3))
-layout = [  [sg.T('Select folder:', pad=(40,20), s=(40,2)),sg.FolderBrowse(k='input-folder', pad=((0,20),30), s=(15,2))],
+layout = [  [sg.T('Select folder:', pad=(40,20), s=(40,2)), sg.FolderBrowse(k='input-folder', pad=((0,20),30), s=(15,2))], 
             [move_button, sg.B('Exit', pad=(40,30), s=(20,3))]  ]
 
 window = sg.Window('Move Files to Root Folder', layout, keep_on_top=True, grab_anywhere=True)
@@ -26,9 +26,9 @@ while True:
         for root, directories, files in os.walk(basepath):
             for curr_dir in directories:
                 # Iterate through files in each directory
-                for file in os.listdir(Path(root,curr_dir)):
-                    file_curr_path = Path(root,curr_dir,file)
-                    file_dest_path = Path(root,file)
+                for file in os.listdir(Path(root, curr_dir)):
+                    file_curr_path = Path(root, curr_dir, file)
+                    file_dest_path = Path(root, file)
                     try:
                         shutil.move(file_curr_path, file_dest_path)
                     except Exception as e:
