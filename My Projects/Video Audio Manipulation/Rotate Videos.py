@@ -7,7 +7,7 @@ import time
 import subprocess
 import moviepy.editor as mp # Before this the moviepy module needs to be installed using PIP
 
-valid_video_extensions = ['.mp4', '.avi', '.mkv']
+valid_video_extensions = ['.mp4', '.mov', '.avi', '.mkv', '.MP4', '.MOV', '.AVI', '.MKV']
 
 sg.theme('darkgreen7')
 sg.set_options(font=("Helvetica", 11))
