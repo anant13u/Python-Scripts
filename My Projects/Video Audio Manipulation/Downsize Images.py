@@ -1,0 +1,1 @@
+Creating new script to downsize image(s).
