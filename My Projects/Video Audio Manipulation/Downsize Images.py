@@ -7,13 +7,13 @@ import subprocess
 sg.theme('Reddit')
 # sg.theme_previewer()
 
-selectFolderText = sg.Text('Select Folder',s=(30,2),pad=((40,20),10))
+selectImagesText = sg.Text('Select Images',s=(30,2),pad=((40,20),10))
 filesBrowse = sg.FilesBrowse(key='-basepath-',s=(15,2),pad=(40,10))
 
-layout = [  [selectFolderText, filesBrowse],
+layout = [  [selectImagesText, filesBrowse],
             [sg.B('Generate List',s=(15,2),pad=(30,10)), sg.B('Exit',s=(15,2),pad=(70,10))]  ]
 
-Window = sg.Window('Generate list of files', layout)
+Window = sg.Window('Downsize Images', layout)
 
 while True:
     event, values = Window.read()
