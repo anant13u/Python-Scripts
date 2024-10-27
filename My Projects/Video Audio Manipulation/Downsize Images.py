@@ -11,7 +11,7 @@ selectImagesText = sg.Text('Select Images', s=(30,2), pad=((40,20),20))
 filesBrowse = sg.FilesBrowse(key='-basepath-', s=(15,2), pad=(40,10))
 
 layout = [  [selectImagesText, filesBrowse],
-            [sg.B('Downsize', s=(15,2), pad=(50,20)), sg.B('Exit', s=(15,2), pad=(50,10))]  ]
+            [sg.B('Downsize', s=(15,2), pad=(70,20)), sg.B('Exit', s=(15,2), pad=(50,10))]  ]
 
 Window = sg.Window('Downsize Images', layout)
 
