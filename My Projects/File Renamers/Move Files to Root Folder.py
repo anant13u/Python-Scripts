@@ -33,6 +33,7 @@ while True:
                         shutil.move(file_curr_path, file_dest_path)
                     except Exception as e:
                         error_info = traceback.format_exc()
+                        # Display an error popup to the user with the traceback details
                         sg.popup(f'Got an error while renaming {file}:\n{error_info}', keep_on_top=True)
                         # Print the error details to the console for logging or debugging
                         print(f'Got an error while renaming {file}:\n{error_info}')
