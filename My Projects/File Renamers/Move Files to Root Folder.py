@@ -31,6 +31,7 @@ while True:
                     file_dest_path = Path(root, file)
                     try:
                         shutil.move(file_curr_path, file_dest_path)
+                    # Handle any exception that might occur during the file move operation
                     except Exception as e:
                         # Capture detailed traceback information for debugging
                         error_info = traceback.format_exc()
