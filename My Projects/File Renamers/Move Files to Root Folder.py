@@ -29,6 +29,7 @@ while True:
                 for file in os.listdir(Path(root, curr_dir)):
                     file_curr_path = Path(root, curr_dir, file)
                     file_dest_path = Path(root, file)
+                    # Attempt to move the file from the current path to the destination path
                     try:
                         shutil.move(file_curr_path, file_dest_path)
                     # Handle any exception that might occur during the file move operation
