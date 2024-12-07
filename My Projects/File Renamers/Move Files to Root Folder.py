@@ -25,7 +25,7 @@ while True:
         # Traverse through the directory tree using os.walk
         for root, directories, files in os.walk(basepath):
             for curr_dir in directories:
-                # Iterate through files in each directory
+                # Iterate over each file in the current directory of the root folder
                 for file in os.listdir(Path(root, curr_dir)):
                     file_curr_path = Path(root, curr_dir, file)
                     file_dest_path = Path(root, file)
