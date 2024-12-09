@@ -29,6 +29,7 @@ while True:
                 for file in os.listdir(Path(root, curr_dir)):
                     # Construct the full path of the current file
                     file_curr_path = Path(root, curr_dir, file)
+                    # Construct the destination path in the root folder for the file
                     file_dest_path = Path(root, file)
                     # Attempt to move the file from the current path to the destination path
                     try:
