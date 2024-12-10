@@ -22,7 +22,7 @@ while True:
     if values['input-folder']=='':
         sg.popup('Please select a folder first.', keep_on_top=True)
     elif event=='move-files':
-        # Traverse through the directory tree using os.walk
+        # Traverse through the directory tree starting from the basepath using os.walk
         for root, directories, files in os.walk(basepath):
             for curr_dir in directories:
                 # Iterate over each file in the current directory of the root folder
