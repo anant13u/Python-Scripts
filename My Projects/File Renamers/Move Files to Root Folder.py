@@ -24,6 +24,7 @@ while True:
     elif event=='move-files':
         # Traverse through the directory tree starting from the basepath using os.walk
         for root, directories, files in os.walk(basepath):
+                # Iterate through each subdirectory in the current root directory
             for curr_dir in directories:
                 # Iterate over each file in the current directory of the root folder
                 for file in os.listdir(Path(root, curr_dir)):
