@@ -21,6 +21,7 @@ while True:
         break
     if values['input-folder']=='':
         sg.popup('Please select a folder first.', keep_on_top=True)
+    # Check if the 'move-files' event is triggered
     elif event=='move-files':
         # Traverse through the directory tree starting from the basepath using os.walk
         for root, directories, files in os.walk(basepath):

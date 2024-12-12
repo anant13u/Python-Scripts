@@ -38,7 +38,7 @@ while True:
     if event in (sg.WIN_CLOSED, 'Exit'):
         break
     elif values['video_file']=='':
-        sg.popup('Please select a video to perform operations on.')
+        sg.popup('Please select a video to perform operations on.', keep_on_top=True)
     elif values['start_time'] == '' or values['end_time']=='':
         sg.popup('Please enter start and end time for trimming the video.')
     elif event == 'Trim Video':
