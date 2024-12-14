@@ -13,6 +13,7 @@ layout = [  [sg.T('Select folder:', p=(40,20), s=(40,2)), sg.FolderBrowse(k='inp
 
 window = sg.Window('Move Files to Root Folder', layout, keep_on_top=True, grab_anywhere=True)
 
+# Start an event loop to keep the GUI running
 while True:
     event, values = window.read()
     basepath = values['input-folder']
