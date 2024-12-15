@@ -15,6 +15,7 @@ window = sg.Window('Move Files to Root Folder', layout, keep_on_top=True, grab_a
 
 # Start an event loop to keep the GUI running
 while True:
+    # Read the current event and values from the window
     event, values = window.read()
     basepath = values['input-folder']
     print(basepath)
