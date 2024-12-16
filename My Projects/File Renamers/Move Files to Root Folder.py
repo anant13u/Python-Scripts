@@ -17,6 +17,7 @@ window = sg.Window('Move Files to Root Folder', layout, keep_on_top=True, grab_a
 while True:
     # Read the current event and values from the window
     event, values = window.read()
+    # Get the folder path entered by the user
     basepath = values['input-folder']
     print(basepath)
     if event in (sg.WINDOW_CLOSED, 'Exit'):
