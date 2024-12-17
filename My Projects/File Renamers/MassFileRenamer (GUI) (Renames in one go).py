@@ -54,6 +54,9 @@ while True:
                     except PermissionError as e:
                         print(f'Permission Error: {e}')
                         sg.popup(f'Permission Error: {e}', keep_on_top=True)
+                    except FileExistsError as e:
+                        print(f'File already exists Error: {e}')
+                        sg.popup(f'File already exists Error: {e}', keep_on_top=True)
                     changes_list.append(f'Old filename: {currfilename}\n'
                                         f'New filename: {newfilename}')
                 final_list='\n\n'.join(changes_list) # Separating all list items with a new line.
