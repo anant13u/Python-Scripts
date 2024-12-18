@@ -19,6 +19,7 @@ while True:
     event, values = window.read()
     # Get the folder path entered by the user
     basepath = values['input-folder']
+    # Print the selected folder path to the console for debugging purposes
     print(basepath)
     if event in (sg.WINDOW_CLOSED, 'Exit'):
         break
