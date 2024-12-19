@@ -54,6 +54,7 @@ while True:
                     except PermissionError as e:
                         print(f'Permission Error: {e}')
                         sg.popup(f'Permission Error: {e}', keep_on_top=True)
+                    # Handle the specific case where a file already exists at the destination path
                     except FileExistsError as e:
                         print(f'File already exists Error: {e}')
                         sg.popup(f'File already exists Error: {e}', keep_on_top=True)
