@@ -56,6 +56,7 @@ while True:
                         sg.popup(f'Permission Error: {e}', keep_on_top=True)
                     # Handle the specific case where a file already exists at the destination path
                     except FileExistsError as e:
+                        # Print an error message to the console indicating the file already exists
                         print(f'File already exists Error: {e}')
                         sg.popup(f'File already exists Error: {e}', keep_on_top=True)
                     changes_list.append(f'Old filename: {currfilename}\n'
