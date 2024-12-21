@@ -58,6 +58,7 @@ while True:
                     except FileExistsError as e:
                         # Print an error message to the console indicating the file already exists
                         print(f'File already exists Error: {e}')
+                        # Show a popup message to inform the user about the file existence error
                         sg.popup(f'File already exists Error: {e}', keep_on_top=True)
                     changes_list.append(f'Old filename: {currfilename}\n'
                                         f'New filename: {newfilename}')
