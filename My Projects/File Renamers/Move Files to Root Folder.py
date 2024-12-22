@@ -21,6 +21,7 @@ while True:
     basepath = values['input-folder']
     # Print the selected folder path to the console for debugging purposes
     print(basepath)
+    # Break the loop if the window is closed or the 'Exit' button is clicked
     if event in (sg.WINDOW_CLOSED, 'Exit'):
         break
     if values['input-folder']=='':
