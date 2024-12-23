@@ -24,6 +24,7 @@ while True:
     # Break the loop if the window is closed or the 'Exit' button is clicked
     if event in (sg.WINDOW_CLOSED, 'Exit'):
         break
+    # Show a popup message if no folder has been selected
     if values['input-folder']=='':
         sg.popup('Please select a folder first.', keep_on_top=True)
     # Check if the 'move-files' event is triggered
