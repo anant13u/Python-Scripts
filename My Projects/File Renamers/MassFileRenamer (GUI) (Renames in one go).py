@@ -43,6 +43,7 @@ while True:
             entries = os.listdir(basepath)
             print(basepath)
 
+            # Iterate over each file entry in the current directory
             for currfilename in entries:
                 str_check = currfilename.find(old_string) #With this method we check the presence of a substring within another string. 
                 # If the substring is present the method will return the number which denotes the beginning of the substring. 
