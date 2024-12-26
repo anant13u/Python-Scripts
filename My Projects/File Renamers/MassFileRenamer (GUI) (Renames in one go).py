@@ -48,6 +48,8 @@ while True:
                 str_check = currfilename.find(old_string) #With this method we check the presence of a substring within another string. 
                 # If the substring is present the method will return the number which denotes the beginning of the substring. 
                 # If the substring isn't present, the method will return -1.
+
+                # Create a new filename by replacing the old substring with the new one
                 newfilename = currfilename.replace(old_string, new_string)
                 if str_check>=0:
                     try:
