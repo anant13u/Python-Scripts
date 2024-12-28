@@ -45,6 +45,8 @@ while True:
 
             # Iterate over each file entry in the current directory
             for currfilename in entries:
+                # Check for the presence of the old substring in the current filename
+                # The find() method returns the starting index of the substring if found, otherwise returns -1
                 str_check = currfilename.find(old_string) #With this method we check the presence of a substring within another string. 
                 # If the substring is present the method will return the number which denotes the beginning of the substring. 
                 # If the substring isn't present, the method will return -1.
