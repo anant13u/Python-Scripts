@@ -1,6 +1,6 @@
 import os
 from pathlib import Path
-import PySimpleGUI as sg
+import FreeSimpleGUI as sg
 from datetime import datetime
 import pyperclip
 

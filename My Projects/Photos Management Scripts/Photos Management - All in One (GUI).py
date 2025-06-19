@@ -1,6 +1,6 @@
 import os
 from pathlib import Path
-import PySimpleGUI as sg
+import FreeSimpleGUI as sg
 
 sg.theme('DarkAmber')
 sz= size=(50,3)
