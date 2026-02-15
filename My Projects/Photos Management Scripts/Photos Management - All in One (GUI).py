@@ -9,83 +9,90 @@ layout = [  [sg.Text('Please select the folder where you want to manage the Phot
             [sg.FolderBrowse('Select Folder',key='-IN-',s=(15,2), pad=((30,40),0)),sg.T('',s=(50,3))],
             [sg.Button('Manage',size=(15,2), pad=(130,20)),sg.Button('Exit',size=(15,2))]   ]
 
-Window = sg.Window('Photos Manager by AU', layout, keep_on_top=True, grab_anywhere=True)
+window = sg.Window('Photos Organiser by AU', layout, keep_on_top=True, grab_anywhere=True)
 
 def managePhotos():
     # Extract the current folder name from the base path
     curr_folder = os.path.basename(base_path)
 
-    # Create paths for the edited folder and log file.
-    edited_folder_path = os.path.join(base_path,f'Edited Photos and Videos ({curr_folder})')
-    # edit_log_path = os.path.join(edited_folder_path,'Original and Edited Photos and Videos log.txt')
+    # edit_log_path = Path(edited_folder_path,'Original and Edited Photos and Videos log.txt')
 
     # moved_pairs_list = ['Below is the list of moved pairs of media:\n']
     # error_list = ['Below are the errors encountered:\n']
 
     # Create paths for various folders using the current folder name
-    live_folder_path = os.path.join(base_path, f'Probable Live Photos ({curr_folder})')
-    misc_folder_path = os.path.join(base_path, f'Miscellaneous ({curr_folder})')
-    aae_folder_path = os.path.join(misc_folder_path, f'AAE Files ({curr_folder})')
-    png_folder_path = os.path.join(misc_folder_path, f'Screenshots and other PNG Files ({curr_folder})')
+    edited_folder_path = Path(base_path,f'Edited Photos and Videos ({curr_folder})')
+    live_folder_path = Path(base_path, f'Probable Live Photos ({curr_folder})')
+    misc_folder_path = Path(base_path, f'Miscellaneous ({curr_folder})')
+    aae_folder_path = Path(misc_folder_path, f'AAE Files ({curr_folder})')
+    png_folder_path = Path(misc_folder_path, f'Screenshots and other PNG Files ({curr_folder})')
+    videos_new_path = base_path/f'Videos ({base_path.name})'
 
-    entries = os.listdir(base_path)
+    # entries = os.listdir(base_path)
+    entries = list(base_path.iterdir())
     # print(entries)
 
-    for file in entries:
-        curr_file_path = os.path.join(base_path,file) # curr_file_path is C:\Users\Anant\Documents\Test Folder\New folder\IMG_1109.MOV
-        if Path(curr_file_path).is_file():
-            try:
-                file_size = os.path.getsize(curr_file_path)/(1024*1024) # file_size is 5.0469865798950195
-                file_ext = Path(curr_file_path).suffix # file_ext is .MOV
-                # filename = file.split('.')[0] # filename is IMG_1109
+    files = [e for e in entries if e.is_file()]
 
-                if file_ext.lower()=='.mov' and file_size<7:
-                    if not os.path.exists(live_folder_path):
-                        os.mkdir(live_folder_path)
-                    new_file_path = os.path.join(live_folder_path,file) # new_file_path is C:\Users\Anant\Documents\Test Folder\New folder\Probable Live Photos (New folder)\IMG_1109.MOV
-                    os.rename(curr_file_path,new_file_path)
+    for file in files:
+        file = Path(base_path,file) # curr_file_path is C:\Users\Anant\Documents\Test Folder\New folder\IMG_1109.MOV
+        # if Path(curr_file_path).is_file():
+        try:
+            file_size = os.path.getsize(file)/(1024*1024) # file_size is 5.0469865798950195
+            file_ext = Path(file).suffix # file_ext is .MOV
+            # filename = file.split('.')[0] # filename is IMG_1109
 
-                elif file_ext.lower()=='.aae':
-                    if not os.path.exists(aae_folder_path):
-                        if not os.path.exists(misc_folder_path):
-                            os.mkdir(misc_folder_path)
-                        os.mkdir(aae_folder_path)
-                    new_file_path = os.path.join(aae_folder_path,file)
-                    os.rename(curr_file_path,new_file_path)
+            if file_ext.lower()=='.mov':
+                if file_size<7:
+                    live_folder_path.mkdir(exist_ok=True)
+                    # new_file_path = Path(live_folder_path,file) # new_file_path is C:\Users\Anant\Documents\Test Folder\New folder\Probable Live Photos (New folder)\IMG_1109.MOV
+                    # os.rename(curr_file_path,new_file_path)
+                    file.rename(live_folder_path/file.name)
+                else:
+                    videos_new_path.mkdir(exist_ok=True)
+                    file.rename(videos_new_path/file.name)
 
-                elif file_ext.lower()=='.png':
-                    if not os.path.exists(png_folder_path):
-                        if not os.path.exists(misc_folder_path):
-                            os.mkdir(misc_folder_path)
-                        os.mkdir(png_folder_path)
-                    new_file_path = os.path.join(png_folder_path,file)
-                    os.rename(curr_file_path,new_file_path)
-
-                elif 0<file_size<0.7 or file_ext.lower()=='.mp4' or file_ext.lower()=='.gif':
+            elif file_ext.lower()=='.aae':
+                if not os.path.exists(aae_folder_path):
                     if not os.path.exists(misc_folder_path):
                         os.mkdir(misc_folder_path)
-                    new_file_path = os.path.join(misc_folder_path,file)
-                    os.rename(curr_file_path,new_file_path)
+                    os.mkdir(aae_folder_path)
+                new_file_path = Path(aae_folder_path,file.name)
+                os.rename(file,new_file_path)
 
-                elif file.startswith('IMG_E'): # Checking if the entry starts with 'IMG_E'.
-                    curr_file_path = os.path.join(base_path,file) # curr_file_path is C:\Users\Anant\Documents\Test Folder\New folder\IMG_1109.MOV
-                    original_file_name = file.replace('_E','_') # Create the name of the original file and its path.
-                    original_file_path = os.path.join(base_path,original_file_name)
-                    # Create the edited folder if it doesn't exist.
-                    if os.path.exists(original_file_path):
-                        if not os.path.exists(edited_folder_path):
-                            os.mkdir(edited_folder_path)
-                        curr_file_new_path = os.path.join(edited_folder_path,file) # Rename the edited file and move it to the edited folder.
-                        original_file_new_path = os.path.join(edited_folder_path,original_file_name)
-                        os.rename(curr_file_path,curr_file_new_path)
-                        os.rename(original_file_path, original_file_new_path)
-                        # Write a log entry for the moved pair of files.
-                        # moved_pairs_list.append(f'Moved pair of files - {original_file_name} and {file}.')
+            elif file_ext.lower()=='.png':
+                if not os.path.exists(png_folder_path):
+                    if not os.path.exists(misc_folder_path):
+                        os.mkdir(misc_folder_path)
+                    os.mkdir(png_folder_path)
+                new_file_path = Path(png_folder_path,file.name)
+                os.rename(file,new_file_path)
 
-            except FileExistsError as e:
-                print(f"A file with same name as '{file}' already exists in the destination. Skipping.")
-            except Exception as e:
-                print(f"An error occurred: {e}")
+            elif 0<file_size<0.7 or file_ext.lower()=='.mp4' or file_ext.lower()=='.gif':
+                if not os.path.exists(misc_folder_path):
+                    os.mkdir(misc_folder_path)
+                new_file_path = Path(misc_folder_path,file.name)
+                os.rename(file,new_file_path)
+
+            elif file.name.startswith('IMG_E'): # Checking if the entry starts with 'IMG_E'.
+                # file = Path(base_path,file) # curr_file_path is C:\Users\Anant\Documents\Test Folder\New folder\IMG_1109.MOV
+                original_file_name = file.name.replace('_E','_') # Create the name of the original file and its path.
+                original_file_path = Path(base_path,original_file_name)
+                # Create the edited folder if it doesn't exist.
+                if os.path.exists(original_file_path):
+                    if not os.path.exists(edited_folder_path):
+                        os.mkdir(edited_folder_path)
+                    curr_file_new_path = Path(edited_folder_path,file.name) # Rename the edited file and move it to the edited folder.
+                    original_file_new_path = Path(edited_folder_path,original_file_name)
+                    os.rename(file,curr_file_new_path)
+                    os.rename(original_file_path, original_file_new_path)
+                    # Write a log entry for the moved pair of files.
+                    # moved_pairs_list.append(f'Moved pair of files - {original_file_name} and {file}.')
+
+        except FileExistsError as e:
+            print(f"A file with same name as '{file}' already exists in the destination. Skipping.")
+        except Exception as e:
+            print(f"An error occurred: {e}")
 
 
     # if os.path.exists(edited_folder_path):
@@ -96,13 +103,14 @@ def managePhotos():
 
 
 while True:
-    event, values = Window.read()
+    event, values = window.read()
+
     if event in (sg.WINDOW_CLOSED, 'Exit'):
         break
     elif event=='Manage':
         base_path = Path(values['-IN-'])
         if base_path=='':
-            sg.popup("Please select a folder.",keep_on_top=True)
+            sg.popup("Please select a folder first.", keep_on_top=True)
         else:
             print(base_path)
             managePhotos()
